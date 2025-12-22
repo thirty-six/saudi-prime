@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\ProgramCategoryEnum;
+use App\Models\Program;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,11 +17,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        Program::insert([
+            [
+                'category' => ProgramCategoryEnum::Morning,
+                'description_ar' => 'برنامج الصباح مخصص لطالبات الجامعة ويشمل مجموعة من الأنشطة الرياضية لتعزيز اللياقة البدنية والصحة العامة.',
+                'base_price' => 150,
+            ],
+            [
+                'category' => ProgramCategoryEnum::Evening,
+                'description_ar' => 'برنامج المساء موجه للنساء ويقدم جلسات رياضية متنوعة بعد ساعات العمل لتعزيز النشاط والحيوية.',
+                'base_price' => 600,
+            ],
         ]);
+
+        $this->call([
+            RolesPermissionsSeeder::class,
+        ]);
+
+        User::createOrFirst(
+            [
+                'email' => 'admin@saudi-prime.com',
+            ],
+            [
+                'name' => 'Owner User',
+                'password' => bcrypt('password'),
+            ]
+        )->assignRole('Owner');
     }
 }

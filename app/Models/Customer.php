@@ -8,9 +8,17 @@ class Customer extends Model
 {
     protected $fillable = [
         'name', 
-        'email', 
         'phone', 
-        'university_id', 
-        'type',
+        'university_id',
     ];
+
+    // Relationships
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class);
+    }
+    public function kids()
+    {
+        return $this->hasMany(Kid::class, 'guardian_id');
+    }
 }

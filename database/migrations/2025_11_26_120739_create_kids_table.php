@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('kids', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->date('birth_date');
-            $table->enum('relation', ['mother', 'father', 'other'])->comment('the relation with gurdian');
+            $table->date('birth_date');// depend on this we will do the classification on a and b groups
+            $table->enum('relation', ['mother', 'father', 'other'])->comment('the relation with guardian ');
             $table->foreignIdFor(Customer::class)->constrained(indexName:'guardian_id')->cascadeOnDelete();
             $table->timestamps();
         });

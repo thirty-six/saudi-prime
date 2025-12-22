@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::after(function ($user, $ability, $result) {
+            // Give Owner universal access EXCEPT delete owner rule
+            if ($user->hasRole('Owner')) {
+                return $result === false ? false : true;
+            }
+
+            return $result;
+        });
     }
 }

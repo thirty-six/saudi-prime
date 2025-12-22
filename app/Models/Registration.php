@@ -6,9 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Registration extends Model
 {
-    public function payments()
+    protected $fillable = [
+        'customer_id',
+        'status',
+        'is_paid',
+        'total_amount',
+    ];
+    
+    // Relations
+    public function customer()
     {
-        return $this->morphMany(Payment::class, 'payable');
+        return $this->belongsTo(Customer::class);
     }
-
+    // public function payments()
+    // {
+    //     return $this->morphMany(Payment::class, 'payable');
+    // }
 }

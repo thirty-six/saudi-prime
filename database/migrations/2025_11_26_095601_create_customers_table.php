@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
             $table->string('phone', 20);
-            $table->string('university_id', 20)->nullable(); // required with student
-            $table->enum('type', ['student', 'employee', 'external'])->default('student');
+            // required with student and needed in morning session (they got different price)
+            $table->string('university_id', 20)->nullable(); 
             $table->timestamps();
         });
     }
