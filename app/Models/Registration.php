@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\RegistrationStatusEnum;
 use Illuminate\Database\Eloquent\Model;
 
 class Registration extends Model
@@ -12,6 +13,12 @@ class Registration extends Model
         'is_paid',
         'total_amount',
     ];
+    protected function casts()
+    {
+        return [
+            'status' => RegistrationStatusEnum::class,
+        ];
+    }
     
     // Relations
     public function customer()

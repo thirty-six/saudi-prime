@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\RegistrationStatusEnum;
 use App\Models\Customer;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,7 +16,7 @@ return new class extends Migration
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Customer::class)->constrained()->cascadeOnDelete();
-            $table->enum('status', ['pending','started','completed','cancelled'])->default('pending');
+            $table->string('status')->default(RegistrationStatusEnum::Pending->value);
             $table->boolean('is_paid')->default(false);
             $table->boolean('accepted_terms')->default(false);
             $table->unsignedInteger('price')->nullable();
