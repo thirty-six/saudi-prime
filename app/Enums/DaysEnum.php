@@ -29,14 +29,6 @@ enum DaysEnum :string
     {
         return __(ucfirst($this->name));
     }
-    public static function getOptions(): array
-    {
-        return collect(self::cases())
-            ->mapWithKeys(fn ($case) => [
-                $case->value => $case->getLabel()
-            ])
-            ->toArray();
-    }
     public function carbonKey(): int
     {
         return match ($this) {

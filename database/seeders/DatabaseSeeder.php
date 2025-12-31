@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Program::insert([
+        Program::upsert([
             [
                 'category' => ProgramCategoryEnum::Morning,
                 'description_ar' => 'برنامج الصباح مخصص لطالبات الجامعة ويشمل مجموعة من الأنشطة الرياضية لتعزيز اللياقة البدنية والصحة العامة.',
@@ -28,7 +28,10 @@ class DatabaseSeeder extends Seeder
                 'description_ar' => 'برنامج المساء موجه للنساء ويقدم جلسات رياضية متنوعة بعد ساعات العمل لتعزيز النشاط والحيوية.',
                 'base_price' => 600,
             ],
-        ]);
+        ], 
+        ['category'],
+        ['description_ar', 'base_price']
+        );
 
         $this->call([
             RolesPermissionsSeeder::class,

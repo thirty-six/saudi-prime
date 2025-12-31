@@ -1,6 +1,9 @@
 <?php
 namespace App\Filament\Widgets;
 
+use App\Enums\RegistrationStatusEnum;
+use App\Enums\SessionStatusEnum;
+use App\Models\AdultSession;
 use App\Models\Registration;
 use App\Models\ProgramSession;
 use App\Models\Payment;
@@ -12,16 +15,26 @@ class DailyStats extends BaseWidget
 {
     protected function getStats(): array
     {
-        $totalSeats   = 160;              // ProgramSession::sum('capacity') ?? 160
-        $usedSeats    = Registration::where('status', 'paid')->count(); // 142
+        $totalSeats   = AdultSession::whereNotIn('status', [
+                            SessionStatusEnum::Cancelled,
+                            SessionStatusEnum::Completed,
+                        ])
+                        ->sum('capacity');
 
-        $pendingRequests = Registration::where('status', 'pending')->count();
+        $usedSeats    = Registration::whereNotNull('paid_at')
+                        ->whereNotIn('status', [
+                            RegistrationStatusEnum::Cancelled,
+                            RegistrationStatusEnum::Completed,
+                        ])
+                        ->count(); 
+
+        $pendingRequests = Registration::where('status', RegistrationStatusEnum::Pending)
+                        ->wherenull('paid_at')
+                        ->count();
 
         $today = Carbon::today();
-        $todaysRevenue = 1000;
-        // Payment::whereDate('paid_at', $today)
-        //     ->where('status', 'paid')
-        //     ->sum('amount');
+        $todaysRevenue = Registration::whereDate('paid_at', $today)
+                        ->sum('price');
 
         $newToday = Registration::whereDate('created_at', $today)->count();
 

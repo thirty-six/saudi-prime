@@ -13,12 +13,14 @@ class ProgramsTable
         return $table
             ->columns([
                 TextColumn::make('category')
-                    ->label(__('Category')),
+                    ->label(__('Category'))
+                    ->badge(),
                 TextColumn::make('base_price')
                     ->label(__('Base price'))
                     ->money(config('app.currency_code'), true),
                 TextColumn::make('description')
-                    ->label(__('Description')),
+                    ->label(__('Description'))
+                    ->limit(50),
             ])
             ->filters([
                 //

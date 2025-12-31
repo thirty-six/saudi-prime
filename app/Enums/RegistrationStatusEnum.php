@@ -11,6 +11,6 @@ enum RegistrationStatusEnum : string
     
     public function getLabel(): ?string
     {
-        return __($this->name);
+        return __(ucfirst($this->name));
     }
 }

@@ -6,8 +6,10 @@
 @source '../**/*.js';
 
 @theme {
-    /* Typography */
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    /* =========================
+       Typography
+    ========================== */
+    --font-sans: 'Tajawal', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
 
     --text-display: clamp(32px, 5vw, 64px);
     --text-title: 24px;
@@ -16,94 +18,117 @@
     --text-small: 14px;
     --text-label: 12px;
 
-    /* Color Palette */
-    --color-sand: #E8D5B5;
-    --color-beige: #C3BF98;
-    --color-moss: #9AAB80;
-    --color-olive: #6D9670;
-    --color-forest: #3C8266;
-    --color-deep: #006C61;
+    /* =========================
+       Brand Color Palette
+       (Saudi Prime Club – Option 2)
+    ========================== */
+    --color-blue: #1F75BA;      /* Primary brand blue */
+    --color-yellow: #F7BE24;    /* Primary brand yellow */
+
+    /* Dark / light variants */
+    --color-blue-dark: #165A91;
+    --color-blue-light: #4D93CE;
+
+    --color-yellow-dark: #D9A514;
+    --color-yellow-light: #FFD666;
+
+    /* Neutrals */
+    --color-white: #FFFFFF;
+    --color-neutral-light: #F6F6F6;
+    --color-neutral-muted: #B5B5B5;
+    --color-neutral-dark: #1E1E1E;
+
+    /* Semantic colors */
+    --color-success: #28A745;
+    --color-successer: #1E9336;
 
     --color-danger: #D9534F;
-    --color-dangerer: #c74341;
-    --color-warning: #FFC107;
-    --color-success: #28A745;
-    --color-successer: #1e9336;
+    --color-dangerer: #C74341;
 
-    --color-neutral-light: #F7F7F7;
-    --color-neutral-muted: #AAAAAA;
-    --color-neutral-dark: #2A2A2A;
+    --color-warning: var(--color-yellow);
 
-    /* Spacing (We used -app to not override tailwind original spacing system) */
+    /* =========================
+       Spacing
+    ========================== */
     --spacing-app-xs: 4px;
     --spacing-app-sm: 8px;
     --spacing-app-md: 16px;
     --spacing-app-lg: 24px;
     --spacing-app-xl: 32px;
 
-    /* Border Radius */
+    /* =========================
+       Radius & Shadows
+    ========================== */
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 16px;
 
-    /* Shadows */
     --shadow-soft: 0 1px 3px rgba(0,0,0,0.12);
-    --shadow-card: 0 4px 12px rgba(0,0,0,0.1);
-    --shadow-strong: 0 8px 24px rgba(0,0,0,0.15);
+    --shadow-card: 0 4px 12px rgba(0,0,0,0.12);
+    --shadow-strong: 0 8px 24px rgba(0,0,0,0.18);
 
-
-    /* Base button tokens */
+    /* =========================
+       Buttons
+    ========================== */
     --btn-radius: var(--radius-md);
     --btn-padding: var(--spacing-app-sm) var(--spacing-app-lg);
     --btn-shadow: var(--shadow-soft);
-    --btn-font-weight: 600; /* medium-bold works great for CTAs */
+    --btn-font-weight: 600;
 
-    /* ---------- Primary ---------- */
-    --btn-primary-bg: var(--color-deep);
-    --btn-primary-text: white;
-    --btn-primary-hover-bg: var(--color-forest);
+    /* Primary (Blue) */
+    --btn-primary-bg: var(--color-blue);
+    --btn-primary-text: var(--color-white);
+    --btn-primary-hover-bg: var(--color-blue-dark);
 
-    /* ---------- Secondary ---------- */
-    --btn-secondary-bg: var(--color-olive);
-    --btn-secondary-text: white;
-    --btn-secondary-hover-bg: var(--color-forest);
+    /* Secondary (Yellow) */
+    --btn-secondary-bg: var(--color-yellow);
+    --btn-secondary-text: var(--color-neutral-dark);
+    --btn-secondary-hover-bg: var(--color-yellow-dark);
 
-    /* ---------- Light ---------- */
-    --btn-light-bg: var(--color-sand);
-    --btn-light-text: var(--color-deep);
-    --btn-light-hover-bg: var(--color-beige);
+    /* Light */
+    --btn-light-bg: var(--color-white);
+    --btn-light-text: var(--color-blue);
+    --btn-light-hover-bg: var(--color-neutral-light);
 
-    /* ---------- Outline ---------- */
+    /* Outline */
     --btn-outline-bg: transparent;
-    --btn-outline-text: var(--color-deep);
-    --btn-outline-border: var(--color-deep);
-    --btn-outline-hover-bg: var(--color-sand);
+    --btn-outline-text: var(--color-blue);
+    --btn-outline-border: var(--color-blue);
+    --btn-outline-hover-bg: rgba(31, 117, 186, 0.08);
 
-    /* ---------- Success ---------- */
+    /* Success */
     --btn-success-bg: var(--color-success);
-    --btn-success-text: white;
+    --btn-success-text: var(--color-white);
     --btn-success-hover-bg: var(--color-successer);
 
-    /* ---------- Danger ---------- */
+    /* Danger */
     --btn-danger-bg: var(--color-danger);
-    --btn-danger-text: white;
+    --btn-danger-text: var(--color-white);
     --btn-danger-hover-bg: var(--color-dangerer);
 
-    /* Card Tokens */
-    --card-bg: white;
-    --card-bg-alt: var(--color-sand);
+    /* =========================
+       Cards
+    ========================== */
+    --card-bg: var(--color-white);
+    --card-bg-alt: var(--color-neutral-light);
     --card-radius: var(--radius-md);
     --card-padding: var(--spacing-app-lg);
     --card-shadow: var(--shadow-card);
-    --card-border: 1px solid transparent; /* for future outline variants */
+    --card-border: 1px solid rgba(0,0,0,0.06);
 
-    /* Card Hover (optional for interactive sections) */
     --card-hover-shadow: var(--shadow-strong);
     --card-hover-translate: -2px;
 
-    /* Gradients */
-    --gradient-main: linear-gradient(135deg, var(--color-forest), var(--color-sand));
+    /* =========================
+       Gradients
+    ========================== */
+    --gradient-main: linear-gradient(
+        135deg,
+        var(--color-blue),
+        var(--color-yellow)
+    );
 }
+
 
 @layer base {
     body {

@@ -10,13 +10,15 @@ class Registration extends Model
     protected $fillable = [
         'customer_id',
         'status',
-        'is_paid',
-        'total_amount',
+        'accepted_term',
+        'price',
+        'paid_at',
     ];
     protected function casts()
     {
         return [
             'status' => RegistrationStatusEnum::class,
+            'paid_at' => 'date_time',
         ];
     }
     
@@ -25,8 +27,32 @@ class Registration extends Model
     {
         return $this->belongsTo(Customer::class);
     }
-    // public function payments()
-    // {
-    //     return $this->morphMany(Payment::class, 'payable');
-    // }
+    public function registrationSessions()
+    {
+        return $this->hasMany(AdultSessionRegistration::class);
+    }
+    public function sessions()
+    {
+        return $this->belongsToMany(
+            AdultSession::class,
+            'adult_session_registrations'
+        )
+        ->withPivot(['attendance_date'])
+        ->withTimestamps();
+    }
+    public function registrationsCount(): int
+    {
+        return $this->registrations()
+            ->where('registrations.status', RegistrationStatusEnum::Pending->value)
+            ->count();
+    }
+    public function isFull(): bool
+    {
+        return $this->registrationsCount() >= $this->capacity;
+    }
+    // other getter
+    public function getIsPaidAttribute()
+    {
+        return !empty($this->paid_at);
+    }
 }

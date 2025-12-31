@@ -17,6 +17,7 @@ class KidSession extends Model
         'status',
         'start_time',
         'start_at',
+        'base_price',
         'capacity',
     ];
 

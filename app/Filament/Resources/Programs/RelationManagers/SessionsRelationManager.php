@@ -4,6 +4,8 @@ namespace App\Filament\Resources\Programs\RelationManagers;
 
 use App\Enums\DaysEnum;
 use App\Enums\SessionStatusEnum;
+use App\Models\Program;
+use App\Models\ProgramSport;
 use Carbon\Carbon;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
@@ -17,16 +19,25 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
+use Filament\Tables\Columns\Summarizers\Count;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
+
 class SessionsRelationManager extends RelationManager
 {
-    protected static string $relationship = 'sessions';
+    protected static string $relationship = 'adultSessions';
+    protected Program $program;
+
+    protected function program(): ?Program
+    {
+        return $this->getOwnerRecord();
+    }
 
     public function form(Schema $schema): Schema
     {
@@ -34,22 +45,29 @@ class SessionsRelationManager extends RelationManager
             ->components([
                 Select::make('sport_id')
                     ->label(__('Sport'))
-                    ->relationship('sport', 'name_ar')
+                    ->relationship(
+                        name: 'programSport.sport',
+                        titleAttribute: 'name_ar'
+                    )
                     ->searchable()
-                    ->required(),
+                    ->required()
+                    // hydrate old value on edit
+                    ->afterStateHydrated(function ($record, Set $set) {
+                        $set('sport_id', $record?->programSport?->sport_id);
+                    }),
                 Select::make('day')
                     ->label(__('Day'))
-                    ->options(DaysEnum::getOptions())
+                    ->options(DaysEnum::class)
                     ->required(),
                 Select::make('status')
                     ->label(__('Status'))
-                    ->options(SessionStatusEnum::getOptions())
+                    ->options(SessionStatusEnum::class)
                     ->required()
                     ->default(SessionStatusEnum::Pending),
                 TimePicker::make('start_time')
-                    ->label(fn () => __(ucfirst($this->getOwnerRecord()?->category->name) . ' Time'))
+                    ->label(fn () => $this->program()?->category->getLabel())
                     ->required()
-                    ->datalist(fn () => $this->getOwnerRecord()?->category->times())
+                    ->datalist($this->program()?->category->times())
                     ->rule($this->validateTimeForCategory(...)),
                 DateTimePicker::make('start_at')
                     ->label(__('Start at')),
@@ -73,6 +91,10 @@ class SessionsRelationManager extends RelationManager
                     ->label(__('Sport'))
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('registrations_count')
+                    ->counts('registrations')
+                    ->label(__('Registrations'))
+                    ->sortable(),
                 TextColumn::make('day')
                     ->label(__('Day'))
                     ->formatStateUsing(fn ($state) => $state->getLabel())
@@ -91,57 +113,46 @@ class SessionsRelationManager extends RelationManager
                     ->sortable(),
             ])
             ->headerActions([
-                CreateAction::make(),
+                CreateAction::make()
+                    ->mutateDataUsing(function (array $data) {
+                        return $this->attachProgramSport($data);
+                    }),
             ])
             ->filters([
                 TrashedFilter::make(),
             ])
             ->recordActions([
-                ActionGroup::make([
-                    // Open session
-                    Action::make('open')
-                        ->label(SessionStatusEnum::Open->getLabel())
-                        ->visible(fn ($record) => $record->status === SessionStatusEnum::Pending)
-                        ->action(fn ($record) => $record->update(['status' => SessionStatusEnum::Open])),
-    
-                    // Mark full
-                    Action::make('full')
-                        ->label(SessionStatusEnum::Full->getLabel())
-                        ->visible(fn ($record) => $record->status === SessionStatusEnum::Open)
-                        ->action(fn ($record) => $record->update(['status' => SessionStatusEnum::Full])),
-    
-                    // Start Session
-                    Action::make('start')
-                        ->label(SessionStatusEnum::Started->getLabel())
-                        ->visible(fn ($record) => in_array($record->status, [
-                            SessionStatusEnum::Open,
-                            SessionStatusEnum::Full,
-                        ]))
-                        ->action(function ($record) {
-                            $record->update([
-                                'status' => SessionStatusEnum::Started,
-                                'start_at' => today()->next($record->day->carbonKey()),
-                            ]);
-                        }),
-    
-                    // Complete
-                    Action::make('complete')
-                        ->label(SessionStatusEnum::Completed->getLabel())
-                        ->visible(fn ($record) => $record->status === SessionStatusEnum::Started)
-                        ->action(fn ($record) => $record->update(['status' => SessionStatusEnum::Completed])),
-    
-                    // Cancel
-                    Action::make('cancel')
-                        ->label(SessionStatusEnum::Cancelled->getLabel())
-                        ->color('danger')
-                        ->requiresConfirmation()
-                        ->visible(fn ($record) => ($record->status !== SessionStatusEnum::Completed && $record->status !== SessionStatusEnum::Cancelled))
-                        ->action(fn ($record) => $record->update(['status' => SessionStatusEnum::Cancelled])),
-                    
-                ])->label(__('Change') . ' ' . __('Status')),
+                ActionGroup::make(
+                    collect(SessionStatusEnum::cases())
+                    ->map(fn (SessionStatusEnum $target) =>
+                        Action::make($target->value)
+                            ->label($target->getLabel())
+                            ->color($target->getColor())
+                            ->visible(fn ($record) =>
+                                $record && $record->status->canTransitionTo($target)
+                            )
+                            ->requiresConfirmation(
+                                $target->requiresConfirmation()
+                            )
+                            ->action(function ($record) use ($target) {
+                                $payload = ['status' => $target];
 
+                                if ($target->requiresStartAt()) {
+                                    $payload['start_at'] =
+                                        today()->next($record->day->carbonKey());
+                                }
+
+                                $record->update($payload);
+                            })
+                    )
+                    ->all())
+                ->label(__('Change') . ' ' . __('Status'))
+                ->button(),
                 DeleteAction::make(),
-                EditAction::make(),
+                EditAction::make()
+                    ->mutateDataUsing(function (array $data) {
+                        return $this->attachProgramSport($data);
+                    }),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
@@ -159,15 +170,45 @@ class SessionsRelationManager extends RelationManager
     {
         return __('Session');
     }
-    protected function validateTimeForCategory()
-    {
-        return function ($attribute, $value, $fail) {
-            $category = $this->getOwnerRecord()?->category;
 
-            if ($category && !in_array(Carbon::parse($value)->format('H:i'), $category->times())) {
+    protected function validateTimeForCategory(): \Closure
+    {
+        $program = $this->program();
+
+        return function (string $attribute, $value, \Closure $fail) use ($program) {
+            $category = $program?->category;
+
+            if (! $category) {
+                return;
+            }
+
+            if (! in_array(
+                (new Carbon($value))->format('H:i'),
+                $category->times(),
+                true
+            )) {
                 $fail(__('This time is not allowed for this program category.'));
             }
         };
     }
+
+    protected function attachProgramSport(array $data)//: Model
+    {
+        $program = $this->program();
+
+        $programSport = ProgramSport::firstOrCreate([
+            'program_id' => $program->id,
+            'sport_id'   => $data['sport_id'],
+        ]);
+
+        // Replace intent with persistence
+        $data['program_sport_id'] = $programSport->id;
+
+        // Remove virtual field
+        unset($data['sport_id']);
+
+        return $data;
+    }
+
 
 }

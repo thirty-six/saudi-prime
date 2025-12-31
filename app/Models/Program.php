@@ -22,16 +22,30 @@ class Program extends Model
         ];
     }
 
-    // Relation
-    public function sessions()
+    // Relations
+    public function programSports()
     {
-        return $this->hasMany(AdultSession::class);
+        return $this->hasMany(ProgramSport::class);
     }
-
+    public function sports()
+    {
+        return $this->belongsToMany(Sport::class);
+    }
+    public function adultSessions()
+    {
+        return $this->hasManyThrough(
+            AdultSession::class,
+            ProgramSport::class,
+            'program_id',          // program_sports.program_id
+            'program_sport_id',    // adult_sessions.program_sport_id
+            'id',
+            'id',
+        );
+    }
     // Localized attributes
     public function getDescriptionAttribute(): string
     {
-        return $this->{'description_' . app()->getLocale()};
+        return $this->{'description_' . app()->getLocale()} ?? null;
     }
 }
 

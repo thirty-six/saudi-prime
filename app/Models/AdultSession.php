@@ -11,8 +11,7 @@ class AdultSession extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'program_id',
-        'sport_id',
+        'program_sport_id',
         'day',
         'status',
         'start_time',
@@ -33,22 +32,36 @@ class AdultSession extends Model
     // Relations
     public function program()
     {
-        return $this->belongsTo(Program::class);
+        return $this->hasOneThrough(
+            Program::class,
+            ProgramSport::class,
+            'id',
+            'id',
+            'program_sport_id',
+            'program_id'
+        );
     }
-    public function Sport()
+    public function sport()
     {
-        return $this->belongsTo(Sport::class);
+        return $this->hasOneThrough(
+            Sport::class,
+            ProgramSport::class,
+            'id',
+            'id',
+            'program_sport_id',
+            'sport_id'
+        );
+    }
+    public function programSport()
+    {
+        return $this->belongsTo(ProgramSport::class);
     }
     public function registrations()
     {
-        return $this->hasManyThrough(
+        return $this->belongsToMany(
             Registration::class,
-            AdultSessionRegistration::class,
-            'adult_session_id', // FK on intermediate table
-            'id',               // FK on registrations table
-            'id',               // local key on adult_sessions
-            'registration_id'   // local key on adult_session_registrations
-        );
+            'adult_session_registrations'
+        )->withTimestamps();
     }
     public function registrationSessions()
     {

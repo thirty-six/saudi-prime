@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Customer::class)->constrained()->cascadeOnDelete();
             $table->string('status')->default(RegistrationStatusEnum::Pending->value);
-            $table->boolean('is_paid')->default(false);
             $table->boolean('accepted_terms')->default(false);
             $table->unsignedInteger('price')->nullable();
+            $table->timestamp('paid_at')->nullable();
             $table->timestamps();
         });
 

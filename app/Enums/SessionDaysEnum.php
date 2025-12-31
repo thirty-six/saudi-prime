@@ -2,7 +2,8 @@
 
 namespace App\Enums;
 
-enum SessionDaysEnum: string
+use Filament\Support\Contracts\HasLabel;
+enum SessionDaysEnum: string implements HasLabel
 {
     // Each option represents a combination of days
     // thoes are for kid sessions
@@ -25,12 +26,12 @@ enum SessionDaysEnum: string
         };
     }
 
-    public function labels(): array
+    public function getLabel(): string
     {
-        return array_map(
+        return collect(array_map(
             fn (DaysEnum $day) => $day->getLabel(),
             $this->days()
-        );
+        ))->implode('-');
     }
 }
 

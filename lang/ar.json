@@ -27,6 +27,9 @@
     "Detail": "تفصيلة",
     "Details": "التفاصيل",
     "Capacity Left": "السعة المتبقية",
+    "Accepted Terms": "الموافقة على الشروط",
+    "Phone": "رقم الجوال",
+    "University ID": "الرقم الجامعي",
 
     "Users": "المستخدمون",
     "User": "مستخدم",
@@ -38,6 +41,12 @@
     "Session": "حصة",
     "Programs": "البرامج",
     "Program": "برنامج",
+    "Kids Sessions": "حصص الأطفال",
+    "Session for Kids": "حصة الأطفال",
+    "Registrations": "التسجيلات",
+    "Registration": "تسجيل",
+    "Customers": "العملاء",
+    "Customer": "عميل",
 
     "Morning": "صباحي",
     "Evening": "مسائي",
