@@ -2,7 +2,13 @@
 
 namespace App\Enums;
 
-enum ProgramCategoryEnum: string
+use BackedEnum;
+use Filament\Support\Contracts\HasIcon;
+use Filament\Support\Contracts\HasLabel;
+use Filament\Support\Icons\Heroicon;
+use Illuminate\Contracts\Support\Htmlable;
+
+enum ProgramCategoryEnum: string implements HasLabel, HasIcon
 {
     case Morning = 'morning';
     case Evening = 'evening';
@@ -13,11 +19,18 @@ enum ProgramCategoryEnum: string
             self::Evening => ['16:00','17:00','18:00','19:00','20:00','21:00'],
         };
     }
-    public function label(): string
+    public function getLabel(): string|Htmlable|null
     {
         return match ($this) {
             self::Morning => __('Morning Program'),
             self::Evening => __('Evening Program'),
+        };
+    }
+    public function getIcon(): string|BackedEnum|Htmlable|null
+    {
+        return match ($this) {
+            self::Morning => Heroicon::Sun,
+            self::Evening => Heroicon::Moon,
         };
     }
 }

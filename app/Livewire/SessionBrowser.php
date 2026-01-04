@@ -20,9 +20,11 @@ class SessionBrowser extends Component
     public string $programCategory; // morning / evening
     public ?int $sportId = null;
     public ?int $selectedSportId = null;
+
     public ?string $universityNumber = null;
     public ?string $phone = null;
     public ?string $name = null;
+
     public ?bool $showModal = false;
     public ?bool $showPhoneVerification = false;
     public ?bool $otpSent = false;
@@ -114,7 +116,7 @@ class SessionBrowser extends Component
 
         $this->showPhoneVerification = false;
 
-        // 🔥 CONTINUE booking automatically
+        // CONTINUE booking automatically
         $this->completeRegistration();
     }
 

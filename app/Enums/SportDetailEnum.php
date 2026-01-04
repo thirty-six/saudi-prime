@@ -2,7 +2,9 @@
 
 namespace App\Enums;
 
-enum SportDetailEnum :string
+use Filament\Support\Contracts\HasLabel;
+
+enum SportDetailEnum :string implements HasLabel
 {
     case Benefit = 'benefits';
     case Skill = 'gained skills';
@@ -11,16 +13,7 @@ enum SportDetailEnum :string
     
     public function getLabel(): ?string
     {
-        return __(ucwords($this->value));
-    }
-
-    public static function getOptions(): array
-    {
-        return collect(self::cases())
-            ->mapWithKeys(fn ($case) => [
-                $case->name => $case->getLabel()
-            ])
-            ->toArray();
+        return __(ucwords($this->name));
     }
 
 }

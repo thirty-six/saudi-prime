@@ -1,4 +1,5 @@
 <div class="grid sm:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    @isset($morningProgram)
     <!-- القسم الصباحي -->
     <div class="pricing-table featured card card-hover">
         <div class="text-center mb-8">
@@ -7,7 +8,7 @@
             </div>
 
             <h3 class="text-3xl font-bold text-neutral-dark mb-2">
-                {{ $morningProgram->category->label() }}
+                {{ $morningProgram->category?->getLabel() }}
             </h3>
 
             <p class="text-neutral-muted mb-4">
@@ -22,13 +23,15 @@
         </div>
 
         <button
-            wire:click="startRegistration('{{$morningProgram->category->value}}')"
+            wire:click="startRegistration('{{$morningProgram->category?->value}}')"
             class="btn btn-primary w-full mt-4"
         >
             {{ __('Register') }}
         </button>
     </div>
+    @endisset
 
+    @isset($eveningProgram)
     <!-- القسم المسائي -->
     <div class="pricing-table card card-hover card-alt">
         <div class="text-center mb-8">
@@ -37,7 +40,7 @@
             </div>
 
             <h3 class="text-3xl font-bold text-neutral-dark mb-2">
-            {{ $eveningProgram->category->label() }}
+            {{ $eveningProgram->category->getLabel() }}
             </h3>
 
             <p class="text-neutral-muted mb-4">
@@ -57,7 +60,8 @@
             {{ __('Register') }}
         </button>
     </div>
-    
+    @endisset
+
     {{-- MODAL --}}
     @if ($showModal)
     <div class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex justify-center animate-fade-in p-4">
@@ -77,7 +81,7 @@
             {{-- BOOKING FORM --}}
             <form wire:submit.prevent="submitRegistration" class="space-y-8">
 
-                {{-- PERSONAL INFO (NO PHONE) --}}
+                {{-- PERSONAL INFO --}}
                 <div class="flex pt-app-md gap-4">
                     <x-form.input
                         name="name"

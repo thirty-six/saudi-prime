@@ -13,8 +13,7 @@ class SportDetails extends Model
         'type',
     ];
 
-    // Define the localizable attributes
-    protected $localizable = [
+    protected $appends = [
         'value',
     ];
     protected function casts()
@@ -34,6 +33,6 @@ class SportDetails extends Model
     // Localized attributes
     public function getValueAttribute(): string
     {
-        return $this->{'value_' . app()->getLocale()};
+        return $this->{'value_' . app()->getLocale()} ?? null;
     }
 }

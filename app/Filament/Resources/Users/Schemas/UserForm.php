@@ -31,7 +31,6 @@ class UserForm
                     ->label('الأدوار')
                     ->multiple()
                     ->relationship('roles', 'name')
-                    ->preload()
                     ->required(),
             ]);
 

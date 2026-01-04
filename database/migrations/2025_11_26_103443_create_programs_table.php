@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->enum('category', ProgramCategoryEnum::cases());
+            $table->string('category')->unique();
             $table->string('description_ar')->nullable();
             $table->json('features')->nullable();
             $table->unsignedInteger('base_price')->nullable();

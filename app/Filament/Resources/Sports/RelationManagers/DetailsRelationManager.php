@@ -14,6 +14,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Grouping\Group;
 use Filament\Tables\Table;
 
 class DetailsRelationManager extends RelationManager
@@ -30,7 +31,7 @@ class DetailsRelationManager extends RelationManager
                     ->maxLength(255),
                 Select::make('type')
                     ->label(__('Type'))
-                    ->options(SportDetailEnum::getOptions())
+                    ->options(SportDetailEnum::class)
                     ->required(),
             ]);
     }
@@ -38,14 +39,18 @@ class DetailsRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
+            ->groups([
+                Group::make('type')
+                    ->label(__('Type'))
+                    ->getTitleFromRecordUsing(fn ($record): string => ucfirst($record->type->getLabel())),
+            ])
             ->recordTitleAttribute('value')
             ->columns([
                 TextColumn::make('value')
                     ->label(__('Value'))
                     ->searchable(),
-                TextColumn::make('type')
-                    ->label(__('Type'))
-                    ->badge(),
+                // TextColumn::make('type')
+                //     ->badge(),
             ])
             ->filters([
                 //

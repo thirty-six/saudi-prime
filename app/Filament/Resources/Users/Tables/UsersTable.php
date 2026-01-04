@@ -21,9 +21,6 @@ class UsersTable
                 TextColumn::make('email')
                     ->label(__('Email address'))
                     ->searchable(),
-                // TextColumn::make('email_verified_at')
-                //     ->dateTime()
-                //     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

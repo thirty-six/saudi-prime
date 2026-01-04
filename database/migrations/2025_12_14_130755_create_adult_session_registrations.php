@@ -19,7 +19,11 @@ return new class extends Migration
             $table->foreignIdFor(Registration::class)->constrained()->cascadeOnDelete();
             $table->json('attendance_date')->nullable(); // [date1, date2, ...] the dates the customer attended
             $table->timestamps();
-            $table->unique(['registration_id', 'adult_session_id']);
+            $table->unique(
+                ['registration_id', 'adult_session_id'],
+                'reg_adult_session_unique'
+            );
+
         });
     }
 

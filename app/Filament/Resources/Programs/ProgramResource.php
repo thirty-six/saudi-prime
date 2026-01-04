@@ -52,8 +52,8 @@ class ProgramResource extends Resource
         if (!$record) return null;
 
         // If category is enum, call label()
-        if (method_exists($record->category, 'label')) {
-            return $record->category->label();
+        if (method_exists($record->category, 'getLabel')) {
+            return $record->category->getLabel();
         }
 
         // If category is plain string, translate using lang

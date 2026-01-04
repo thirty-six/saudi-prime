@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Program;
 use App\Models\Sport;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,7 +19,9 @@ return new class extends Migration
             $table->string('status'); // ['pending', 'open', 'full', 'started', 'completed', 'cancelled'])->default('pending')
             $table->time('start_time'); // its for 2 hours
             $table->dateTime('start_at')->nullable(); // the session will start when the capcity are full or when admin confirm it
+            $table->unsignedInteger('base_price')->default(600);
             $table->unsignedSmallInteger('capacity')->default(16);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

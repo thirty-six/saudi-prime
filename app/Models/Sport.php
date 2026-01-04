@@ -13,15 +13,34 @@ class Sport extends Model
         'description_ar',
         'icon',
     ];
+    protected $appends = [
+        'name',
+        'description',
+    ];
 
     // Relations
     public function details()
     {
         return $this->hasMany(SportDetails::class);
     }
+    public function programSports()
+    {
+        return $this->hasMany(ProgramSport::class);
+    }
+    public function programs()
+    {
+        return $this->belongsToMany(Program::class);
+    }
     public function adultSessions()
     {
-        return $this->hasMany(AdultSession::class);
+        return $this->hasManyThrough(
+            AdultSession::class,
+            ProgramSport::class,
+            'sport_id',
+            'id',
+            'adult_session_id',
+            'id',
+        );
     }
     public function kidSessions()
     {
@@ -29,8 +48,12 @@ class Sport extends Model
     }
 
     // Localized attributes
+    public function getNameAttribute(): string
+    {
+        return $this->{'name_' . app()->getLocale()} ?? null;
+    }
     public function getDescriptionAttribute(): string
     {
-        return $this->{'description_' . app()->getLocale()};
+        return $this->{'description_' . app()->getLocale()} ?? null;
     }
 }
