@@ -24,32 +24,92 @@
     <title>@yield('title', 'Saudi Prime')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+
+    <style>
+        .prime_logo img{
+    width: 100px;
+    height: 105px;
+}
+.header a:hover{
+    color:#fff;
+    border-bottom: 2px solid rgba(208, 192, 192, 0.5); 
+  text-shadow: 2px 2px 4px rgba(208, 192, 192, 0.5); 
+}
+
+    </style>
+    
 </head>
 
 <body dir="rtl">
 
     {{-- HEADER --}}
-    <!--<header class="bg-sand/25 shadow-soft px-app-lg py-app-md flex justify-between items-center">
-        <a href="/" class="text-title font-semibold text-deep">
-            {{-- Logo --}}
-            {{-- {{ config('app.name') }} --}}
-            <img src="{{ asset('img/logo-temp.png') }}" alt="{{ config('app.name') }} Logo" class="inline-block size-16 ml-2 align-middle"/>
-        </a>
+    <header class="header">
+      <nav id="navbar" class="fixed top-0 left-0 right-0 bg-green-900/70 backdrop-blur-lg border-b border-cyan-500/30 z-50 transition-all duration-300">
+    <div class="container mx-auto px-6 py-3">
+      <div class="flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <div class="relative mr-2 prime_logo">
+            <img src="{{asset('img/logo_white.png')}}"  alt="Saudi Prime" class="h-6 relative z-10">
+          </div>
+        </div>
 
-        <nav class="flex items-center gap-app-md text-body">
-            <a href="/register" class="text-forest hover:text-deep transition">{{ __('Register') }}</a>
-            <a href="/booking" class="text-forest hover:text-deep transition">{{ __('Booking') }}</a>
-            <a href="/contact" class="text-forest hover:text-deep transition">{{ __('Contact') }}</a>
-        </nav>
-    </header>-->
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="#home" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">الرئيسية</a>
+          <a href="#about" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">نبذة عنا</a>
+          <a href="#services" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">برامجنا</a>
+          <a href="#contact" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">تواصل معنا</a>
+          <div class="relative ml-4 group">
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-lightgreen-600/50 to-green-600/50 rounded-lg blur opacity-75 group-hover:opacity-100 transition-all duration-500"></div>
+            <button class="contact-btn px-4 py-2 bg-gradient-to-r from-green-950 to-emerald-900 rounded-lg text-white text-sm font-medium relative z-10 flex items-center justify-center gap-2 group-hover:from-green-900 group-hover:to-emerald-800 transition-all duration-300">
+  <span class="bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
+    تسجيل الدخول
+  </span>
+</button>
+
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Button -->
+        <div class="flex md:hidden">
+          <button id="mobile-menu-button" class="relative w-10 h-10 focus:outline-none group" aria-label="Toggle menu">
+            <div class="absolute w-5 transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+              <span class="block h-0.5 w-5 bg-cyan-400 mb-1 transform transition duration-300 ease-in-out" id="line1"></span>
+              <span class="block h-0.5 w-5 bg-cyan-400 mb-1 transform transition duration-300 ease-in-out" id="line2"></span>
+              <span class="block h-0.5 w-5 bg-cyan-400 transform transition duration-300 ease-in-out" id="line3"></span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden h-0 overflow-hidden transition-all duration-300 ease-in-out">
+        <div class="pt-2 pb-4 space-y-1">
+          <a href="#home" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">الرئيسية</a>
+          <a href="#about" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">نبذة عنا</a>
+          <a href="#services" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">برامجنا</a>
+          <a href="#contact" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">تواصل معنا</a>
+          <div class="px-4 pt-2">
+            <button class="contact-btn px-4 py-2 bg-gradient-to-r from-green-950 to-emerald-900 rounded-lg text-white text-sm font-medium relative z-10 flex items-center justify-center gap-2 group-hover:from-green-900 group-hover:to-emerald-800 transition-all duration-300">
+  <span class="bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
+    تسجيل الدخول
+  </span>
+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
 
     {{-- MAIN snap-y snap-mandatory  overflow-y-scroll no-scrollbar--}}
     <main class="min-h-screen">
         @yield('content')
     </main>
     {{-- FOOTER --}}
-    <footer class="bg-forest text-white py-app-md">
-        <div class="max-w-4xl mx-auto px-app-lg text-small">
+    <footer class="bg-forest text-white py-app-md bg-green-900/70 backdrop-blur-lg border-b border-cyan-500/30 z-50 transition-all duration-300">
+        <div class="max-w-4xl mx-auto px-app-lg text-small text-center">
             <p class="text-small">&copy; {{ date('Y') }} {{ config('app.name') }}. {{ __('All rights reserved') }}.</p>
         </div>
     </footer>

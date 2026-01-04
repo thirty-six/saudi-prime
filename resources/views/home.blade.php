@@ -2,7 +2,31 @@
 
 @section('title', 'Welcome')
 
+ <link rel="stylesheet" href="{{asset('css/home.css')}}">
+
 @section('content')
+
+<div class="header-wrapper prime-banner">
+  <div class="gallery">
+    <div class="i1 photo"></div>
+    <div class="i2 photo"></div>
+    <div class="i3 photo"></div>
+    <div class="i4 photo"></div>
+    <div class="i5 photo"></div>
+    <div class="i6 photo"></div>
+    <div class="i7 photo"></div>
+    <div class="i8 photo"></div>
+  </div>
+    <h1></h1>
+
+      <div class="blue-ring ring"></div>
+      <div class="yellow-ring ring"></div>
+      <div class="black-ring ring"></div>
+      <div class="green-ring ring"></div>
+      <div class="red-ring ring"></div>
+    </div>
+  </div>
+</div>
 
 <section id="hero" class="slide-section flex items-center bg-neutral-light">
     <div class="container mx-auto px-6">

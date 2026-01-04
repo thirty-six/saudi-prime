@@ -1,0 +1,366 @@
+
+:root {
+  --roboto-font :'Roboto', sans-serif;
+  --noto-sans-jp-font: 'Noto Sans JP', sans-serif;
+  --poppins-font: 'Poppins', sans-serif;;
+  
+  --h1-font-size: clamp(20px, 10vw, 100px);
+  --h2-font-size: clamp(18px, 4vw, 40px);
+  --fact-font-size: 18px;
+  --small-font-size: clamp(14px, 2vw, 18px);
+  --medium-font-size: clamp(18px, 3vw, 24px);
+  --number-font-size: clamp(18px, 8vw, 80px);
+  
+  --blue-color: #1b84c9;
+  --yellow-color: #f3b13f;
+  --black-color: #1f1f1f;
+  --green-color: #169c56;
+  --red-color: #e93156;
+  
+  --gold-color: #f3dc8d;
+  --silver-color: #c5c0b4;
+  --bronze-color: #d0a379;
+  --dark-gold-color: #f1d67e;
+  --dark-silver-color: #c1bbae;
+  --dark-bronze-color: #cd9d70;
+  
+  --ring-size: calc(min(200px, 14vw));
+  --ring-border-size: calc(var(--ring-size) * 0.1);
+  --ring-offset-left: calc(var(--ring-size) + var(--ring-border-size));
+  --ring-offset-top: calc((var(--ring-size) - var(--ring-border-size)) * 0.5);
+  
+  --logo-size-w: calc((var(--ring-size) * 3 + var(--ring-border-size) * 2) * 1.5);
+  --logo-size-h: calc((var(--ring-size) * 1.5 - var(--ring-border-size) * 0.5) * 2);
+  --logo-bg-color: #f1f1f1;
+}
+
+
+.header-wrapper {
+  margin: 50px 0px 0 0;
+/*   margin-bottom: 100px; */
+  position: relative;
+}
+
+.gallery {
+  height: calc(var(--logo-size-h) * 1.25);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr calc(var(--logo-size-w) * 0.6) 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas: 
+    "p6 p6 p6 p6 . p2 p2 p3 p3"
+    "p6 p6 p6 p6 . p2 p2 p3 p3"
+    "p1 p1 p7 p7 . p4 p4 p4 p4"
+    "p1 p1 p8 p8 . p4 p4 p4 p4";
+}
+
+.i1 {
+  background-image: url('../img/football.webp');
+  grid-area: p1;
+  background-position: center;
+  background-repeat: no-repeat;
+  clip-path: polygon(75% 100%, 25% 100% , 50% 0, 100% 0%);
+}
+
+.i2 {
+  grid-area: p2;
+  background-position: center;
+  background-repeat: no-repeat;
+  clip-path: polygon(74% 100%, 0% 100%, 0% 0, 6% -23%);
+}
+
+.i3 {
+  background-image: url('../img/volleyball.webp');
+  grid-area: p3;
+  background-position: center;
+  background-repeat: no-repeat;
+  clip-path: polygon(75% 459%, -2% 109%, 0% 0, 106% 0%);
+}
+
+.i4 {
+  background-image: url('../img/basketball.webp');
+  grid-area: p4;
+  background-position: center !;
+  background-repeat: no-repeat;
+  -webkit-clip-path: polygon(0% 0%, calc(100% - 219px) 0%, 100% calc(63% + 130px), 100% 467%, calc(32% + 23px) 100%, 0% calc(100% - 0px));
+  clip-path: polygon(0% 0%, calc(100% - 225px) 0%, 100% calc(63% + 130px), 100% 530%, calc(56% + 60px) 100%, 0% calc(100% - 5px));
+}
+
+.i5 {
+background-image: url('../img/basketball.webp');
+  grid-area: p5;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.i6 {
+background-image: url('../img/jambase.webp');
+grid-area: p6;
+background-position: center;
+background-repeat: no-repeat;
+
+}
+
+.i7 {
+background-image: url('../img/swimming.webp');
+grid-area: p7;
+background-position: center;
+background-repeat: no-repeat;
+clip-path: polygon(75% 100%, 25% 100% , 50% 0, 100% 0%);
+}
+
+.i8 {
+  background-image: url("../img/teakwondo.webp");
+  grid-area: p8;
+  background-position: center;
+  background-repeat: no-repeat;
+  clip-path: polygon(100% 100%, 1% 100%, 50% 0, 109% 0%);
+}
+
+.photo {
+  background-position: center;
+  background-size: cover;
+  opacity: 0.95
+}
+
+
+
+
+
+section .slides-outer-container {
+  width: 40%;
+  min-height: 30vw;
+  background: grey;
+  position: relative;
+}
+
+@media only screen and (max-width: 1200px) {
+  section {
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 80px;
+  }
+  section .text {
+    width: 100%;
+  }
+
+  section .slides-outer-container {
+    width: 100%;
+    height: 50vw;
+  }
+}
+
+.slideshow-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+section .number {
+  color: #f2f2f2;
+  font-size: var(--small-font-size);
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.description {
+  color: #f2f2f2;
+/*   font-size: 18px; */
+  font-size: var(--small-font-size);
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+  background: rgba(0,0,0,0.6);
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translatey(-50%);
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.6s; 
+  user-select: none;  /* Prevent text selection */
+}
+
+.prev {
+  border-radius: 0 3px 3px 0;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+.dots {
+  width: 100%;
+  position: absolute;
+  bottom: -30px;
+  display: flex;
+  justify-content: center;
+}
+  
+.dot {
+  height: 20px;
+  width: 20px;
+  margin: 0 4px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #bbb;
+  cursor: pointer;
+  transition: background 0.6s;
+}
+
+.dot.active, .dot:hover {
+  background-color: #717171;
+}
+
+
+
+
+#medals-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+/*   justify-content: space-evenly; */
+}
+
+.medal-wrapper {
+  width: 20%;
+  max-width: 300px;
+  margin: 0px 2%;
+  margin-bottom: 80px;
+}
+
+.place-number {
+  margin-bottom: 20px;
+}
+
+.place-number p {
+  text-align: center;
+  font-family: var(--roboto-font);
+  font-size: var(--number-font-size);
+  text-shadow: 2px 2px 3px rgba(100,100,100,0.51);
+}
+
+.medal-wrapper:nth-child(1) p {
+  color: var(--silver-color);
+}
+.medal-wrapper:nth-child(2) p {
+  color: var(--gold-color);
+}
+.medal-wrapper:nth-child(3) p {
+  color: var(--bronze-color);
+}
+
+.lines {
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.line-wrap {
+/*   filter: drop-shadow(2px 4px 3px rgba(50, 50, 0, 0.5)); */
+  filter: drop-shadow(0.12vw 0.24vw 0.18vw rgba(50, 50, 0, 0.5));
+}
+
+.line {
+  max-width: 90%;
+  width: 16vw;
+  height: 3vw;
+  clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 40%, 50% 100%, 0 40%);
+  margin: 0px auto;
+  position: relative;
+}
+
+.line-wrap:nth-child(1) .line {
+  background:var(--bronze-color);
+}
+
+.line-wrap:nth-child(2) .line {
+  background:var(--silver-color);
+  top: -1.2vw;
+}
+
+.line-wrap:nth-child(3) .line {
+  background:var(--gold-color);
+  top: -2.4vw;
+}
+
+@media only screen and (max-width: 1200px) {
+  .line-wrap:nth-child(2) .line {
+    top: -1vw;
+  }
+
+  .line-wrap:nth-child(3) .line {
+    top: -2vw;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .line-wrap:nth-child(2) .line {
+    top: -0.5vw;
+  }
+
+  .line-wrap:nth-child(3) .line {
+    top: -1vw;
+  }
+}
+
+.medal {
+  position: relative;
+}
+
+.ribbon-wrapper {
+  position: relative;
+}
+
+.ribbon {
+  width: 4vw;
+  height: 10vw;
+  margin: 0 auto;
+}
+
+.ribbon-left {
+  clip-path: polygon(0 0, 50% 0, 75% 100%, 25% 100%);
+  background: #dccfd7;
+}
+
+.ribbon-right {
+  clip-path: polygon(50% 0, 100% 0%, 75% 100%, 25% 100%);
+  position: absolute;
+  top: 0;
+  right: 50%;
+  transform: translate(50%, 0);
+  background: #1e234d;
+}
+
+
+.prime-banner{
+    background-image: url('../img/stadium.jpeg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
