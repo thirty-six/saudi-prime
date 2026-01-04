@@ -18,7 +18,7 @@ class Registration extends Model
     {
         return [
             'status' => RegistrationStatusEnum::class,
-            'paid_at' => 'date_time',
+            'paid_at' => 'datetime',
         ];
     }
     

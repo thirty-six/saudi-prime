@@ -2,7 +2,9 @@
 
 namespace App\Enums;
 
-enum RegistrationStatusEnum : string
+use Filament\Support\Contracts\HasLabel;
+
+enum RegistrationStatusEnum : string implements HasLabel
 {
     case Pending = 'pending';
     case Started = 'started';

@@ -3,8 +3,9 @@
 namespace App\Enums;
 
 use Carbon\Carbon;
+use Filament\Support\Contracts\HasLabel;
 
-enum DaysEnum :string
+enum DaysEnum :string implements HasLabel
 {
     case Saturday = 'saturday';
     case Sunday = 'sunday';

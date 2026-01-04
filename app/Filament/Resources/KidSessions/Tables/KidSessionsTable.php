@@ -29,7 +29,7 @@ class KidSessionsTable
                     ->badge()
                     ->searchable(),
                 TextColumn::make('start_time')
-                    ->label(__('Start Time'))
+                    ->label(__('Start time'))
                     ->time()
                     ->sortable(),
                 TextColumn::make('start_at')

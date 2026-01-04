@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProgramSport extends Model
 {
+    protected $table = 'program_sports';
     protected $fillable = [
         'program_id',
         'sport_id',

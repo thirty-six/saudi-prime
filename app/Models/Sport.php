@@ -29,7 +29,7 @@ class Sport extends Model
     }
     public function programs()
     {
-        return $this->belongsToMany(Program::class);
+        return $this->belongsToMany(Program::class, 'program_sports');
     }
     public function adultSessions()
     {

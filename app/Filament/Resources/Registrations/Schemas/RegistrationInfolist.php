@@ -18,12 +18,12 @@ class RegistrationInfolist
                 Repeater::make('sessions')
                     ->label('Registered Sessions')
                     ->schema([
-                        TextEntry::make('name'),
-                        TextEntry::make('start_date'),
+                        TextEntry::make('start_time'),
                         TextEntry::make('status'),
                     ])
                     ->columns(3),
                 TextEntry::make('status')
+                    ->label(__('Status'))
                     ->badge(),
                 TextEntry::make('paid_at')
                     ->dateTime(),
@@ -31,13 +31,11 @@ class RegistrationInfolist
                     ->boolean(),
                 TextEntry::make('price')
                     ->money()
-                    ->placeholder('-'),
+                    ->prefix(config('app.currency')),
                 TextEntry::make('created_at')
-                    ->dateTime()
-                    ->placeholder('-'),
+                    ->dateTime(),
                 TextEntry::make('updated_at')
-                    ->dateTime()
-                    ->placeholder('-'),
+                    ->dateTime(),
             ]);
     }
 }

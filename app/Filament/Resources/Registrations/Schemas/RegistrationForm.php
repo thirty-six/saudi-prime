@@ -5,7 +5,6 @@ namespace App\Filament\Resources\Registrations\Schemas;
 use App\Enums\RegistrationStatusEnum;
 use App\Models\Customer;
 use App\Models\Program;
-use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -49,29 +48,68 @@ class RegistrationForm
                 Select::make('program_id')
                     ->label(__('Program'))
                     ->options(
-                        Program::all()->select(['id','category'])
-                        ->mapWithKeys(fn ($program) => [
-                            $program['id'] => $program['category']?->getLabel(),
-                        ]))
+                        Program::all()
+                            ->mapWithKeys(fn ($program) => [
+                                $program->id => $program->category?->getLabel(),
+                            ])
+                    )
                     ->reactive()
                     ->required()
-                    ->afterStateUpdated(function (callable $set) {
-                        $set('sport_id', null);
-                        $set('sessions', []);
-                    })
+                    ->afterStateUpdated(fn (callable $set) => $set('sport_id', null))
                     ->dehydrated(false),
+
                 Select::make('sport_id')
                     ->label(__('Sport'))
                     ->options(function (callable $get) {
-                        $query = \App\Models\Sport::query();
-                        $program_id = $get('program_id');
-                        if ($program_id) {
-                            $query->where('program_id', $program_id);
+                        $programId = $get('program_id');
+
+                        if (! $programId) {
+                            return [];
                         }
-                        return $query->get()->pluck('name_ar', 'id')->toArray();
+
+                        return Program::find($programId)
+                            ?->sports() // belongsToMany
+                            ->pluck('sports.name_ar', 'sports.id')
+                            ->toArray() ?? [];
                     })
                     ->searchable()
                     ->required(),
+                Select::make('session_ids')
+                    ->label(__('Sessions'))
+                    ->multiple()
+                    ->minItems(2)
+                    ->maxItems(2)
+                    ->options(function (callable $get) {
+                        $programId = $get('program_id');
+                        $sportId   = $get('sport_id');
+
+                        if (! $programId || ! $sportId) {
+                            return [];
+                        }
+
+                        $programSport = \App\Models\ProgramSport::query()
+                            ->where('program_id', $programId)
+                            ->where('sport_id', $sportId)
+                            ->first();
+
+                        if (! $programSport) {
+                            return [];
+                        }
+
+                        return $programSport
+                            ->sessions()
+                            ->get()
+                            ->mapWithKeys(function ($session) {
+                                $label = 
+                                    $session->day->getLabel() . ' - ' . $session->start_time;
+
+                                return [$session->id => $label];
+                            })
+                            ->toArray();
+                    })
+                    ->searchable()
+                    ->required(),
+
                 Select::make('status')
                     ->label(__('Status'))
                     ->options(RegistrationStatusEnum::class)
