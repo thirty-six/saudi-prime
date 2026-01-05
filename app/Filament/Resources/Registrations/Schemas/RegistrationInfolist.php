@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\Registrations\Schemas;
 
-use Filament\Forms\Components\Repeater;
 use Filament\Infolists\Components\IconEntry;
+use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -15,27 +15,33 @@ class RegistrationInfolist
             ->components([
                 TextEntry::make('customer.name')
                     ->label(__('Customer')),
-                Repeater::make('sessions')
-                    ->label('Registered Sessions')
-                    ->schema([
-                        TextEntry::make('start_time'),
-                        TextEntry::make('status'),
-                    ])
-                    ->columns(3),
+                TextEntry::make('customer.phone')
+                    ->label(__('Phone'))
+                    ->url(fn ($state) => $state ? 'tel:' . $state : null),
                 TextEntry::make('status')
                     ->label(__('Status'))
                     ->badge(),
                 TextEntry::make('paid_at')
+                    ->label(__('Payment Date'))
                     ->dateTime(),
                 IconEntry::make('accepted_terms')
+                    ->label(__('Accepted Terms'))
                     ->boolean(),
                 TextEntry::make('price')
-                    ->money()
-                    ->prefix(config('app.currency')),
-                TextEntry::make('created_at')
-                    ->dateTime(),
-                TextEntry::make('updated_at')
-                    ->dateTime(),
+                    ->label(__('Price'))
+                    ->money(config('app.currency_code')),
+                RepeatableEntry::make('sessions')
+                    ->label(__('Registered Sessions'))
+                    ->schema([
+                        TextEntry::make('start_time')
+                                    ->label(__('Start time')),
+                        TextEntry::make('day')
+                                    ->label(__('Day')),
+                        TextEntry::make('status')
+                                    ->label(__('Status')),
+                    ])
+                    ->columns(3)
+                    ->columnSpanFull(),
             ]);
     }
 }

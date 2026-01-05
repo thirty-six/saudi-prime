@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Registrations\Schemas;
 use App\Enums\RegistrationStatusEnum;
 use App\Models\Customer;
 use App\Models\Program;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -32,6 +33,7 @@ class RegistrationForm
 
                     TextInput::make('phone')
                         ->label(__('Phone'))
+                        ->tel()
                         ->required()
                         ->unique(Customer::class, 'phone'),
                         
@@ -55,7 +57,24 @@ class RegistrationForm
                     )
                     ->reactive()
                     ->required()
-                    ->afterStateUpdated(fn (callable $set) => $set('sport_id', null))
+                    ->afterStateUpdated(function ($state, callable $set, callable $get) {
+                        if (! $state) {
+                            $set('price', null);
+                            return;
+                        }
+                        $program = Program::find($state);
+
+                        if (! $program) {
+                            return;
+                        }
+                        // set calculated price (with tax)
+                        $set('price', $program->price);
+                    })
+                    ->afterStateUpdated(function (callable $set) {
+                        // reset dependent fields
+                        $set('sport_id', null);
+                        $set('session_ids', []);
+                    })
                     ->dehydrated(false),
 
                 Select::make('sport_id')
@@ -68,12 +87,14 @@ class RegistrationForm
                         }
 
                         return Program::find($programId)
-                            ?->sports() // belongsToMany
+                            ?->sports()
                             ->pluck('sports.name_ar', 'sports.id')
                             ->toArray() ?? [];
                     })
-                    ->searchable()
-                    ->required(),
+                    ->reactive()
+                    ->required()
+                    ->afterStateUpdated(fn (callable $set) => $set('session_ids', []))
+                    ->searchable(),
                 Select::make('session_ids')
                     ->label(__('Sessions'))
                     ->multiple()
@@ -118,7 +139,25 @@ class RegistrationForm
                 TextInput::make('price')
                     ->label(__('Price'))
                     ->numeric()
-                    ->prefix(config('app.currency_symbol')),
+                    ->prefix(config('app.currency_symbol'))
+                    ->reactive()
+                    ->required(),
+                Toggle::make('is_paid')
+                    ->label(__('Paid'))
+                    ->reactive()
+                    ->afterStateUpdated(function ($state, callable $set) {
+                        if ($state) {
+                            $set('paid_at', now());
+                        } else {
+                            $set('paid_at', null);
+                        }
+                    }),
+                DateTimePicker::make('paid_at')
+                    ->label(__('Payment Date'))
+                    ->seconds(false)
+                    ->disabled()
+                    ->dehydrated(),
+
                 Toggle::make('accepted_terms')
                     ->label(__('Accepted Terms'))
                     ->default(true)

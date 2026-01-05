@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
 class RegistrationsTable
@@ -26,14 +27,18 @@ class RegistrationsTable
                     ->label(__('Status'))
                     ->badge()
                     ->searchable(),
-                IconColumn::make('is_paid')
+                ToggleColumn::make('is_paid')
                     ->label(__('Paid'))
-                    ->boolean(),
+                    ->updateStateUsing(function ($record, $state) {
+                        $record->update([
+                            'paid_at' => $state ? now() : null,
+                        ]);
+                    }),
                 IconColumn::make('accepted_terms')
                     ->label(__('Accepted Terms'))
                     ->boolean(),
                 TextColumn::make('price')
-                    ->money()
+                    ->money(config('app.currency_code'))
                     ->sortable(),
             ])
             ->filters([

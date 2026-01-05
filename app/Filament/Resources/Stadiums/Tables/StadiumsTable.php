@@ -19,7 +19,7 @@ class StadiumsTable
             return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label(__('name')),
+                    ->label(__('Name')),
                 TextColumn::make('description')
                     ->label(__('Description'))
                     ->limit(50),

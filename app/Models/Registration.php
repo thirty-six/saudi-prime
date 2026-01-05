@@ -7,12 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Registration extends Model
 {
+    protected static function booted()
+    {
+        // Case: deleted
+        static::deleting(function ($registration) {
+            $registration->sessions()->detach();
+        });
+    }
+        
     protected $fillable = [
         'customer_id',
         'status',
-        'accepted_term',
+        'accepted_terms',
         'price',
         'paid_at',
+    ];
+    protected $appends = [
+        'is_paid',
     ];
     protected function casts()
     {
@@ -40,16 +51,17 @@ class Registration extends Model
         ->withPivot(['attendance_date'])
         ->withTimestamps();
     }
-    public function registrationsCount(): int
+
+    // Sync sessions
+    public function syncSessions(array $sessionIds)
     {
-        return $this->registrations()
-            ->where('registrations.status', RegistrationStatusEnum::Pending->value)
-            ->count();
+        if (empty($sessionIds) || $this->status === RegistrationStatusEnum::Cancelled) {
+            $this->sessions()->detach();
+            return;
+        }
+        $this->sessions()->sync($sessionIds);
     }
-    public function isFull(): bool
-    {
-        return $this->registrationsCount() >= $this->capacity;
-    }
+    
     // other getter
     public function getIsPaidAttribute()
     {

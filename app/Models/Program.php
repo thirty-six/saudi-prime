@@ -13,6 +13,10 @@ class Program extends Model
         'features',
         'base_price',
     ];
+    protected $appends = [
+        'description',
+        'price',
+    ];
 
     protected function casts()
     {
@@ -46,6 +50,12 @@ class Program extends Model
     public function getDescriptionAttribute(): string
     {
         return $this->{'description_' . app()->getLocale()} ?? null;
+    }
+
+    public function getPriceAttribute(): string
+    {
+        $taxRate =  config('app.vat_percentage')/100;
+        return (int) round($this->{'base_price'} * (1 + $taxRate));
     }
 }
 

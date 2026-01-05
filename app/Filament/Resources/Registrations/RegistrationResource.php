@@ -22,7 +22,7 @@ class RegistrationResource extends Resource
 {
     protected static ?string $model = Registration::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::CheckCircle;
 
     public static function form(Schema $schema): Schema
     {

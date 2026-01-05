@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\DaysEnum;
+use App\Enums\RegistrationStatusEnum;
 use App\Enums\SessionStatusEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,6 +11,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class AdultSession extends Model
 {
     use SoftDeletes;
+
+    protected static function booted()
+    {
+        static::updating(function (AdultSession $session) {
+
+            if (
+                $session->isDirty('status') &&
+                $session->status === SessionStatusEnum::Started
+            ) {
+                $session
+                    ->registrations()
+                    ->where('registrations.status', RegistrationStatusEnum::Pending)
+                    ->update([
+                        'status' => RegistrationStatusEnum::Started,
+                    ]);
+            }
+        });
+    }
+
     protected $fillable = [
         'program_sport_id',
         'day',
@@ -17,6 +37,9 @@ class AdultSession extends Model
         'start_time',
         'start_at',
         'capacity',
+    ];
+    protected $appends = [
+        'registrations_count',
     ];
     
     protected function casts()
@@ -66,6 +89,18 @@ class AdultSession extends Model
     public function registrationSessions()
     {
         return $this->hasMany(AdultSessionRegistration::class);
+    }
+    // Other getters
+    public function getRegistrationsCountAttribute()
+    {
+        return $this->registrations()
+        // just to be sure its won't count cancelled registrations (we detach them on cancel)
+            ->whereNot('registrations.status', RegistrationStatusEnum::Cancelled->value)
+            ->count();
+    }
+    public function isFull(): bool
+    {
+        return $this->registrationsCount() >= $this->capacity;
     }
 
 }
