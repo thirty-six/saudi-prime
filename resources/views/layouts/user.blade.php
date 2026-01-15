@@ -35,6 +35,12 @@
     border-bottom: 2px solid rgba(208, 192, 192, 0.5); 
   text-shadow: 2px 2px 4px rgba(208, 192, 192, 0.5); 
 }
+#mobile-menu{
+  text-align: center;
+}
+#mobile-menu button{
+  margin: auto;
+}
 
     </style>
     
@@ -62,12 +68,11 @@
           <a href="#contact" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">تواصل معنا</a>
           <div class="relative ml-4 group">
             <div class="absolute -inset-0.5 bg-gradient-to-r from-lightgreen-600/50 to-green-600/50 rounded-lg blur opacity-75 group-hover:opacity-100 transition-all duration-500"></div>
-            <button class="contact-btn px-4 py-2 bg-gradient-to-r from-green-950 to-emerald-900 rounded-lg text-white text-sm font-medium relative z-10 flex items-center justify-center gap-2 group-hover:from-green-900 group-hover:to-emerald-800 transition-all duration-300">
+            <button class="contact-btn px-4 py-2 bg-gradient-to-r from-green-950 to-emerald-900 rounded-md text-white text-sm font-medium relative z-10 flex items-center justify-center gap-2 group-hover:from-green-900 group-hover:to-emerald-800 transition-all duration-300">
   <span class="bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
     تسجيل الدخول
   </span>
 </button>
-
           </div>
         </div>
 
@@ -110,10 +115,165 @@
     {{-- FOOTER --}}
     <footer class="bg-forest text-white py-app-md bg-green-900/70 backdrop-blur-lg border-b border-cyan-500/30 z-50 transition-all duration-300">
         <div class="max-w-4xl mx-auto px-app-lg text-small text-center">
-            <p class="text-small">&copy; {{ date('Y') }} {{ config('app.name') }}. {{ __('All rights reserved') }}.</p>
+            <p class="text-small">&copy; {{ date('Y') }} {{ config('app.name') }}. تم التطوير من قبل شركة ThirtySix {{ __('All rights reserved') }}.</p>
         </div>
     </footer>
 
 
 </body>
 </html>
+
+
+<script>
+  /**
+ * FutureNav - Main JavaScript
+ * script.js - Interactive functionality for the futuristic navigation experience
+ * March 24, 2025
+ */
+
+document.addEventListener("DOMContentLoaded", () => {
+  // DOM Elements
+  const navbar = document.getElementById("navbar");
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const navLinks = document.querySelectorAll(".nav-link");
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+  const sections = document.querySelectorAll("section");
+  const bgElements = document.querySelectorAll(".fixed > div");
+
+  // Mobile Menu Toggle
+  mobileMenuButton.addEventListener("click", () => {
+    mobileMenuButton.classList.toggle("active");
+
+    if (mobileMenu.classList.contains("open")) {
+      mobileMenu.style.height = "0";
+      mobileMenu.classList.remove("open");
+    } else {
+      mobileMenu.classList.add("open");
+      mobileMenu.style.height = `${mobileMenu.scrollHeight}px`;
+    }
+  });
+
+  // Close mobile menu when a link is clicked
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenuButton.classList.remove("active");
+      mobileMenu.style.height = "0";
+      mobileMenu.classList.remove("open");
+    });
+  });
+
+  // Navbar scroll effect
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+
+    highlightCurrentSection();
+  });
+
+  // Smooth scroll for nav links
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute("href");
+      const targetSection = document.querySelector(targetId);
+
+      if (targetSection) {
+        const offsetTop = targetSection.offsetTop - 70; // Adjust for navbar height
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth"
+        });
+
+        // Highlight the section briefly
+        targetSection.classList.add("section-highlight");
+        setTimeout(() => {
+          targetSection.classList.remove("section-highlight");
+        }, 1000);
+      }
+    });
+  });
+
+  // Highlight active section in navbar
+  function highlightCurrentSection() {
+    let current = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 100;
+      const sectionHeight = section.offsetHeight;
+
+      if (
+        window.scrollY >= sectionTop &&
+        window.scrollY < sectionTop + sectionHeight
+      ) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active");
+      }
+    });
+
+    mobileNavLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active");
+      }
+    });
+  }
+
+  // Parallax effect for background elements
+  /*
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      
+      bgElements.forEach(element => {
+        const speed = 20; // Adjust for more or less movement
+        const xOffset = (x - 0.5) * speed;
+        const yOffset = (y - 0.5) * speed;
+        
+        element.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+      });
+    });
+  }
+  */
+
+  // Scroll animations for sections
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("section-visible");
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  sections.forEach((section) => {
+    section.classList.add("section-hidden");
+    observer.observe(section);
+  });
+
+  // Initialize active section on page load
+  highlightCurrentSection();
+
+  // Make header text visible with animation
+  setTimeout(() => {
+    const headerText = document.querySelector(".text-6xl");
+    if (headerText) {
+      headerText.style.opacity = 1;
+      headerText.style.transform = "translateY(0)";
+    }
+  }, 300);
+});
+
+</script>

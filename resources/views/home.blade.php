@@ -3,28 +3,13 @@
 @section('title', 'Welcome')
 
  <link rel="stylesheet" href="{{asset('css/home.css')}}">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 @section('content')
 
 <div class="header-wrapper prime-banner">
   <div class="gallery">
-    <div class="i1 photo"></div>
-    <div class="i2 photo"></div>
-    <div class="i3 photo"></div>
-    <div class="i4 photo"></div>
-    <div class="i5 photo"></div>
-    <div class="i6 photo"></div>
-    <div class="i7 photo"></div>
-    <div class="i8 photo"></div>
-  </div>
     <h1></h1>
-
-      <div class="blue-ring ring"></div>
-      <div class="yellow-ring ring"></div>
-      <div class="black-ring ring"></div>
-      <div class="green-ring ring"></div>
-      <div class="red-ring ring"></div>
-    </div>
   </div>
 </div>
 
@@ -43,21 +28,22 @@
             {{-- Text Content --}}
             <div>
                 <h1 class="text-display font-bold text-neutral-dark leading-tight">
-                    Saudi Prime
-                    <span class="block text-forest mt-2">
-                        وجهة رياضية وخدمية متكاملة بروح عائلية
+                   مرحباً بك في 
+                    <span class="block text-forest mt-2" style="color:#0d542be0;">
+                        Saudi Prime 💪
                     </span>
                 </h1>
 
                 <p class="mt-6 text-body text-neutral-dark leading-relaxed max-w-xl">
-                    بوابة إلكترونية متكاملة لإدارة الاشتراكات والحضور وحجز المرافق،
-                    تقدم اشتراكات صباحية للطالبات ومسائية للعامة والأطفال،
-                    مع خدمات رياضية وترفيهية في بيئة منظمة وآمنة.
+                   نادي رياضي نسائي متكامل داخل الكلية -  نوفر بيئة آمنة ومحفزة لجميع الفئات العمرية لممارسة الرياضة وتحقيق الأهداف الصحية واللياقية.
+                </p>
+                <p class="mt-6 text-body text-neutral-dark leading-relaxed max-w-xl">
+                    نقدم مجموعة متنوعة من البرامج الرياضية على يد مدربات محترفات معتمدات، مع توفير أحدث المعدات الرياضية وأفضل الخدمات.
                 </p>
 
                 {{-- CTA --}}
                 <div class="mt-8 flex flex-wrap gap-4">
-                    <a href="#pricing" class="btn btn-primary">
+                    <a href="#pricing" class="btn btn-show rounded-md">
                         استعرض الاشتراكات
                     </a>
 
@@ -70,23 +56,27 @@
             {{-- Segments / Value Cards --}}
             <div class="grid grid-cols-2 gap-4">
                 <div class="card card-hover text-center">
-                    <x-heroicon-o-academic-cap class="w-8 h-8 mx-auto text-accent mb-2" />
-                    <p class="font-semibold">اشتراكات الطالبات</p>
+                    <i class="fas fa-dumbbell"></i>
+                    <p class="font-semibold">أحدث المعدات</p>
+                    <span>معدات رياضية عالمية</span>
                 </div>
 
                 <div class="card card-hover text-center">
-                    <x-hugeicons-user-group class="w-8 h-8 mx-auto text-accent mb-2" />
-                    <p class="font-semibold">العائلات والأطفال</p>
+                    <i class="fa-solid fa-award"></i>
+                    <p class="font-semibold">مدربات محترفات</p>
+                    <span>خبرة ومهارة عالية</span>
                 </div>
 
                 <div class="card card-hover text-center">
-                    <x-hugeicons-football class="w-8 h-8 mx-auto text-accent mb-2" />
-                    <p class="font-semibold">حجز الملاعب</p>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <p class="font-semibold">بيئة آمنة</p>
+                    <span>خصوصية تامة للنساء</span>
                 </div>
 
                 <div class="card card-hover text-center">
-                    <x-hugeicons-ticket-01 class="w-8 h-8 mx-auto text-accent mb-2" />
-                    <p class="font-semibold">حجز تذاكر المدرج</p>
+                    <i class="fa-solid fa-clock"></i>
+                    <p class="font-semibold">أوقات مرنة</p>
+                    <span>صباحية ومسائية</span>
                 </div>
             </div>
 
@@ -95,14 +85,14 @@
     </div>
 </section>
 <section id="audience" class="py-20 bg-neutral-light">
-    <div class="container mx-auto px-6">
+    <div class="container mx-auto px-6 text-center services">
 
         {{-- Section Heading --}}
-        <div class="max-w-xl mb-12">
-            <h2 class="text-title font-bold text-neutral-dark">
-                لمن خدماتنا؟
-            </h2>
-            <p class="mt-3 text-body text-neutral-muted">
+        <div class="mb-12">
+            <h2 class="text-5xl font-bold text-neutral-dark mb-4">
+           لمن نقدم خدماتنا ؟
+           </h2>
+            <p class="font-semibold section-text-under">
                 خدمات وبرامج مصممة لتناسب فئات مختلفة، في بيئة منظمة وآمنة.
             </p>
         </div>
@@ -150,15 +140,239 @@
     </div>
 </section>
 
-{{-- <x-sections.hero /> --}}
-{{-- <x-sections.stats />
-<x-sections.about />
-<x-sections.features />
-<x-sections.programs />
-<x-sections.trainers />
-<x-sections.gallery />
-<x-sections.faq />
-<x-sections.contact /> --}}
-<x-sections.pricing />
+
+<section id="audience" class="py-20 bg-neutral-light">
+    <div class="container mx-auto px-6 text-center services sports">
+
+        {{-- Section Heading --}}
+        <div class="mb-12">
+            <h2 class="text-5xl font-bold text-neutral-dark mb-4">
+             البرامج الرياضية
+           </h2>
+            <p class="font-semibold section-text-under">
+               اختار البرنامج المناسب لك من بين 10 برامج رياضية متنوعة
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+
+            <div class="card card-hover text-center">
+                <span class="sport-icon"> 🏀 </span>
+                <h3 class="font-semibold text-body mb-1">
+                    كرة السلة
+                </h3>
+                <p class="text-small text-neutral-muted">
+                   تطوير المهارات الأساسية
+                </p>
+            </div>
+
+            <div class="card card-hover text-center">
+                <span class="sport-icon"> ⚽
+                </span>
+                <h3 class="font-semibold text-body mb-1">
+                    كرة القدم
+                </h3>
+                <p class="text-small text-neutral-muted">
+                  تعلم أساسيات اللعبة
+                </p>
+            </div>
+
+            <div class="card card-hover text-center">
+                <span class="sport-icon"> 🏐
+                </span>
+                <h3 class="font-semibold text-body mb-1">
+                    كرة الطائرة
+                </h3>
+                <p class="text-small text-neutral-muted">
+                 اتقان المهارات الأساسية
+                </p>
+            </div>
+
+            <div class="card card-hover text-center">
+                <span class="sport-icon"> 🏊
+                </span>
+                <h3 class="font-semibold text-body mb-1">
+                   السباحة
+                </h3>
+                <p class="text-small text-neutral-muted">
+                تعلم السباحة بأنماطها
+                </p>
+            </div>
+
+            <div class="card card-hover text-center">
+                <span class="sport-icon"> 🎾
+                </span>
+                <h3 class="font-semibold text-body mb-1">
+                   التنس
+                </h3>
+                <p class="text-small text-neutral-muted">
+               أساسيات لعبة التنس
+                </p>
+            </div>
+
+            <div class="card card-hover text-center">
+                <span class="sport-icon"> 🏓
+                </span>
+                <h3 class="font-semibold text-body mb-1">
+                   تنس الطاولة
+                </h3>
+                <p class="text-small text-neutral-muted">
+              تطوير سرعة ردة الفعل
+                </p>
+            </div>
+
+            <div class="card card-hover text-center">
+                <span class="sport-icon"> 🏸
+                </span>
+                <h3 class="font-semibold text-body mb-1">
+                   الريشة الطائرة
+                </h3>
+                <p class="text-small text-neutral-muted">
+             إتقان اللعبة بمستوياتها
+                </p>
+            </div>
+
+            <div class="card card-hover text-center">
+               <span class="sport-icon"> 🤸
+               </span>
+                <h3 class="font-semibold text-body mb-1">
+                    الجمباز
+                </h3>
+                <p class="text-small text-neutral-muted">
+                   حركات الجمباز والتوازن
+                </p>
+            </div>
+            
+            <div class="card card-hover text-center card-none">
+               <span class="sport-icon"> 
+               </span>
+                <h3 class="font-semibold text-body mb-1">
+                </h3>
+                <p class="text-small text-neutral-muted">
+                </p>
+            </div>
+
+            <div class="card card-hover text-center">
+               <span class="sport-icon"> 🧘
+               </span>
+                <h3 class="font-semibold text-body mb-1">
+                    اليوغا
+                </h3>
+                <p class="text-small text-neutral-muted">
+                 استرخاء ومرونة
+                </p>
+            </div>
+
+            <div class="card card-hover text-center">
+               <span class="sport-icon"> 💪
+               </span>
+                <h3 class="font-semibold text-body mb-1">
+                    اللياقة البدنية
+                </h3>
+                <p class="text-small text-neutral-muted">
+                برنامج شامل للياقة
+                </p>
+            </div>
+
+            <div class="card card-hover text-center card-none">
+               <span class="sport-icon"> 
+               </span>
+                <h3 class="font-semibold text-body mb-1">
+                </h3>
+                <p class="text-small text-neutral-muted">
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="pricing" class="section slide-section bg-neutral-light program-prices">
+   <div class="felx flex-col items-center p-app-lg">
+      <div class="text-center mb-16">
+         <h2 class="text-5xl font-bold text-neutral-dark mb-4">
+            الأسعار والبرامج 
+         </h2>
+
+         <div class="w-24 h-1 bg-deep mx-auto mb-8"></div>
+
+         <p class="font-semibold section-text-under">
+            أسعار مناسبة و برامج متنوعة لتلبية احتياجاتك
+         </p>
+         <div class="mt-12">
+            <div class="p-app-lg">
+               <h4 class="text-xl font-bold text-neutral-dark mb-6 text-center">
+                     ماذا يشمل الاشتراك؟
+               </h4>
+
+               <div class="flex flex-wrap justify-center gap-6 md:gap-10 text-sm text-neutral-muted">
+                     <!-- مرونة في الأوقات -->
+                     <div class="flex flex-col items-center text-center gap-2 w-40 md:w-44">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-sand text-deep text-lg">
+                           <x-heroicon-o-clock />
+                        </div>
+                        <p class="leading-relaxed">
+                           <strong>مرونة في الأوقات</strong><br>
+                           تقدرين تختارين الأيام والوقت اللي يناسبك
+                        </p>
+                     </div>
+
+                     <!-- يومين أسبوعيًا -->
+                     <div class="flex flex-col items-center text-center gap-2 w-40 md:w-44">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-sand text-deep text-lg">
+                           <x-heroicon-o-calendar-days />
+                        </div>
+                        <p class="leading-relaxed">
+                           <strong>يومين أسبوعيًا</strong><br>
+                           الاشتراك الشهري يشمل يومين تدريب ثابتة
+                        </p>
+                     </div>
+
+                     <!-- معدات ومرافق -->
+                     <div class="flex flex-col items-center text-center gap-2 w-40 md:w-44">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-sand text-deep text-lg">
+                           <x-hugeicons-equipment-gym-03 class="stroke-1.6 size-8"/>
+                        </div>
+                        <p class="leading-relaxed">
+                           <strong>معدات ومرافق</strong><br>
+                           استخدام مجاني لكل المعدات والمرافق
+                        </p>
+                     </div>
+
+                     <!-- خصومات مميزة -->
+                     <div class="flex flex-col items-center text-center gap-2 w-40 md:w-44">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-sand text-deep text-lg">
+                           <x-heroicon-c-percent-badge />
+                        </div>
+                        <p class="leading-relaxed">
+                           <strong>خصومات مميزة</strong><br>
+                           عروض خاصة للاشتراكات نصف السنوية والسنوية
+                        </p>
+                     </div>
+
+                     <!-- حصة تجريبية مجانية -->
+                     <div class="flex flex-col items-center text-center gap-2 w-40 md:w-44">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-sand text-deep text-lg">
+                           <x-heroicon-o-fire />
+                        </div>
+                        <p class="leading-relaxed">
+                           <strong>حصة تجريبية مجانية</strong><br>
+                           جربي الجو أول قبل ما تلتزمين بالاشتراك
+                        </p>
+                     </div>
+               </div>
+            </div>
+         </div>
+
+      </div>
+
+      <livewire:session-browser />
+
+   </div>
+  </section>
+
+
 
 @endsection
+
+ <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/solid.js" integrity="sha384-/BxOvRagtVDn9dJ+JGCtcofNXgQO/CCCVKdMfL115s3gOgQxWaX/tSq5V8dRgsbc" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js" integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous"></script>

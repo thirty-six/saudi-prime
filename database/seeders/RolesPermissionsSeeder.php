@@ -26,17 +26,27 @@ class RolesPermissionsSeeder extends Seeder
             // Support
             'add notes',
             'send notifications',
+
+            //Coach
+            'edit',
+            'create',
+            'view reports',
+            'export reports',
+            'add notes',
+            'send notifications',
         ];
 
         foreach ($permissions as $permission) {
-            Permission::firstOrCreate(['name' => $permission]);
+            Permission::firstOrCreate(attributes: ['name' => $permission]);
         }
 
         // Roles
         $owner   = Role::firstOrCreate(['name' => 'Owner'], ['name_ar' => 'المالك']);
         $admin   = Role::firstOrCreate(['name' => 'Admin'], ['name_ar' => 'المدير']);
         $finance = Role::firstOrCreate(['name' => 'Finance'], ['name_ar' => 'المحاسب']);
-        $support = Role::firstOrCreate(['name' => 'Support'], ['name_ar' => 'الدعم']);
+        $support = Role::firstOrCreate(attributes: ['name' => 'Support'], values: ['name_ar' => 'الدعم']);
+        $coach = Role::firstOrCreate(attributes: ['name'=> 'Coach'], values: ['name_ar'=> 'المدرب']);
+        
 
         // Owner gets everything
         $owner->syncPermissions(Permission::all());
@@ -58,6 +68,16 @@ class RolesPermissionsSeeder extends Seeder
         $support->syncPermissions([
             'add notes',
             'send notifications'
+        ]);
+
+        $coach->syncPermissions([
+            'edit',
+            'create',
+            'view reports',
+            'export reports',
+            'add notes',
+            'send notifications',
+
         ]);
     }
 }

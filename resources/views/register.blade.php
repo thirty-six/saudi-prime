@@ -22,7 +22,6 @@
         <button class="bg-deep hover:bg-forest text-white px-app-lg py-app-sm rounded-md transition">
             Submit
         </button>
-
     </form>
 </div>
 @endsection
