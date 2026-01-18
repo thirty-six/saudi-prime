@@ -2,6 +2,7 @@
 
 @section('title', 'Welcome')
 
+<link rel="stylesheet" href="{{asset('css/style.css')}}">
  <link rel="stylesheet" href="{{asset('css/home.css')}}">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -29,7 +30,7 @@
             <div>
                 <h1 class="text-display font-bold text-neutral-dark leading-tight">
                    مرحباً بك في 
-                    <span class="block text-forest mt-2" style="color:#0d542be0;">
+                    <span class="block text-forest mt-2" style="color:#1F75BA;">
                         Saudi Prime 💪
                     </span>
                 </h1>
@@ -107,7 +108,7 @@
                 <h3 class="font-semibold text-body mb-1">
                     الطالبات
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
                     اشتراكات صباحية مخصصة داخل بيئة تعليمية
                 </p>
             </div>
@@ -119,7 +120,7 @@
                 <h3 class="font-semibold text-body mb-1">
                     العائلات
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
                     أنشطة وخدمات تناسب جميع أفراد الأسرة
                 </p>
             </div>
@@ -131,7 +132,7 @@
                 <h3 class="font-semibold text-body mb-1">
                     الأطفال
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
                     برامج رياضية وترفيهية للأطفال 4-13 سنة
                 </p>
             </div>
@@ -161,7 +162,7 @@
                 <h3 class="font-semibold text-body mb-1">
                     كرة السلة
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
                    تطوير المهارات الأساسية
                 </p>
             </div>
@@ -172,7 +173,7 @@
                 <h3 class="font-semibold text-body mb-1">
                     كرة القدم
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
                   تعلم أساسيات اللعبة
                 </p>
             </div>
@@ -183,7 +184,7 @@
                 <h3 class="font-semibold text-body mb-1">
                     كرة الطائرة
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
                  اتقان المهارات الأساسية
                 </p>
             </div>
@@ -194,7 +195,7 @@
                 <h3 class="font-semibold text-body mb-1">
                    السباحة
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
                 تعلم السباحة بأنماطها
                 </p>
             </div>
@@ -205,7 +206,7 @@
                 <h3 class="font-semibold text-body mb-1">
                    التنس
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
                أساسيات لعبة التنس
                 </p>
             </div>
@@ -216,7 +217,7 @@
                 <h3 class="font-semibold text-body mb-1">
                    تنس الطاولة
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
               تطوير سرعة ردة الفعل
                 </p>
             </div>
@@ -227,7 +228,7 @@
                 <h3 class="font-semibold text-body mb-1">
                    الريشة الطائرة
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
              إتقان اللعبة بمستوياتها
                 </p>
             </div>
@@ -238,7 +239,7 @@
                 <h3 class="font-semibold text-body mb-1">
                     الجمباز
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
                    حركات الجمباز والتوازن
                 </p>
             </div>
@@ -248,7 +249,7 @@
                </span>
                 <h3 class="font-semibold text-body mb-1">
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
                 </p>
             </div>
 
@@ -258,7 +259,7 @@
                 <h3 class="font-semibold text-body mb-1">
                     اليوغا
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
                  استرخاء ومرونة
                 </p>
             </div>
@@ -269,7 +270,7 @@
                 <h3 class="font-semibold text-body mb-1">
                     اللياقة البدنية
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
                 برنامج شامل للياقة
                 </p>
             </div>
@@ -279,7 +280,7 @@
                </span>
                 <h3 class="font-semibold text-body mb-1">
                 </h3>
-                <p class="text-small text-neutral-muted">
+                <p class="font-semibold section-text-under">
                 </p>
             </div>
         </div>
@@ -365,7 +366,69 @@
 
       </div>
 
-      <livewire:session-browser />
+      <div class="grid sm:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    @isset($morningProgram)
+    <!-- القسم الصباحي -->
+    <div class="pricing-table featured card card-hover">
+        <div class="text-center mb-8">
+            <div class="text-6xl mb-4">
+                <i class="fa-solid fa-sun"></i>
+            </div>
+
+            <h3 class="text-3xl font-bold text-neutral-dark mb-2">
+                {{ $morningProgram->category?->getLabel() }}
+            </h3>
+
+            <p class="font-semibold section-text-under mb-4">
+            {{-- الطالبات داخل الكلية --}}
+                {{ $morningProgram->description }}
+            </p>
+
+            <div class="text-4xl font-bold text-deep mb-2">
+            {{ $morningProgram->base_price }} {{ config('app.currency') }}
+            </div>
+            
+        </div>
+
+        <button class="btn btn-primary-morning w-full mt-4">
+            {{ __('joinNow') }}
+        </button>
+    </div>
+    @endisset
+
+    @isset($eveningProgram)
+    <!-- القسم المسائي -->
+    <div class="pricing-table card card-hover card-alt">
+        <div class="text-center mb-8">
+            <div class="text-6xl mb-4">
+                <i class="fa-solid fa-moon"></i>
+            </div>
+
+            <h3 class="text-3xl font-bold text-neutral-dark mb-4">
+            {{ $eveningProgram->category->getLabel() }}
+            </h3>
+
+            <p class="font-semibold section-text-under mb-4">
+            {{ $eveningProgram->description }}
+            </p>
+
+            <div class="text-4xl font-bold text-deep mb-4">
+            {{ $eveningProgram->base_price }} {{ config('app.currency') }}
+            </div>
+            
+        </div>
+
+        <button class="btn btn-secondary-evening w-full mt-4">
+            {{ __('joinNow') }}
+        </button>
+    </div>
+    @endisset
+
+    
+    
+
+</div>
+
 
    </div>
   </section>

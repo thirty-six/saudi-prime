@@ -18,6 +18,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('favicon/favicon-16x16.png')}}">
     <link rel="manifest" href="{{asset('favicon/manifest.json')}}">
     <link rel="shortcut icon" href="{{asset('favicon.ico')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{asset('favicon/ms-icon-144x144.png')}}">
     <meta name="theme-color" content="#ffffff">
@@ -67,11 +68,8 @@
           <a href="#services" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">برامجنا</a>
           <a href="#contact" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">تواصل معنا</a>
           <div class="relative ml-4 group">
-            <div class="absolute -inset-0.5 bg-gradient-to-r from-lightgreen-600/50 to-green-600/50 rounded-lg blur opacity-75 group-hover:opacity-100 transition-all duration-500"></div>
-            <button class="contact-btn px-4 py-2 bg-gradient-to-r from-green-950 to-emerald-900 rounded-md text-white text-sm font-medium relative z-10 flex items-center justify-center gap-2 group-hover:from-green-900 group-hover:to-emerald-800 transition-all duration-300">
-  <span class="bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
+            <button class="contact-btn play-btn px-4 py-2  rounded-md  text-sm font-medium relative z-10 flex items-center justify-center gap-2 transition-all duration-300">
     تسجيل الدخول
-  </span>
 </button>
           </div>
         </div>
@@ -96,10 +94,8 @@
           <a href="#services" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">برامجنا</a>
           <a href="#contact" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">تواصل معنا</a>
           <div class="px-4 pt-2">
-            <button class="contact-btn px-4 py-2 bg-gradient-to-r from-green-950 to-emerald-900 rounded-lg text-white text-sm font-medium relative z-10 flex items-center justify-center gap-2 group-hover:from-green-900 group-hover:to-emerald-800 transition-all duration-300">
-  <span class="bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
+            <button class="contact-btn play-btn px-4 py-2 rounded-lg text-white text-sm font-medium relative z-10 flex items-center justify-center gap-2 transition-all duration-300">
     تسجيل الدخول
-  </span>
 </button>
           </div>
         </div>
@@ -113,7 +109,7 @@
         @yield('content')
     </main>
     {{-- FOOTER --}}
-    <footer class="bg-forest text-white py-app-md bg-green-900/70 backdrop-blur-lg border-b border-cyan-500/30 z-50 transition-all duration-300">
+    <footer class="bg-forest text-white py-app-md  border-b  z-50 transition-all duration-300">
         <div class="max-w-4xl mx-auto px-app-lg text-small text-center">
             <p class="text-small">&copy; {{ date('Y') }} {{ config('app.name') }}. تم التطوير من قبل شركة ThirtySix {{ __('All rights reserved') }}.</p>
         </div>
