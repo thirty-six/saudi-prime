@@ -384,7 +384,7 @@
                 {{ $morningProgram->description }}
             </p>
 
-            <div class="text-4xl font-bold text-deep mb-2">
+            <div class="text-2xl font-bold text-deep mb-2">
             {{ $morningProgram->base_price }} {{ config('app.currency') }}
             </div>
             
@@ -412,7 +412,7 @@
             {{ $eveningProgram->description }}
             </p>
 
-            <div class="text-4xl font-bold text-deep mb-4">
+            <div class="text-2xl font-bold text-deep mb-4">
             {{ $eveningProgram->base_price }} {{ config('app.currency') }}
             </div>
             
