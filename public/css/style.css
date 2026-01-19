@@ -1,0 +1,155 @@
+
+:root {
+  --roboto-font :'Roboto', sans-serif;
+  --noto-sans-jp-font: 'Noto Sans JP', sans-serif;
+  --poppins-font: 'Poppins', sans-serif;;
+  
+  --h1-font-size: clamp(20px, 10vw, 100px);
+  --h2-font-size: clamp(18px, 4vw, 40px);
+  --fact-font-size: 18px;
+  --small-font-size: clamp(14px, 2vw, 18px);
+  --medium-font-size: clamp(18px, 3vw, 24px);
+  --number-font-size: clamp(18px, 8vw, 80px);
+  
+  --blue-color: #1b84c9;
+  --yellow-color: #f3b13f;
+  --black-color: #1f1f1f;
+  --green-color: #169c56;
+  --red-color: #e93156;
+  
+  --gold-color: #f3dc8d;
+  --silver-color: #c5c0b4;
+  --bronze-color: #d0a379;
+  --dark-gold-color: #f1d67e;
+  --dark-silver-color: #c1bbae;
+  --dark-bronze-color: #cd9d70;
+  
+  --ring-size: calc(min(200px, 14vw));
+  --ring-border-size: calc(var(--ring-size) * 0.1);
+  --ring-offset-left: calc(var(--ring-size) + var(--ring-border-size));
+  --ring-offset-top: calc((var(--ring-size) - var(--ring-border-size)) * 0.5);
+  
+  --logo-size-w: calc((var(--ring-size) * 3 + var(--ring-border-size) * 2) * 1.5);
+  --logo-size-h: calc((var(--ring-size) * 1.5 - var(--ring-border-size) * 0.5) * 2);
+  --logo-bg-color: #f1f1f1;
+}
+
+
+.header-wrapper {
+  margin: 50px 0px 0 0;
+/*   margin-bottom: 100px; */
+  position: relative;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #F7BE24;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F7BE24;
+}
+
+a.btn-show{
+   background: #1F75BA !important;
+   color:#ffffff
+}
+
+#navbar{
+    background-color: #1f74bac4;
+}
+.nav-link:focus{
+    outline: none;
+}
+.nav-link{
+    font-weight: 600;
+}
+#mobile-menu .mobile-nav-link{
+    margin-top: -9px;
+    box-shadow: 0 0px 22px rgba(247, 191, 36, 0.242), 0 2px 0px rgba(247, 191, 36, 0.116);
+}
+#mobile-menu-button .bg-cyan-400{
+    background-color:#F7BE24;
+}
+a.btn-show{
+   background: #1F75BA; 
+}
+a.btn-show:hover{
+   background: #328fdc !important;
+}
+.btn-outline{
+  background: var(--btn-outline-bg);
+    color: #F7BE24;
+    border: 1px solid #F7BE24;
+}
+.btn-outline:hover{
+  background: #00000017;
+}
+.min-h-screen{
+     background: linear-gradient(135deg, #f8fafc, #b5cfbe4c ,#fff);
+}
+.bg-neutral-light{
+  background: none;
+}
+.section-text-under,.card .text-small.text-neutral-muted, .program-prices .leading-relaxed{
+  color: #717171;
+}
+.section-text-under{
+  margin-top: 10px;
+}
+.services .card .w-10{
+  font-size: 25px;
+  margin-bottom: 10px;
+  color: #1f74bac7;
+}
+
+button.contact-btn.play-btn {
+    background: linear-gradient(135deg,#FAD24D 0%,#F7BE24 45%,#E0A915 100%) !important;
+    color: #2B2B2B;
+    border: none;
+    transition: all 0.25s ease;
+    font-weight: 600;
+}
+.contact-btn.play-btn:hover {
+    background: linear-gradient(
+        135deg,
+        #FFE07A 0%,
+        #F7BE24 50%,
+        #C99612 100%
+    );
+    border: 1px solid transparent;
+}
+
+footer.bg-forest{
+    background: #1F75BA;
+    background-color: #1F75BA;
+}
+.btn-primary-morning{
+    background: #1F75BA;
+    color: #ffffff;
+}
+.btn-primary-morning:hover{
+    background: #1e6eaf;
+    background-color: #1e6eaf;
+}
+.btn-secondary-evening{
+    background: #F7BE24;
+}
+.btn-secondary-evening:hover{
+    background: #dfad25;
+    background-color: #dfad25;
+}
+@media only screen and (max-width: 768px) {
+    .prime_logo img{
+    width: 80px;
+    height: 85px;
+    }
+}
