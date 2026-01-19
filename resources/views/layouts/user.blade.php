@@ -28,20 +28,20 @@
 
     <style>
         .prime_logo img{
-    width: 100px;
-    height: 105px;
-}
-.header a:hover{
-    color:#fff;
-    border-bottom: 2px solid rgba(208, 192, 192, 0.5); 
-  text-shadow: 2px 2px 4px rgba(208, 192, 192, 0.5); 
-}
-#mobile-menu{
-  text-align: center;
-}
-#mobile-menu button{
-  margin: auto;
-}
+        width: 100px;
+        height: 105px;
+    }
+    .header a:hover{
+        color:#fff;
+        border-bottom: 2px solid rgba(208, 192, 192, 0.5); 
+      text-shadow: 2px 2px 4px rgba(208, 192, 192, 0.5); 
+    }
+    #mobile-menu{
+      text-align: center;
+    }
+    #mobile-menu button{
+      margin: auto;
+    }
 
     </style>
     
@@ -57,16 +57,18 @@
         <!-- Logo -->
         <div class="flex items-center">
           <div class="relative mr-2 prime_logo">
+            <a href="{{ url('/') }}">
             <img src="{{asset('img/logo_white.png')}}"  alt="Saudi Prime" class="h-6 relative z-10">
+          </a>
           </div>
         </div>
 
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-1">
-          <a href="#home" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">الرئيسية</a>
+          <a href="{{ url('/') }}" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">الرئيسية</a>
           <a href="#about" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">نبذة عنا</a>
           <a href="#services" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">برامجنا</a>
-          <a href="#contact" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">تواصل معنا</a>
+          <a href="{{ url('contact_us') }}" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">تواصل معنا</a>
           <div class="relative ml-4 group">
             <button class="contact-btn play-btn px-4 py-2  rounded-md  text-sm font-medium relative z-10 flex items-center justify-center gap-2 transition-all duration-300">
     تسجيل الدخول
@@ -89,10 +91,10 @@
       <!-- Mobile Menu -->
       <div id="mobile-menu" class="md:hidden h-0 overflow-hidden transition-all duration-300 ease-in-out">
         <div class="pt-2 pb-4 space-y-1">
-          <a href="#home" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">الرئيسية</a>
+          <a href="{{ url('/') }}" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">الرئيسية</a>
           <a href="#about" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">نبذة عنا</a>
           <a href="#services" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">برامجنا</a>
-          <a href="#contact" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">تواصل معنا</a>
+          <a href="{{ url('contact_us') }}" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">تواصل معنا</a>
           <div class="px-4 pt-2">
             <button class="contact-btn play-btn px-4 py-2 rounded-lg text-white text-sm font-medium relative z-10 flex items-center justify-center gap-2 transition-all duration-300">
     تسجيل الدخول

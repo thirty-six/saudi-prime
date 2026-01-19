@@ -20,7 +20,7 @@ return [
     | Application Currency & Money Settings
     |--------------------------------------------------------------------------
     */
-    'currency' => '⃁',
+    'currency' => 'ر.س',
     'currency_code' => 'SAR',
     'vat_percentage' => 15,
 

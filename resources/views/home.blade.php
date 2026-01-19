@@ -1,6 +1,6 @@
-@extends('layouts.user')
+@extends('layouts.app')
 
-@section('title', 'Welcome')
+@section('title', 'Saudi Prime')
 
 <link rel="stylesheet" href="{{asset('css/style.css')}}">
  <link rel="stylesheet" href="{{asset('css/home.css')}}">
@@ -8,13 +8,13 @@
 
 @section('content')
 
-<div class="header-wrapper prime-banner">
+<div class="header-wrapper prime-banner banner-on-load">
   <div class="gallery">
     <h1></h1>
   </div>
 </div>
 
-<section id="hero" class="slide-section flex items-center bg-neutral-light">
+<section id="about" class="slide-section flex items-center bg-neutral-light animate-fade-up">
     <div class="container mx-auto px-6">
 
         {{-- Top Context Bar --}}
@@ -85,7 +85,7 @@
         </div>
     </div>
 </section>
-<section id="audience" class="py-20 bg-neutral-light">
+<section id="audience" class="py-20 bg-neutral-light animate-fade-up">
     <div class="container mx-auto px-6 text-center services">
 
         {{-- Section Heading --}}
@@ -142,7 +142,7 @@
 </section>
 
 
-<section id="audience" class="py-20 bg-neutral-light">
+<section id="audience" class="py-20 bg-neutral-light animate-fade-up">
     <div class="container mx-auto px-6 text-center services sports">
 
         {{-- Section Heading --}}
@@ -287,7 +287,7 @@
     </div>
 </section>
 
-<section id="pricing" class="section slide-section bg-neutral-light program-prices">
+<section id="pricing" class="section slide-section bg-neutral-light program-prices animate-fade-up">
    <div class="felx flex-col items-center p-app-lg">
       <div class="text-center mb-16">
          <h2 class="text-5xl font-bold text-neutral-dark mb-4">
@@ -384,14 +384,14 @@
                 {{ $morningProgram->description }}
             </p>
 
-            <div class="text-2xl font-bold text-deep mb-2">
+            <div class="text-3xl font-bold text-deep mb-2">
             {{ $morningProgram->base_price }} {{ config('app.currency') }}
             </div>
             
         </div>
 
         <button class="btn btn-primary-morning w-full mt-4">
-            {{ __('joinNow') }}
+            {{ __('Join Now') }}
         </button>
     </div>
     @endisset
@@ -412,14 +412,14 @@
             {{ $eveningProgram->description }}
             </p>
 
-            <div class="text-2xl font-bold text-deep mb-4">
+            <div class="text-3xl font-bold text-deep mb-4">
             {{ $eveningProgram->base_price }} {{ config('app.currency') }}
             </div>
             
         </div>
 
         <button class="btn btn-secondary-evening w-full mt-4">
-            {{ __('joinNow') }}
+            {{ __('Join Now') }}
         </button>
     </div>
     @endisset
@@ -439,3 +439,22 @@
 
  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/solid.js" integrity="sha384-/BxOvRagtVDn9dJ+JGCtcofNXgQO/CCCVKdMfL115s3gOgQxWaX/tSq5V8dRgsbc" crossorigin="anonymous"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js" integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous"></script>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll('.animate-fade-up');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // يشغّل مرة وحدة
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    elements.forEach(el => observer.observe(el));
+});
+</script>

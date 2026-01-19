@@ -34,7 +34,10 @@
   --logo-bg-color: #f1f1f1;
 }
 
-
+header .nav-link{
+    position: relative;
+    z-index: 999999999999;
+}
 .header-wrapper {
   margin: 50px 0px 0 0;
 /*   margin-bottom: 100px; */
@@ -152,4 +155,16 @@ footer.bg-forest{
     width: 80px;
     height: 85px;
     }
+}
+
+.banner-on-load {
+    animation: bannerLoad 1.2s ease-out forwards;
+}
+
+body{
+  overflow-x: hidden;
+}
+.error{
+  color: rgb(209, 26, 26);
+  font-size: 15px;
 }
