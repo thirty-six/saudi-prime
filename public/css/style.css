@@ -76,7 +76,7 @@ a.btn-show{
     font-weight: 600;
 }
 #mobile-menu .mobile-nav-link{
-    margin-top: -9px;
+    margin-top: -7px;
     box-shadow: 0 0px 22px rgba(247, 191, 36, 0.242), 0 2px 0px rgba(247, 191, 36, 0.116);
 }
 #mobile-menu-button .bg-cyan-400{
@@ -94,7 +94,8 @@ a.btn-show:hover{
     border: 1px solid #F7BE24;
 }
 .btn-outline:hover{
-  background: #00000017;
+  background: #F7BE24;
+  color: #fff;
 }
 .min-h-screen{
      background: linear-gradient(135deg, #f8fafc, #b5cfbe4c ,#fff);
@@ -150,10 +151,10 @@ footer.bg-forest{
     background: #dfad25;
     background-color: #dfad25;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .prime_logo img{
-    width: 80px;
-    height: 85px;
+    width: 90px !important;
+    height: 95px !important;
     }
 }
 
@@ -167,4 +168,10 @@ body{
 .error{
   color: rgb(209, 26, 26);
   font-size: 15px;
+}
+@media screen and (max-width:450px) {
+  .prime_logo img{
+    width: 80px !important;
+    height: 85px !important;
+  }
 }

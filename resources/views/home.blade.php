@@ -39,7 +39,7 @@
                    نادي رياضي نسائي متكامل داخل الكلية -  نوفر بيئة آمنة ومحفزة لجميع الفئات العمرية لممارسة الرياضة وتحقيق الأهداف الصحية واللياقية.
                 </p>
                 <p class="mt-6 text-body text-neutral-dark leading-relaxed max-w-xl">
-                    نقدم مجموعة متنوعة من البرامج الرياضية على يد مدربات محترفات معتمدات، مع توفير أحدث المعدات الرياضية وأفضل الخدمات.
+                    نقدم مجموعة متنوعة من البرامج الرياضية على يد مدربين محترفين معتمدين، مع توفير أحدث المعدات الرياضية وأفضل الخدمات.
                 </p>
 
                 {{-- CTA --}}
@@ -64,7 +64,7 @@
 
                 <div class="card card-hover text-center">
                     <i class="fa-solid fa-award"></i>
-                    <p class="font-semibold">مدربات محترفات</p>
+                    <p class="font-semibold">مدربين محترفين</p>
                     <span>خبرة ومهارة عالية</span>
                 </div>
 
@@ -85,7 +85,7 @@
         </div>
     </div>
 </section>
-<section id="audience" class="py-20 bg-neutral-light animate-fade-up">
+<section id="audience" class="bg-neutral-light animate-fade-up">
     <div class="container mx-auto px-6 text-center services">
 
         {{-- Section Heading --}}

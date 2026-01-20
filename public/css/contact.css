@@ -1,8 +1,8 @@
 /* ========= HERO BANNER ========= */
 .contact-hero {
     position: relative;
-    height: 60vh;
-    background: url('/img/png/contact.png') center/cover no-repeat;
+    height: 70vh;
+    background: url('/img/contact.webp') top center /cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,6 +21,7 @@
     max-width: 800px;
     padding: 0 20px;
     animation: heroFade 1.2s ease-out forwards;
+    top: 35px;
 }
 
 .contact-hero-content h1 {
@@ -73,7 +74,10 @@
 .contact-info span {
     display: block;
     font-size: 0.85rem;
-    color: #888;
+    color: #444141;
+}
+.contact-info span .fa{
+    color: #1F75BA;
 }
 
 /* FORM */
@@ -92,30 +96,30 @@
     display: block;
     font-weight: 600;
     margin-bottom: 8px;
-    font-size: 0.9rem;
+    font-size: 14px;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 14px 16px;
+    padding: 12px 16px;
     border-radius: 10px;
     border: 2px solid #f7bf2481;
-    font-size: 0.95rem;
+    font-size: 14px;
     outline: none;
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-    border-color: #f7bf2487;
+    border-color: #F7BE24;
 }
 
 .contact-form button {
     width: 100%;
     padding: 16px;
-    background: #000;
+    background: #1F75BA;
     color: #fff;
     font-size: 1.05rem;
     font-weight: 600;
@@ -126,7 +130,7 @@
 }
 
 .contact-form button:hover {
-    background: #222;
+    background: #1f6fb0;
 }
 .select-program{
     cursor: pointer;
@@ -162,4 +166,69 @@
     border: 1px solid #a7f3d0;
     text-align: center;
     margin-bottom: 10px;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-load {
+  animation: fadeSlideIn 0.6s ease-out forwards;
+}
+@media (max-width: 768px) {
+   .contact-info h2{
+    font-size: 30px;
+   }
+   .contact-hero {
+    position: relative;
+    height: 60vh !important;
+   }
+}
+
+@keyframes bannerLoad {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.left-grid {
+  animation: slideInFromLeft 0.5s ease-out forwards;
+}
+
+.right-grid {
+  animation: slideInFromRight 0.5s ease-out forwards;
 }

@@ -22,6 +22,13 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{asset('favicon/ms-icon-144x144.png')}}">
     <meta name="theme-color" content="#ffffff">
+    <meta name="keywords" content="adult swim,kids swim,kids training,sport training,sports academy,fitness training,personal training,group training,kids sports programs,youth sports training,
+    adult fitness programs,professional coaching,strength training,cardio training,functional training,athletic performance,sports conditioning,
+    physical training,fitness classes,gym training,health and fitness,sports development,training programs,sports coaching,
+    sport training in Jordan,sports academy in Jordan,fitness center Jordan,سباحة للكبار, سباحة للأطفال, تدريب الأطفال,تدريب رياضي,
+    أكاديمية رياضية,لياقة بدنية,تدريب شخصي,تدريب جماعي,برامج رياضية للأطفال,تدريب رياضي للشباب,
+   برامج لياقة للكبار,مدربين محترفين,تقوية العضلات,تمارين كارديو,تدريب وظيفي,تحسين الأداء الرياضي,
+   إعداد بدني,تمارين رياضية,حصص لياقة,تدريب في نادي رياضي,الصحة واللياقة,تطوير رياضي,برامج تدريب">
     <title>@yield('title', 'Saudi Prime')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

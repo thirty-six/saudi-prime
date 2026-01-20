@@ -12,8 +12,8 @@
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-1">
           <a href="{{ url('/') }}" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">الرئيسية</a>
-          <a href="#about" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">نبذة عنا</a>
-          <a href="#services" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">برامجنا</a>
+          <a href="{{ url('about') }}" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">نبذة عنا</a>
+          <a href="{{ route('programs') }}" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">برامجنا</a>
           <a href="{{ url('contact_us') }}" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">تواصل معنا</a>
           <div class="relative ml-4 group">
             <button class="contact-btn play-btn px-4 py-2  rounded-md  text-sm font-medium relative z-10 flex items-center justify-center gap-2 transition-all duration-300">
@@ -38,8 +38,8 @@
       <div id="mobile-menu" class="md:hidden h-0 overflow-hidden transition-all duration-300 ease-in-out">
         <div class="pt-2 pb-4 space-y-1">
           <a href="{{ url('/') }}" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">الرئيسية</a>
-          <a href="#about" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">نبذة عنا</a>
-          <a href="#services" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">برامجنا</a>
+          <a href="{{ url('about') }}" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">نبذة عنا</a>
+          <a href="{{ route('programs') }}" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">برامجنا</a>
           <a href="{{ url('contact_us') }}" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">تواصل معنا</a>
           <div class="px-4 pt-2">
             <button class="contact-btn play-btn px-4 py-2 rounded-lg text-white text-sm font-medium relative z-10 flex items-center justify-center gap-2 transition-all duration-300">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Saudi Prime')
+@section('title', 'Saudi Prime | تواصل معنا')
 
 <link rel="stylesheet" href="{{asset('css/style.css')}}">
  <link rel="stylesheet" href="{{asset('css/contact.css')}}">
@@ -9,7 +9,7 @@
 
 @section('content')
 
-<section class="contact-hero">
+<section class="contact-hero banner-on-load">
     <div class="contact-hero-overlay"></div>
 
     <div class="contact-hero-content">
@@ -23,7 +23,7 @@
 <section class="contact-section">
     <div class="contact-container">
 
-        <div class="contact-info">
+        <div class="contact-info right-grid">
             <h2>للتواصل والاستفسار</h2>
             <p>
                 سواء كنت تبحث عن برامج تدريب للأطفال، أو تدريب للبالغين، أو تدريب شخصي، فإن فريقنا جاهز لمساعدتك.
@@ -31,26 +31,26 @@
 
             <ul>
                 <li>
-                    <span>رقم الجوال</span>
+                    <span> <i class="fa fa-phone"></i> &nbsp;رقم الجوال</span>
                    <p style="direction:ltr;text-align: right;"> +966 50 123 4567</p>
                 </li>
                 <li>
-                    <span>الايميل</span>
+                    <span> <i class="fa fa-envelope"></i> &nbsp;الايميل</span>
                     <p>info@saudiprime.sa</p>
                 </li>
                 <li>
-                    <span>الموقع</span>
+                    <span> <i class="fa fa-map-marker"></i> &nbsp;الموقع</span>
                    <p> الرياض - السعودية </p>
                 </li>
                 <li>
-                    <span>أوقات العمل</span>
+                    <span> <i class="fa fa-clock"></i> &nbsp;أوقات العمل</span>
                    <p> السبت - الخميس | 8:00 صباحاً – 09:00 مساءاً </p>
                 </li>
             </ul>
         </div>
 
 
-        <div class="contact-form">
+        <div class="contact-form left-grid">
              @if(session('success'))
                 <div class="alert alert-success">
                   تم ارسال الرسالة بنجاح!

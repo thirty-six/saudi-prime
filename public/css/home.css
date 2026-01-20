@@ -323,3 +323,25 @@ h2.text-5xl{
     }
 }
 
+@media screen and (max-width:1200px) {
+  #about{
+    margin-top: 34px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  #about{
+    margin-top: 45px;
+  }
+  .prime-banner{
+    top:25px;
+  }
+  h2.text-5xl{
+    font-size: 30px;
+  }
+}
+@media screen and (max-width:400px) {
+  .prime-banner{
+    top:35px;
+  }
+}

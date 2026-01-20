@@ -14,10 +14,14 @@ Route::get('/register', function () {
 
 Route::get('/about', function () {
     return view('about');
-});
+})->name('about');
 Route::get('/contact_us', function () {
     return view('contact_us');
 })->name('contact_us');
+
+Route::get('/programs', function () {
+    return view('programs');
+})->name('programs');
 
 Route::get('/login', function () {
     return view('login');
