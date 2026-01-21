@@ -10,7 +10,7 @@ Route::get('/', function () {
 
 Route::get('/register', function () {
     return view('register');
-});
+})->name('subscriptions.register');
 
 Route::get('/about', function () {
     return view('about');
@@ -21,7 +21,7 @@ Route::get('/contact_us', function () {
 
 Route::get('/programs', function () {
     return view('programs');
-})->name('programs');
+})->name('program');
 
 Route::get('/login', function () {
     return view('login');
@@ -29,3 +29,7 @@ Route::get('/login', function () {
 Route::get('/', [ProgramsController::class, 'index'])->name('home');
 
 Route::post('/contact', [ContactController::class,'send'])->name('contact.send');
+
+Route::get('/subscriptions', function () {
+    return view('subscriptions');
+})->name('subscriptions');
