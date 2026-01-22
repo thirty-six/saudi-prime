@@ -8,7 +8,7 @@
 .join-hero {
     position: relative;
     height: 70vh;
-    background: url('/img/contact.webp') top center /cover no-repeat;
+    background: url('/img/subscriptions.webp') center center /cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,7 +17,7 @@
 .join-hero-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(0, 0, 0, 39%);
 }
 
 .join-hero-content {
@@ -77,6 +77,10 @@
     display: flex;
     flex-direction: column;
     cursor: pointer;
+    background-image: url('../img/sub_cards.webp'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .subs-card.highlight {

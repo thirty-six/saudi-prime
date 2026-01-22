@@ -79,6 +79,10 @@
 
 .fs-card-body {
     padding: 1.8rem;
+    background-image: url('../img/card.webp'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .fs-card-body h3 {

@@ -26,7 +26,6 @@
 
         <div class="grid md:grid-cols-2 gap-12 items-center">
 
-            {{-- Text Content --}}
             <div>
                 <h1 class="text-display font-bold text-neutral-dark leading-tight">
                    مرحباً بك في 
@@ -42,7 +41,6 @@
                     نقدم مجموعة متنوعة من البرامج الرياضية على يد مدربين محترفين معتمدين، مع توفير أحدث المعدات الرياضية وأفضل الخدمات.
                 </p>
 
-                {{-- CTA --}}
                 <div class="mt-8 flex flex-wrap gap-4">
                     <a href="#pricing" class="btn btn-show rounded-md">
                         استعرض الاشتراكات
@@ -54,7 +52,7 @@
                 </div>
             </div>
 
-            {{-- Segments / Value Cards --}}
+            
             <div class="grid grid-cols-2 gap-4">
                 <div class="card card-hover text-center">
                     <i class="fas fa-dumbbell"></i>
@@ -85,6 +83,67 @@
         </div>
     </div>
 </section>
+
+<section id="gallery" class="section slide-section bg-neutral-light program-prices animate-fade-up py-10">
+   <div class="felx flex-col items-center p-app-lg">
+      <div class="text-center mb-16">
+         <h2 class="text-5xl font-bold text-neutral-dark mb-20">
+             ألبوم الصور 
+         </h2>
+  <div class="parent">
+  <div class="columns-wrapper">
+
+    <div class="image-column">
+      <div class="track up">
+        <img src="{{ asset('img/gallery/IMG_1.webp')}}" alt="Random Image 1" />
+        <img src="{{ asset('img/gallery/IMG_2.webp')}}" alt="Random Image 2" />
+        <img src="{{ asset('img/gallery/IMG_3.webp')}}" alt="Random Image 3" />
+        <img src="{{ asset('img/gallery/IMG_4.webp')}}" alt="Random Image 4" />
+
+        <img src="{{ asset('img/gallery/IMG_5.webp')}}" alt="Random Image 5" />
+        <img src="{{ asset('img/gallery/IMG_9.webp')}}" alt="Random Image 9" />
+        <img src="{{ asset('img/gallery/IMG_10.webp')}}" alt="Random Image 10" />
+                <img src="{{ asset('img/gallery/IMG_9.webp')}}" alt="Random Image 6" />
+
+      </div>
+    </div>
+
+    <div class="image-column hide-gal-on-mobile">
+      <div class="track down">
+        <img src="{{ asset('img/gallery/IMG_1.webp')}}" alt="Random Image 1" />
+        <img src="{{ asset('img/gallery/IMG_2.webp')}}" alt="Random Image 2" />
+        <img src="{{ asset('img/gallery/IMG_3.webp')}}" alt="Random Image 8" />
+        <img src="{{ asset('img/gallery/IMG_4.webp')}}" alt="Random Image 4" />
+        <img src="{{ asset('img/gallery/IMG_9.webp')}}" alt="Random Image 9" />
+
+        <img src="{{ asset('img/gallery/IMG_5.webp')}}" alt="Random Image 5" />
+        <img src="{{ asset('img/gallery/IMG_6.webp')}}" alt="Random Image 6" />
+        <img src="{{ asset('img/gallery/IMG_7.webp')}}" alt="Random Image 7" />
+      </div>
+    </div>
+
+    <div class="image-column hide-gal-on-mobile">
+      <div class="track up">
+       
+        <img src="{{ asset('img/gallery/IMG_7.webp')}}" alt="Random Image 7" />
+        <img src="{{ asset('img/gallery/IMG_8.webp')}}" alt="Random Image 8" />
+        <img src="{{ asset('img/gallery/IMG_9.webp')}}" alt="Random Image 9" />
+        <img src="{{ asset('img/gallery/IMG_10.webp')}}" alt="Random Image 10" />
+        <img src="{{ asset('img/gallery/IMG_5.webp')}}" alt="Random Image 5" />
+
+         <img src="{{ asset('img/gallery/IMG_1.webp')}}" alt="Random Image 1" />
+        <img src="{{ asset('img/gallery/IMG_2.webp')}}" alt="Random Image 2" />
+        <img src="{{ asset('img/gallery/IMG_3.webp')}}" alt="Random Image 3" />
+        <img src="{{ asset('img/gallery/IMG_4.webp')}}" alt="Random Image 4" />
+      </div>
+    </div>
+
+  </div>
+</div>
+      </div>
+    </div>
+</section>
+
 <section id="audience" class="bg-neutral-light animate-fade-up">
     <div class="container mx-auto px-6 text-center services">
 
@@ -456,5 +515,47 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     elements.forEach(el => observer.observe(el));
+});
+</script>
+
+<script>
+    const slider = document.querySelector('.items');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener('mousedown', (e) => {
+  isDown = true;
+  slider.classList.add('active');
+  
+  // The position of the mouse relative to the left edge of
+  // the slider:
+  startX = e.pageX - slider.offsetLeft;
+  
+  // The scroll position of the slider:
+  scrollLeft = slider.scrollLeft;
+});
+
+slider.addEventListener('mouseleave', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+
+slider.addEventListener('mouseup', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+
+slider.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  
+  // The position of the mouse relative to the left edge of
+  // the slider:
+  const x = e.pageX - slider.offsetLeft;
+  
+  // The new position minus the old position, multiplied by 3.
+  const walk = (x - startX) * 3;
+  slider.scrollLeft = scrollLeft - walk;
 });
 </script>

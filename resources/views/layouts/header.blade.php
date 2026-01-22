@@ -5,7 +5,7 @@
         <!-- Logo -->
         <div class="flex items-center">
           <div class="relative mr-2 prime_logo">
-            <a href="{{ url('/') }}"><img src="{{asset('img/logo_white.png')}}"  alt="Saudi Prime" class="h-6 relative z-10"></a>
+            <a href="{{ url('/') }}"><img src="{{asset('img/logo_white.webp')}}"  alt="Saudi Prime" class="h-6 relative z-10"></a>
           </div>
         </div>
 

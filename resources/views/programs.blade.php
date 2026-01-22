@@ -21,8 +21,8 @@
     <div class="fs-container">
 
         <div class="fs-header">
-            <h2>مرافقنا</h2>
-            <p class="font-semibold section-text-under">بطاقات تعريفية بالمرافق المتاحة مع خيارات الاشتراك المناسبة</p>
+            <h2>المرافق الرياضية</h2>
+            <p class="font-semibold section-text-under">  مجموعة من المرافق المتاحة بحسب البرنامج الرياضي</p>
         </div>
 
         <div class="fs-grid animate-on-load">
@@ -124,7 +124,7 @@
 
             <!-- Fitness Rooms -->
             <div class="fs-card">
-                <img src="{{ asset('img/sport_hall.webp') }}" alt="غرف اللياقة البدنية">
+                <img src="{{ asset('img/training.webp') }}" alt="غرف اللياقة البدنية">
                 <div class="fs-card-body">
                     <h3>غرف اللياقة البدنية</h3>
                     <p>

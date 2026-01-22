@@ -21,7 +21,7 @@ Route::get('/contact_us', function () {
 
 Route::get('/programs', function () {
     return view('programs');
-})->name('program');
+})->name('programs');
 
 Route::get('/login', function () {
     return view('login');

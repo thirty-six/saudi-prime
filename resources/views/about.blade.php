@@ -4,6 +4,7 @@
 
 <link rel="stylesheet" href="{{asset('css/style.css')}}">
  <link rel="stylesheet" href="{{asset('css/about.css')}}">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 @section('content')
 <section class="about-hero banner-on-load">
@@ -35,19 +36,19 @@
 
     <section class="section values animate-on-load">
         <div class="container">
-
+        
             <div class="values-grid">
-                <div class="value-card">
-                    <h3>🏟️ داخل الكلية التقنية للبنات</h3>
+                <div class="arrow_box box_one">
+                  <p class="logo_text"><i class="fa fa-map-marker"></i> داخل الكلية التقنية للبنات</p>
                 </div>
 
-                <div class="value-card">
-                    <h3>👥 وجهة عائلية متكاملة</h3>
+                <div class="arrow_box box_one">
+                  <p class="logo_text"><i class="fa fa-users"></i> وجهة عائلية متكاملة</p>
                 </div>
 
-                <div class="value-card">
-                    <h3>💳 اشتراكات مرنة وخدمات متعددة</h3>
-            </div>
+                <div class="arrow_box box_one">
+                  <p class="logo_text"><i class="fa fa-credit-card"></i> اشتراكات مرنة وخدمات متعددة</p>
+                </div>
         </div>
     </section>
 
