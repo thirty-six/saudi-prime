@@ -53,12 +53,12 @@ header .nav-link{
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #F7BE24;
+  background: #1f74bacc;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #F7BE24;
+  background: #1f74bacc;
 }
 
 a.btn-show{
@@ -67,7 +67,15 @@ a.btn-show{
 }
 
 #navbar{
-    background-color: #1f74bac4;
+  background: linear-gradient(
+    -90deg,
+    #212456 0%,
+    #1F75BA 33%,
+    #1f74bacc 66%,
+    #263A7B 100%
+  );
+  border-bottom: none;
+    /* background-color: #1f74bac4; */
 }
 .nav-link:focus{
     outline: none;
@@ -80,7 +88,7 @@ a.btn-show{
     box-shadow: 0 0px 22px rgba(247, 191, 36, 0.242), 0 2px 0px rgba(247, 191, 36, 0.116);
 }
 #mobile-menu-button .bg-cyan-400{
-    background-color:#F7BE24;
+    background-color:#BAE3EA;
 }
 a.btn-show{
    background: #1F75BA; 
@@ -90,15 +98,15 @@ a.btn-show:hover{
 }
 .btn-outline{
   background: var(--btn-outline-bg);
-    color: #F7BE24;
-    border: 1px solid #F7BE24;
+    color: #8cd6e2;
+    border: 1px solid #8cd6e2;
 }
 .btn-outline:hover{
-  background: #F7BE24;
+  background: #BAE3EA;
   color: #fff;
 }
 .min-h-screen{
-     background: linear-gradient(135deg, #f8fafc, #b5cfbe4c ,#fff);
+     background: linear-gradient(135deg, #c6ecf345, #bae3ea45 ,#fff);
 }
 .bg-neutral-light{
   background: none;
@@ -116,18 +124,19 @@ a.btn-show:hover{
 }
 
 button.contact-btn.play-btn {
-    background: linear-gradient(135deg,#FAD24D 0%,#F7BE24 45%,#E0A915 100%) !important;
+    background: linear-gradient(135deg,#BAE3EA 0%,#b1dae1 45%,#b8e5ed 100%) !important;
     color: #2B2B2B;
     border: none;
     transition: all 0.25s ease;
     font-weight: 600;
+    color: #212456;
 }
 .contact-btn.play-btn:hover {
     background: linear-gradient(
         135deg,
-        #FFE07A 0%,
-        #F7BE24 50%,
-        #C99612 100%
+        #b7e7f0 0%,
+        #BAE3EA 50%,
+        #aee3ec 100%
     );
     border: 1px solid transparent;
 }
@@ -138,18 +147,19 @@ footer.bg-forest{
 }
 .btn-primary-morning{
     background: #1F75BA;
-    color: #ffffff;
+    color: #fff;
 }
 .btn-primary-morning:hover{
     background: #1e6eaf;
     background-color: #1e6eaf;
 }
 .btn-secondary-evening{
-    background: #F7BE24;
+    background: #BAE3EA;
+    color: #212456;
 }
 .btn-secondary-evening:hover{
-    background: #dfad25;
-    background-color: #dfad25;
+    background: #a8cfd6;
+    background-color: #a8cfd6;
 }
 @media screen and (max-width: 768px) {
     .prime_logo img{

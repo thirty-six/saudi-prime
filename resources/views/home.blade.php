@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('title', 'Saudi Prime')
-
-<link rel="stylesheet" href="{{asset('css/style.css')}}">
  <link rel="stylesheet" href="{{asset('css/home.css')}}">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -57,25 +55,25 @@
                 <div class="card card-hover text-center">
                     <i class="fas fa-dumbbell"></i>
                     <p class="font-semibold">أحدث المعدات</p>
-                    <span>معدات رياضية عالمية</span>
+                    <span class="font-semibold section-text-under">معدات رياضية عالمية</span>
                 </div>
 
                 <div class="card card-hover text-center">
                     <i class="fa-solid fa-award"></i>
                     <p class="font-semibold">مدربين محترفين</p>
-                    <span>خبرة ومهارة عالية</span>
+                    <span class="font-semibold section-text-under">خبرة ومهارة عالية</span>
                 </div>
 
                 <div class="card card-hover text-center">
                     <i class="fa-solid fa-shield-halved"></i>
                     <p class="font-semibold">بيئة آمنة</p>
-                    <span>خصوصية تامة للنساء</span>
+                    <span class="font-semibold section-text-under">خصوصية تامة للنساء</span>
                 </div>
 
                 <div class="card card-hover text-center">
                     <i class="fa-solid fa-clock"></i>
                     <p class="font-semibold">أوقات مرنة</p>
-                    <span>صباحية ومسائية</span>
+                    <span class="font-semibold section-text-under">صباحية ومسائية</span>
                 </div>
             </div>
 
@@ -144,7 +142,7 @@
     </div>
 </section>
 
-<section id="audience" class="bg-neutral-light animate-fade-up">
+<section id="services" class="bg-neutral-light animate-fade-up">
     <div class="container mx-auto px-6 text-center services">
 
         {{-- Section Heading --}}
@@ -201,7 +199,7 @@
 </section>
 
 
-<section id="audience" class="py-20 bg-neutral-light animate-fade-up">
+<section id="programs" class="py-20 bg-neutral-light animate-fade-up">
     <div class="container mx-auto px-6 text-center services sports">
 
         {{-- Section Heading --}}
@@ -425,7 +423,7 @@
 
       </div>
 
-      <div class="grid sm:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <div class="grid sm:grid-cols-2 gap-8 max-w-5xl mx-auto">
     @isset($morningProgram)
     <!-- القسم الصباحي -->
     <div class="pricing-table featured card card-hover">

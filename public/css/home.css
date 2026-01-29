@@ -46,13 +46,19 @@
     "p1 p1 p8 p8 . p4 p4 p4 p4";
 }
 
-
+.text-neutral-dark, .text-3xl.font-bold, #programs .font-semibold.text-body.mb-1{
+  color: #212456;
+}
+.font-semibold{
+  color: #1F75BA;
+}
 
 .photo {
   background-position: center;
   background-size: cover;
   opacity: 0.95
 }
+
 
 
 section .slides-outer-container {
@@ -270,7 +276,7 @@ section img {
 }
 
 .sports .card{
-  background-image: url('../img/yCard.webp'); 
+  background-image: url('../img/sub_cards.webp'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

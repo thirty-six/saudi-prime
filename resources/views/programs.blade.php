@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('title', 'المرافق والبرامج الرياضية')
-
-<link rel="stylesheet" href="{{asset('css/style.css')}}">
  <link rel="stylesheet" href="{{asset('css/program.css')}}">
 
 @section('content')

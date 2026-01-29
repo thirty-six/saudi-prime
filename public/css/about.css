@@ -6,7 +6,7 @@ img {
 
         .about-hero {
             min-height: 70vh;
-            background: linear-gradient(rgba(15, 23, 42, 0.847), rgba(15, 23, 42, 0.66)),
+            background: linear-gradient(rgb(71 158 238), rgb(30 82 207 / 26%)),
                 url("/img/about_banner.webp") top center /cover no-repeat;
             display: flex;
             align-items: center;
@@ -17,7 +17,8 @@ img {
         }
 
         .about-hero h1 {
-            font-size: 45px;
+            color: #212456db;
+            font-size: 60px;
             font-weight: 800;
             margin-bottom: 1rem;
             letter-spacing: -0.02em;
@@ -26,8 +27,8 @@ img {
 
         .about-hero p {
             max-width: 720px;
-            font-size: 30px;
-            color: #cbd5f5;
+            font-size: 45px;
+            color: #e0f6f9;
         }
 
         .section {
@@ -47,13 +48,14 @@ img {
         }
 
         .about-text h2 {
+            color: #212456;
             font-size: 2.6rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
         }
 
         .about-text p {
-            color: #475569;
+            color: #212456db;
             margin-bottom: 1.2rem;
             font-size: 1.05rem;
         }
@@ -102,7 +104,7 @@ img {
         }
 
         .stats {
-            background-color: #2c699c;
+            background-color: #212456;
             color: #ffffff;
         }
 
@@ -116,7 +118,7 @@ img {
         .stat h4 {
             font-size: 3rem;
             font-weight: 800;
-            color: #F7BE24;
+            color: #BAE3EA;
         }
 
         .stat span {
@@ -219,11 +221,11 @@ img {
 
 .arrow_box {
 	position: relative;
-	background: #f7bf24a6;
-    background-color: #f7bf24a6;
+	background: #BAE3EA;
+    background-color: #BAE3EA;
     padding: 10px;
 }
-.arrow_box p {color:#ffffff;padding:1px 5px 3px 5px;text-align: center;}
+.arrow_box p {color:#212456;padding:1px 5px 3px 5px;text-align: center;}
 .arrow_box:after {
 	left: 50%;
 	top: -24%;
@@ -233,7 +235,7 @@ img {
 	width: 0;
 	position: absolute;
 	pointer-events: none;
-	border-left-color: #f7bf24a6;
+	border-left-color: #212456;
   /* this is not an exact science, you will want to adjust those 2 numbers up or down as needed. */
 	border-width: 12px;
 	margin-top: -12px;

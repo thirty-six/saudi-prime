@@ -53,6 +53,7 @@
 .contact-info h2 {
     font-size: 2.2rem;
     margin-bottom: 20px;
+    color: #212456;
 }
 
 .contact-info p {
@@ -97,6 +98,7 @@
     font-weight: 600;
     margin-bottom: 8px;
     font-size: 14px;
+    color: #212456;
 }
 
 .form-group input,
@@ -105,15 +107,16 @@
     width: 100%;
     padding: 12px 16px;
     border-radius: 10px;
-    border: 2px solid #f7bf2481;
+    border: 2px solid #BAE3EA;
     font-size: 14px;
     outline: none;
+    color: #212456;
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-    border-color: #F7BE24;
+    border-color: #BAE3EA;
 }
 
 .contact-form button {

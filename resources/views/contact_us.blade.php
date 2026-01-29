@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('title', 'Saudi Prime | تواصل معنا')
-
-<link rel="stylesheet" href="{{asset('css/style.css')}}">
  <link rel="stylesheet" href="{{asset('css/contact.css')}}">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 

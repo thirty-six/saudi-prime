@@ -33,3 +33,7 @@ Route::post('/contact', [ContactController::class,'send'])->name('contact.send')
 Route::get('/subscriptions', function () {
     return view('subscriptions');
 })->name('subscriptions');
+
+Route::get('/playground', function () {
+    return view('playground');
+})->name('playground');

@@ -1,6 +1,6 @@
 .programs-hero {
             min-height: 70vh;
-            background: linear-gradient(rgba(15, 23, 42, 0.847), rgba(15, 23, 42, 0.66)),
+            background: linear-gradient(rgba(41, 60, 104, 0.708), rgba(53, 69, 108, 0.457)),
                 url("/img/stadium_about.webp") bottom center /cover no-repeat;
             display: flex;
             align-items: center;
@@ -123,12 +123,13 @@
 }
 
 .btn.outline {
-    border: 1px solid #F7BE24;
-    color: #F7BE24;
+    border: 1px solid #8cd6e2;
+    color: #BAE3EA;
+    font-weight: bold;
 }
 
 .btn.outline:hover {
-    background: #F7BE24;
+    background: #bae7ef;
     color: #fff;
 }
 
