@@ -334,10 +334,15 @@ h2.text-5xl{
         transform: scale(1);
     }
 }
-
+.all-sections{
+  margin-top: -120px;
+}
+.sec-sections{
+  margin-top: -50px;
+}
 @media screen and (max-width:1200px) {
-  #about{
-    margin-top: 34px;
+  .all-sections{
+    margin-top: -20px;
   }
 }
 
@@ -429,4 +434,54 @@ h2.text-5xl{
   #gallery .parent{
     height: 415px
       }
+}
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        rgba(0, 0, 0, 0.146),
+        rgba(0, 0, 0, 0.139)
+    );
+}
+.header-wrapper.prime-banner {
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 86%,
+        78% 88%,
+        55% 84%,
+        30% 88%,
+        0 86%
+    );
+}
+#programModal{
+  overflow-y: auto;
+}
+
+.animate-fade-up.is-visible{
+  overflow-y: auto;
+  z-index: 999;
+}
+.bg-white{
+  position: relative;
+  top: 310px;
+  bottom: 200px;
+  width: 40%;
+}
+.top-4.left-4{
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #BAE3EA;
+  color: #212456;
+  border-radius: 30%;
+}
+@media screen and (max-width:992px) {
+ .bg-white{
+  width: 80% !important;
+ }
+}
+.bg-white #modalIcon{
+   font-size: 30px;
 }

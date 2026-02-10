@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\DaysEnum;
 use App\Enums\RegistrationStatusEnum;
 use App\Enums\SessionStatusEnum;
+use App\Models\MorningRegistration;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -103,4 +104,12 @@ class AdultSession extends Model
         return $this->registrationsCount() >= $this->capacity;
     }
 
+    public function morning_registrations()
+    {
+        return $this->hasMany(
+            MorningRegistration::class,
+            'program_sport_id',
+            'program_sport_id'
+        );
+    }
 }

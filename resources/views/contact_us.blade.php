@@ -19,6 +19,23 @@
 </section>
 
 <section class="contact-section">
+    @if(isset($faqs) && $faqs->count() > 0)
+    <div class="contact-container-faq">
+    <section class="faq-section">
+    <h2 class="faq-title">الأسئلة الشائعة</h2>
+    <div class="faq-list">
+        @foreach ($faqs as $faq)
+        <details class="faq-item">
+            <summary>{{ $faq->question }}</summary>
+            <div class="faq-content">
+                {!! $faq->answer !!}
+            </div>
+        </details>
+        @endforeach
+    </div>
+    </section>
+    </div>
+    @endif
     <div class="contact-container">
 
         <div class="contact-info right-grid">
@@ -42,7 +59,7 @@
                 </li>
                 <li>
                     <span> <i class="fa fa-clock"></i> &nbsp;أوقات العمل</span>
-                   <p> الأحد - الخميس | 8:00 صباحاً – 09:00 مساءاً </p>
+                   <p> السبت  - الخميس | 8:00 صباحاً – 09:00 مساءاً </p>
                 </li>
             </ul>
         </div>

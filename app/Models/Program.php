@@ -57,5 +57,11 @@ class Program extends Model
         $taxRate =  config('app.vat_percentage')/100;
         return (int) round($this->{'base_price'} * (1 + $taxRate));
     }
+
+    // public function sports()
+    // {
+    //     return $this->belongsToMany(Sport::class, 'program_sports')
+    //         ->withPivot(['day','start_time','status','is_visible']);
+    // }
 }
 

@@ -4,6 +4,7 @@ namespace App\Filament\Resources\KidSessions\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
@@ -47,6 +48,7 @@ class KidSessionsTable
             ])
             ->recordActions([
                 EditAction::make(),
+                DeleteAction::make()->requiresConfirmation(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

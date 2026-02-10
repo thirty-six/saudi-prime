@@ -242,6 +242,30 @@ return [
         'number_of_hours' => 'عدد الساعات',
         'lang' => 'اللغة',
         'code' => 'الرمز',
+        'university_number' => 'الرقم الجامعي',
+        'guardian_name' => 'اسم ولي الأمر',
+        'guardian_phone' => 'رقم جوال وليّ الأمر',
+        'child_name' => 'اسم الطفل',
+        'child_dob' => 'تاريخ ميلاد الطفل',
+        'program'  => 'البرنامج',
+        'day_one' =>'اليوم الأول',
+        'day_two' => 'اليوم الثاني',
+        'time_slot' => 'وقت الحصة',
+        'payment_method' => 'طريقة الدفع',
+        'payment_proof' => 'ملف اثبات الدفع',
+        'accepted_terms' => 'الشروط والأحكام',
+        'age_group' => 'الفئة العمرية',
+        'group_type' => 'المجموعة',
+        'guardian_approval' =>'موافقة ولي الأومر',
+        'subscription_type'  => 'نوع الاشتراك',
+        'session_time' => 'وقت الحصة',
+        'program_sport_id' => 'برنامج الرياضة',
+        
+
+
+
+
+
     ],
 
 ];

@@ -76,10 +76,11 @@
     "Skill": "المهارة",
     "Skills": "المهارات",
     "Gained Skills": "المهارات المكتسبة",
+    "Equipment": "المعدات",
     "Equipments": "المعدات",
     "Equipment Needed": "المعدات المطلوبة",
     "Skill Level": "مستوى المهارة",
-    "": "",
+    "Level":  "مستوى المهارة",
     
     "All rights reserved": "جميع الحقوق محفوظة",
 
@@ -87,5 +88,10 @@
     "Stadium": "ملعب",
     "Join Now": "اشترك الآن",
     "Contact Us": "تواصل معنا",
-    "Get in Touch": "للتواصل والاستفسار"
+    "Get in Touch": "للتواصل والاستفسار",
+    "FAQ": "سؤال",
+    "FAQs": "الأسئلة الشائعة",
+    "question": "السؤال",
+    "answer": "الإجابة",
+    "is_active": "فعّال"
 }

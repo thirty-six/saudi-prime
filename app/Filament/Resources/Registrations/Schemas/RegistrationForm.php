@@ -93,6 +93,7 @@ class RegistrationForm
                     })
                     ->reactive()
                     ->required()
+                    ->preload()
                     ->afterStateUpdated(fn (callable $set) => $set('session_ids', []))
                     ->searchable(),
                 Select::make('session_ids')
@@ -129,7 +130,8 @@ class RegistrationForm
                             ->toArray();
                     })
                     ->searchable()
-                    ->required(),
+                    ->required()
+                    ->preload(),
 
                 Select::make('status')
                     ->label(__('Status'))

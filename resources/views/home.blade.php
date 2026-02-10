@@ -7,20 +7,14 @@
 @section('content')
 
 <div class="header-wrapper prime-banner banner-on-load">
+    <div class="hero-overlay"></div>
   <div class="gallery">
     <h1></h1>
   </div>
 </div>
-
+<div class="all-sections">
 <section id="about" class="slide-section flex items-center bg-neutral-light animate-fade-up">
     <div class="container mx-auto px-6">
-
-        {{-- Top Context Bar --}}
-        {{-- <div class="flex flex-wrap gap-4 text-small text-neutral-muted mb-8">
-            <span>📍 داخل الكلية التقنية للبنات</span>
-            <span>👨‍👩‍👧‍👦 وجهة عائلية متكاملة</span>
-            <span>💳 اشتراكات مرنة وخدمات متعددة</span>
-        </div> --}}
 
         <div class="grid md:grid-cols-2 gap-12 items-center">
 
@@ -51,7 +45,7 @@
             </div>
 
             
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div class="card card-hover text-center">
                     <i class="fas fa-dumbbell"></i>
                     <p class="font-semibold">أحدث المعدات</p>
@@ -81,7 +75,7 @@
         </div>
     </div>
 </section>
-
+<div class="sec-sections">
 <section id="gallery" class="section slide-section bg-neutral-light program-prices animate-fade-up py-10">
    <div class="felx flex-col items-center p-app-lg">
       <div class="text-center mb-16">
@@ -208,23 +202,34 @@
              البرامج الرياضية
            </h2>
             <p class="font-semibold section-text-under">
-               اختار البرنامج المناسب لك من بين 10 برامج رياضية متنوعة
+            اختار البرنامج المناسب لك من بين 10 برامج رياضية متنوعة (انقر على البرنامج لعرض التفاصيل)
             </p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
 
-            <div class="card card-hover text-center">
-                <span class="sport-icon"> 🏀 </span>
-                <h3 class="font-semibold text-body mb-1">
-                    كرة السلة
-                </h3>
-                <p class="font-semibold section-text-under">
-                   تطوير المهارات الأساسية
-                </p>
+            <div 
+            class="card card-hover text-center cursor-pointer"
+            onclick="openProgramPopup(this)"
+            data-title="كرة السلة"
+            data-icon="🏀"
+            data-desc="برنامج شامل لتعليم وتطوير مهارات كرة السلة من المستوى المبتدئ إلى المتقدم"
+            data-benefits="تحسين اللياقة البدنية الشاملة|تطوير التنسيق الحركي والتوازن|تعزيز روح العمل الجماعي|بناء الثقة بالنفس"
+            data-skills="مهارات التمرير والاستلام|تقنيات التسديد من مسافات مختلفة|المراوغة والتحكم بالكرة|الدفاع والهجوم|قراءة اللعب الجماعي"
+            data-equipments="ملعب كرة سلة احترافي|كرات سلة بأحجام مختلفة|أهداف قابلة للتعديل|معدات تدريب حديثة"  >
+                <span class="sport-icon">🏀</span>
+                <h3 class="font-semibold text-body mb-1">كرة السلة</h3>
+                <p class="font-semibold section-text-under">تطوير المهارات الأساسية</p>
             </div>
 
-            <div class="card card-hover text-center">
+            <div class="card card-hover text-center cursor-pointer"
+            onclick="openProgramPopup(this)"
+            data-title="كرة القدم"
+            data-icon="⚽"
+            data-desc="تعلم أساسيات كرة القدم وتطوير المهارات الفنية والبدنية"
+            data-benefits="تحسين التحمل البدني والقوة|تطوير السرعة والرشاقة|تقوية عضلات الساقين|تحسين القدرة على اتخاذ القرار السريع"
+            data-skills="التمرير الدقيق بأنواعه|التسديد على المرمى|المراوغة والتخطي|السيطرة على الكرة|قراءة اللعب والتكتيكات"
+            data-equipments="ملعب عشب صناعي احترافي|كرات قدم بأحجام مختلفة|مرامي احترافية|معدات تدريب متنوعة">
                 <span class="sport-icon"> ⚽
                 </span>
                 <h3 class="font-semibold text-body mb-1">
@@ -235,7 +240,14 @@
                 </p>
             </div>
 
-            <div class="card card-hover text-center">
+            <div class="card card-hover text-center cursor-pointer"
+            onclick="openProgramPopup(this)"
+            data-title="كرة الطائرة"
+            data-icon="🏐"
+            data-desc="إتقان مهارات الكرة الطائرة الأساسية والمتقدمة مع التركيز على العمل الجماعي"
+            data-benefits="تطوير القفز والقوة الانفجارية|تحسين سرعة ردة الفعل|تقوية عضلات الذراعين والكتفين|تعزيز التواصل الجماعي"
+            data-skills="الإرسال بأنواعه|الاستقبال الدقيق|الضرب الساحق|حائط الصد|الدفاع عن الملعب"
+            data-equipments="ملعب كرة طائرة قانوني|شبكات احترافية|كرات طائرة بجودة عالية|معدات حماية">
                 <span class="sport-icon"> 🏐
                 </span>
                 <h3 class="font-semibold text-body mb-1">
@@ -246,7 +258,14 @@
                 </p>
             </div>
 
-            <div class="card card-hover text-center">
+            <div class="card card-hover text-center cursor-pointer"
+            onclick="openProgramPopup(this)"
+            data-title="السباحة"
+            data-icon="🏊"
+            data-desc="تعلم السباحة بأنماطها المختلفة من البداية حتى الاحتراف"
+            data-benefits="تحسين اللياقة البدنية الكاملة|تقوية عضلات الجسم بالكامل|تحسين صحة القلب والأوعية|تخفيف التوتر والاسترخاء"
+            data-skills="السباحة الحرة (الفري ستايل)|سباحة الظهر|سباحة الصدر|سباحة الفراشة|تقنيات التنفس الصحيحة"
+            data-equipments="مسبح أولمبي مغطى|نظافة وتعقيم مستمر|معدات سباحة متنوعة|غرف تبديل فاخرة">
                 <span class="sport-icon"> 🏊
                 </span>
                 <h3 class="font-semibold text-body mb-1">
@@ -257,7 +276,14 @@
                 </p>
             </div>
 
-            <div class="card card-hover text-center">
+            <div class="card card-hover text-center cursor-pointer"
+            onclick="openProgramPopup(this)"
+            data-title="التنس"
+            data-icon="🎾"
+            data-desc="تعلم أساسيات لعبة التنس وتطوير المهارات الفنية والتكتيكية"
+            data-benefits="تطوير التركيز الذهني|تحسين المرونة والرشاقة|تقوية الذراعين والجذع|بناء القدرة على التحمل"
+            data-skills="الإرسال القوي والدقيق|الضربة الأمامية|الضربة الخلفية|ضربات الشبكة|التكتيكات واستراتيجيات اللعب"
+            data-equipments="ملاعب تنس احترافية|مضارب بجودة عالية|كرات تنس متنوعة|شبكات قانونية">
                 <span class="sport-icon"> 🎾
                 </span>
                 <h3 class="font-semibold text-body mb-1">
@@ -268,7 +294,14 @@
                 </p>
             </div>
 
-            <div class="card card-hover text-center">
+            <div class="card card-hover text-center cursor-pointer"
+            onclick="openProgramPopup(this)"
+            data-title="تنس الطاولة"
+            data-icon="🏓"
+            data-desc="تطوير مهارات تنس الطاولة وسرعة ردة الفعل"
+            data-benefits="تحسين التركيز الذهني|تطوير سرعة ردة الفعل|تنشيط العقل والذاكرة|تحسين التنسيق بين اليد والعين"
+            data-skills="الإرسال المتنوع|الضربات السريعة|تقنيات الدوران|اللعب الدفاعي والهجومي|استراتيجيات المباريات"
+            data-equipments="طاولات تنس احترافية|مضارب بجودة عالية|كرات معتمدة|أرضية مناسبة">
                 <span class="sport-icon"> 🏓
                 </span>
                 <h3 class="font-semibold text-body mb-1">
@@ -279,7 +312,14 @@
                 </p>
             </div>
 
-            <div class="card card-hover text-center">
+            <div class="card card-hover text-center cursor-pointer"
+            onclick="openProgramPopup(this)"
+            data-title="الريشة الطائرة"
+            data-icon="🏸"
+            data-desc="إتقان لعبة الريشة الطائرة بمستوياتها المختلفة"
+            data-benefits="تحسين المرونة والرشاقة|تطوير السرعة والحركة|تقوية عضلات الجسم|تحسين القدرة على التحمل"
+            data-skills="الإرسال القصير والطويل|الضربة العالية|الإسقاط الدقيق|الدفاع السريع|حركات القدم الصحيحة"
+            data-equipments="ملاعب احترافية بأرضية مناسبة|مضارب بأوزان مختلفة|ريش طائرة بجودة عالية|شبكات قانونية">
                 <span class="sport-icon"> 🏸
                 </span>
                 <h3 class="font-semibold text-body mb-1">
@@ -290,7 +330,14 @@
                 </p>
             </div>
 
-            <div class="card card-hover text-center">
+            <div class="card card-hover text-center cursor-pointer"
+            onclick="openProgramPopup(this)"
+            data-title="الجمباز"
+            data-icon="🤸"
+            data-desc="تعلم حركات الجمباز والتوازن بطريقة آمنة ومحترفة"
+            data-benefits="تحسين المرونة بشكل كبير|تطوير التوازن والتنسيق|تقوية جميع عضلات الجسم|بناء الثقة والشجاعة"
+            data-skills="القفز والشقلبات|وضعيات التوازن|الدوران والحركات الدائرية|الحركات الأرضية|استخدام الأجهزة"
+            data-equipments="صالة جمباز مجهزة بالكامل|فرشات أمان سميكة|عارضة توازن|حصان القفز|أجهزة متنوعة">
                <span class="sport-icon"> 🤸
                </span>
                 <h3 class="font-semibold text-body mb-1">
@@ -310,7 +357,14 @@
                 </p>
             </div>
 
-            <div class="card card-hover text-center">
+            <div class="card card-hover text-center cursor-pointer"
+            onclick="openProgramPopup(this)"
+            data-title="اليوغا"
+            data-icon="🧘"
+            data-desc="ممارسة اليوغا للاسترخاء والمرونة والسلام الداخلي"
+            data-benefits="تخفيف التوتر والقلق|تحسين المرونة بشكل ملحوظ|تعزيز السلام الداخلي|تحسين التنفس والتركيز"
+            data-skills="وضعيات الوقوف الأساسية|وضعيات التوازن|التمدد العميق|تقنيات التنفس الصحيحة|التأمل والاسترخاء"
+            data-equipments="استوديو يوغا هادئ|سجادات يوغا مريحة|وسائد دعم|موسيقى هادئة|إضاءة مناسبة">
                <span class="sport-icon"> 🧘
                </span>
                 <h3 class="font-semibold text-body mb-1">
@@ -321,7 +375,14 @@
                 </p>
             </div>
 
-            <div class="card card-hover text-center">
+            <div class="card card-hover text-center cursor-pointer"
+            onclick="openProgramPopup(this)"
+            data-title="اللياقة البدنية"
+            data-icon="💪"
+            data-desc="برنامج شامل لتحسين اللياقة البدنية والقوة والصحة العامة"
+            data-benefits="حرق السعرات الحرارية بفعالية|بناء وتقوية العضلات|تحسين الصحة العامة|زيادة الطاقة والنشاط"
+            data-skills="تمارين القوة والمقاومة|تمارين الكارديو|تمارين المرونة|تمارين التحمل|التغذية الرياضية"
+            data-equipments="صالة ألعاب كاملة|أوزان حرة متنوعة|أجهزة كارديو حديثة|أجهزة مقاومة|معدات وظيفية">
                <span class="sport-icon"> 💪
                </span>
                 <h3 class="font-semibold text-body mb-1">
@@ -448,7 +509,7 @@
         </div>
 
         <button class="btn btn-primary-morning w-full mt-4">
-            {{ __('Join Now') }}
+           <a href="{{ route('morning_register') }}"> {{ __('Join Now') }} </a>
         </button>
     </div>
     @endisset
@@ -476,7 +537,7 @@
         </div>
 
         <button class="btn btn-secondary-evening w-full mt-4">
-            {{ __('Join Now') }}
+            <a href="{{ route('evening_register') }}"> {{ __('Join Now') }} </a>
         </button>
     </div>
     @endisset
@@ -489,10 +550,40 @@
 
    </div>
   </section>
+  </div>
+</div>
 
+<div id="programModal" class="fixed inset-0 bg-black/50 hidden z-50 flex items-center justify-center">
+  <div class="bg-white w-[420px] max-w-[95%] rounded-2xl p-6 relative animate-fade-up popup-content">
 
+    <button onclick="closeProgramPopup()" class="absolute top-4 left-4 text-2xl">&times;</button>
 
+    <div class="text-center mb-4">
+      <div id="modalIcon" class="text-4xl mb-2"></div>
+      <h2 id="modalTitle" class="text-2xl font-bold"></h2>
+      <p id="modalDesc" class="text-sm text-gray-600 mt-2"></p>
+    </div>
+
+    <div class="bg-green-50 rounded-xl p-4 mb-3">
+      <h4 class="font-semibold mb-2">🎯 الفوائد</h4>
+      <ul id="modalBenefits" class="text-sm space-y-1"></ul>
+    </div>
+
+    <div class="bg-purple-50 rounded-xl p-4">
+      <h4 class="font-semibold mb-2">⚡ المهارات المكتسبة</h4>
+      <ul id="modalSkills" class="text-sm space-y-1"></ul>
+    </div>
+
+    <div class="bg-purple-50 rounded-xl p-4">
+      <h4 class="font-semibold mb-2">🏋️ المعدات والمرافق</h4>
+      <ul id="modalEquipments" class="text-sm space-y-1"></ul>
+    </div>
+
+  </div>
+</div>
 @endsection
+
+
 
  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/solid.js" integrity="sha384-/BxOvRagtVDn9dJ+JGCtcofNXgQO/CCCVKdMfL115s3gOgQxWaX/tSq5V8dRgsbc" crossorigin="anonymous"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js" integrity="sha384-dPBGbj4Uoy1OOpM4+aRGfAOc0W37JkROT+3uynUgTHZCHZNMHfGXsmmvYTffZjYO" crossorigin="anonymous"></script>
@@ -555,5 +646,50 @@ slider.addEventListener('mousemove', (e) => {
   // The new position minus the old position, multiplied by 3.
   const walk = (x - startX) * 3;
   slider.scrollLeft = scrollLeft - walk;
+});
+</script>
+<script>
+let popupJustOpened = false;
+
+function openProgramPopup(card) {
+    popupJustOpened = true;
+
+    const modal = document.getElementById('programModal');
+    modal.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+
+    document.getElementById('modalTitle').innerText = card.dataset.title;
+    document.getElementById('modalIcon').innerText = card.dataset.icon;
+    document.getElementById('modalDesc').innerText = card.dataset.desc;
+
+    document.getElementById('modalBenefits').innerHTML =
+        card.dataset.benefits.split('|').map(b => `<li>• ${b}</li>`).join('');
+
+    document.getElementById('modalSkills').innerHTML =
+        card.dataset.skills.split('|').map(s => `<li>• ${s}</li>`).join('');
+
+    document.getElementById('modalEquipments').innerHTML =
+        card.dataset.equipments.split('|').map(s => `<li>• ${s}</li>`).join('');
+
+    setTimeout(() => popupJustOpened = false, 0);
+}
+
+function closeProgramPopup() {
+    document.getElementById('programModal').classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+}
+
+document.addEventListener('click', function (e) {
+    if (popupJustOpened) return;
+
+    const modal = document.getElementById('programModal');
+    if (!modal || modal.classList.contains('hidden')) return;
+
+    const popup = modal.querySelector('.popup-content');
+    if (!popup) return;
+
+    if (!popup.contains(e.target)) {
+        closeProgramPopup();
+    }
 });
 </script>

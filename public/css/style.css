@@ -10,7 +10,7 @@
   --small-font-size: clamp(14px, 2vw, 18px);
   --medium-font-size: clamp(18px, 3vw, 24px);
   --number-font-size: clamp(18px, 8vw, 80px);
-  
+    
   --blue-color: #1b84c9;
   --yellow-color: #f3b13f;
   --black-color: #1f1f1f;
@@ -43,6 +43,9 @@ header .nav-link{
 /*   margin-bottom: 100px; */
   position: relative;
 }
+header button a:hover{
+  text-decoration: none;
+}
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -67,6 +70,10 @@ a.btn-show{
 }
 
 #navbar{
+  /* background-image: url('../img/haeder_back.webp'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
   background: linear-gradient(
     -90deg,
     #212456 0%,
@@ -75,7 +82,6 @@ a.btn-show{
     #263A7B 100%
   );
   border-bottom: none;
-    /* background-color: #1f74bac4; */
 }
 .nav-link:focus{
     outline: none;
@@ -85,7 +91,7 @@ a.btn-show{
 }
 #mobile-menu .mobile-nav-link{
     margin-top: -7px;
-    box-shadow: 0 0px 22px rgba(247, 191, 36, 0.242), 0 2px 0px rgba(247, 191, 36, 0.116);
+    box-shadow: 0 0px 22px rgb(94 214 226 / 24%), 0 2px 0px rgb(33 181 211 / 38%);
 }
 #mobile-menu-button .bg-cyan-400{
     background-color:#BAE3EA;
@@ -140,10 +146,22 @@ button.contact-btn.play-btn {
     );
     border: 1px solid transparent;
 }
+.contact-btn.play-btn a:hover{
+  text-decoration: none;
+}
+
+footer{
+    background-image: url('../img/haeder_back.webp'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 footer.bg-forest{
-    background: #1F75BA;
-    background-color: #1F75BA;
+  background-image: url('../img/haeder_back.webp'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .btn-primary-morning{
     background: #1F75BA;
@@ -185,3 +203,4 @@ body{
     height: 85px !important;
   }
 }
+

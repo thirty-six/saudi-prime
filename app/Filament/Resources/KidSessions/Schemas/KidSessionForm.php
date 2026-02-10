@@ -10,6 +10,8 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
 use Filament\Schemas\Schema;
+use Illuminate\Validation\Rule;
+
 
 class KidSessionForm
 {
@@ -21,12 +23,21 @@ class KidSessionForm
                     ->label(__('Sport'))
                     ->relationship('sport', 'name_ar')
                     ->searchable()
-                    ->required(),
+                    ->required()
+                    ->preload(),
                 Select::make('days')
                     ->label(__('Days'))
                     ->options(SessionDaysEnum::class)
-                    ->required(),
-                Select::make('status')
+                    ->required()
+                    ->preload()
+                    ->rules([
+                    fn ($get, $record) => Rule::unique('kid_sessions', 'days')
+                        ->where('start_time', $get('start_time'))
+                        ->ignore($record),
+                    ])->validationMessages([
+                        'unique' => 'يوجد جلسة بنفس اليوم ونفس الوقت بالفعل',
+                    ]),
+                    Select::make('status')
                     ->label(__('Status'))
                     ->options(SessionStatusEnum::class)
                     ->required()

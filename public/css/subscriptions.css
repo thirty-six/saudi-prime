@@ -101,6 +101,7 @@
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 14px;
+    color: #212456;
 }
 
 .subs-desc {
@@ -130,6 +131,7 @@
 .subs-info strong {
     font-size: 15px;
     font-weight: 600;
+    color: #212456;
 }
 
 .subs-note {
@@ -153,10 +155,101 @@
 
 .subs-btn.outline {
     background: #1F75BA;
-    border: 1px solid var(--black);
+    border: 1px solid #1F75BA;
     color: #ffffff;
 }
 
 .subs-btn:hover {
     opacity: 0.9;
+}
+@media (max-width: 768px) {
+.join-hero-content h1{
+    font-size: 25px;
+}
+.join-hero-content p{
+    font-size: 17px;
+}
+.subs-card h2{
+    font-size: 21px;
+}
+.subs-desc{
+    font-size: 14px;
+}
+.subs-info strong{
+    font-size: 14px;
+}
+.subs-btn{
+    font-size: 13px;
+    padding: 10px;
+}
+
+}
+
+@media (max-width: 576px) {
+    .subs-card {
+        padding: 26px 22px;
+        border-radius: 16px;
+    }
+
+    .subs-card h2 {
+        font-size: 20px;
+    }
+
+    .subs-desc {
+        font-size: 14px;
+    }
+
+    .subs-info {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .subs-note {
+        font-size: 13px;
+    }
+}
+@media (max-width: 350px) {
+.subs-wrapper{
+    padding: 70px 5px;
+}
+.subs-wrapper article{
+    width: 60%;
+    margin: 0 auto;
+}
+}
+@media (max-width: 315px) {
+.subs-wrapper{
+    padding: 70px 5px;
+}
+.subs-wrapper article{
+    width: 50%;
+    margin: 0 15%;
+}
+}
+
+@keyframes bannerLoad {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }    
+
+
+    @keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-load {
+  animation: fadeSlideIn 0.9s ease-out forwards;
 }

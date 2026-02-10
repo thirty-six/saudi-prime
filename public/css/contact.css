@@ -1,11 +1,12 @@
 /* ========= HERO BANNER ========= */
 .contact-hero {
     position: relative;
-    height: 70vh;
+    height: 75vh;
     background: url('/img/contact.webp') top center /cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 50px;
 }
 
 .contact-hero-overlay {
@@ -48,9 +49,14 @@
     grid-template-columns: 1fr 1fr;
     gap: 60px;
 }
+.contact-container-faq{
+    max-width: 1200px;
+    margin: auto;
+    padding-bottom: 50px;
+}
 
 /* INFO */
-.contact-info h2 {
+.contact-info h2,.faq-title {
     font-size: 2.2rem;
     margin-bottom: 20px;
     color: #212456;
@@ -186,13 +192,19 @@
   animation: fadeSlideIn 0.6s ease-out forwards;
 }
 @media (max-width: 768px) {
-   .contact-info h2{
-    font-size: 30px;
+   .contact-info h2,.faq-title{
+    font-size: 27px;
    }
    .contact-hero {
     position: relative;
     height: 60vh !important;
    }
+   .contact-hero-content h1 {
+        font-size: 2rem;
+    }
+    .contact-hero-content p{
+        font-size: 1rem;
+    }
 }
 
 @keyframes bannerLoad {
@@ -234,4 +246,67 @@
 
 .right-grid {
   animation: slideInFromRight 0.5s ease-out forwards;
+}
+
+.faq-section {
+    margin: 20px auto;
+    padding: 0 20px;
+    margin-bottom: 50px;
+}
+
+.faq-title {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-item {
+    border: 1px solid #BAE3EA;
+    border-radius: 14px;
+    padding: 18px 20px;
+    background: #fff;
+    transition: box-shadow 0.3s ease;
+}
+
+.faq-item[open] {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+.faq-item summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 18px;
+    font-weight: 600;
+    position: relative;
+    padding-right: 28px;
+    color: #212456;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 22px;
+    transition: transform 0.3s ease;
+}
+
+.faq-item[open] summary::after {
+    content: "–";
+}
+
+.faq-content {
+    margin-top: 14px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #555;
 }

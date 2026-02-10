@@ -27,7 +27,7 @@ services:
     image: mysql:8.0
     container_name: laravel_db
     environment:
-      MYSQL_DATABASE: saudi_prime
+      MYSQL_DATABASE: sp_db
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3308:3306"

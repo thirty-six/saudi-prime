@@ -17,7 +17,7 @@
           <a href="{{ url('contact_us') }}" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">تواصل معنا</a>
           <div class="relative ml-4 group">
             <button class="contact-btn play-btn px-4 py-2  rounded-md  text-sm font-medium relative z-10 flex items-center justify-center gap-2 transition-all duration-300">
-    تسجيل الدخول
+             <a href="{{ route('subscriptions') }}" class="sub-now">اشترك الآن</a>
 </button>
           </div>
         </div>
@@ -43,7 +43,7 @@
           <a href="{{ url('contact_us') }}" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">تواصل معنا</a>
           <div class="px-4 pt-2">
             <button class="contact-btn play-btn px-4 py-2 rounded-lg text-white text-sm font-medium relative z-10 flex items-center justify-center gap-2 transition-all duration-300">
-    تسجيل الدخول
+       <a href="{{ route('subscriptions') }}">اشترك الآن</a>
 </button>
           </div>
         </div>

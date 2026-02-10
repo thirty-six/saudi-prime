@@ -1,5 +1,5 @@
 .programs-hero {
-            min-height: 70vh;
+            min-height: 75vh;
             background: linear-gradient(rgba(41, 60, 104, 0.708), rgba(53, 69, 108, 0.457)),
                 url("/img/stadium_about.webp") bottom center /cover no-repeat;
             display: flex;
@@ -8,6 +8,7 @@
             text-align: center;
             padding: 0 1rem;
             color: #ffffff;
+            margin-top: 50px;
         }
 
         .programs-hero h1 {

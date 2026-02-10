@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Filament\Resources\Programs\Tables;
-
-use Filament\Actions\EditAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\EditAction;
 
 class ProgramsTable
 {
