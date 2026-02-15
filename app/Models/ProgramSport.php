@@ -56,4 +56,20 @@ class ProgramSport extends Model
             'program_sport_id'
         );
     }
+
+    public function morningRegistrationsOne()
+{
+    return $this->hasMany(
+        MorningRegistration::class,
+        'program_sport_id_1'
+    );
+}
+
+public function morningRegistrationsTwo()
+{
+    return $this->hasMany(
+        MorningRegistration::class,
+        'program_sport_id_2'
+    );
+}
 }

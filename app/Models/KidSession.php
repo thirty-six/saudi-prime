@@ -36,4 +36,20 @@ class KidSession extends Model
     {
         return $this->belongsTo(Sport::class);
     }
+
+   public function registrations()
+    {
+        return $this->hasMany(KidRegistration::class);
+    }
+
+    // 🔥 Smart remaining seats
+    public function getRemainingSeatsAttribute(): int
+    {
+        return $this->capacity - $this->registrations()->count();
+    }
+
+    public function getIsFullAttribute(): bool
+    {
+        return $this->remaining_seats <= 0;
+    }
 }

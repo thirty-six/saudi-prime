@@ -35,8 +35,8 @@
 
     <style>
         .prime_logo img{
-        width: 100px;
-        height: 105px;
+        width: 130px;
+        height: 125px;
     }
     .header a:hover{
         color:#fff;

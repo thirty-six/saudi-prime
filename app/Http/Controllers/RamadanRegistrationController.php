@@ -1,0 +1,142 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\RamadanSession;
+use App\Models\RamadanRegistration;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
+
+
+class RamadanRegistrationController extends Controller
+{
+   
+public function create()
+{
+    $sessions = RamadanSession::where('is_active', true)
+        ->withCount('registrations')
+        ->get()
+        ->filter(fn ($s) =>
+            $s->registrations_count < $s->capacity
+        );
+
+    // نحول كل شيء إلى array نظيف
+    $sessionsArray = $sessions->map(function ($s) {
+        return [
+            'id' => $s->id,
+            'days' => $s->days->value, // مهم جداً
+            'days_label' => $s->days->getLabel(),
+            'start_time' => $s->start_time,
+            'end_time' => $s->end_time,
+            'price' => $s->price,
+        ];
+    })->values()->toArray();
+
+    // استخراج الأيام بدون تكرار
+    $days = collect($sessionsArray)
+        ->unique('days')
+        ->values()
+        ->map(fn ($item) => [
+            'value' => $item['days'],
+            'label' => $item['days_label'],
+        ])
+        ->toArray();
+
+    return view('ramadan_register', [
+        'sessions' => $sessionsArray,
+        'days' => $days,
+    ]);
+}
+
+public function invoice($token)
+{
+    $registration = RamadanRegistration::where('invoice_token', $token)
+        ->with('session')
+        ->firstOrFail();
+
+    return view('ramadan_invoice', compact('registration'));
+}
+
+
+    public function store(Request $request)
+    {
+    
+    $request->validate([
+        'guardian_name' => 'required|string|max:255',
+        'guardian_phone' => 'required|string|max:20',
+        'guardian_email' => 'nullable|email|max:100',
+        'child_name' => 'required|string|max:255',
+        'child_dob' => 'required|date',
+        'age_group' => 'required|in:boys,girls',
+        'ramadan_session_id' => 'required|exists:ramadan_sessions,id',
+        'payment_method' => 'required',
+        'media_consent' => 'required|in:agree,refuse',
+        'accepted_terms' => 'required',
+    ]);
+
+    // 🔹 تحقق العمر
+    $age = Carbon::parse($request->child_dob)->age;
+
+    if ($request->age_group === 'boys' && ($age < 5 || $age > 8)) {
+        return back()->withErrors([
+            'child_dob' => 'عمر الأولاد يجب أن يكون بين 5 و 8 سنوات'
+        ])->withInput();
+    }
+
+    if ($request->age_group === 'girls' && ($age < 5 || $age > 15)) {
+        return back()->withErrors([
+            'child_dob' => 'عمر البنات يجب أن يكون بين 5 و 15 سنة'
+        ])->withInput();
+    }
+
+    // 🔹 تحقق السعة
+    $session = RamadanSession::findOrFail($request->ramadan_session_id);
+
+    if ($session->registrations()->count() >= $session->capacity) {
+        return back()->withErrors([
+            'ramadan_session_id' => 'الفترة ممتلئة بالكامل'
+        ])->withInput();
+    }
+
+     $registrationCount = RamadanRegistration::where('guardian_phone', $request->guardian_phone)->count();
+
+    if ($registrationCount >= 3) {
+        return back()
+            ->withErrors([
+                'guardian_phone' => 'لا يمكن التسجيل أكثر من ثلاث مرات بنفس رقم الجوال.'
+            ])
+            ->withInput();
+    }
+
+    $registration_insert = RamadanRegistration::create([
+        'guardian_name' => $request->guardian_name,
+        'guardian_phone' => $request->guardian_phone,
+        'guardian_email' => $request->guardian_email,
+        'child_name' => $request->child_name,
+        'child_dob' => $request->child_dob,
+        'age_group' => $request->age_group,
+        'ramadan_session_id' => $session->id,
+        'price' => $session->price,
+        'payment_method' => $request->payment_method,
+        'media_consent' => $request->media_consent,
+        'accepted_terms' => true,
+    ]);
+
+    do {
+        $token = Str::uuid()->toString();
+    } while (
+        RamadanRegistration::where('invoice_token', $token)->exists()
+    );
+
+    $registration_insert->update([
+        'invoice_token' => $token
+    ]);
+
+    return redirect()->route('ramadan_invoice', $token);
+
+    // return redirect()
+    //     ->route('ramadan_register')
+    //     ->with('success', 'تم تسجيل الطفل بنجاح');
+}
+}

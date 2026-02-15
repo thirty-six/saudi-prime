@@ -35,6 +35,7 @@
 
         <h1>نموذج تسجيل الطالبات (صباحي)</h1>
 
+
         @if(session('success'))
             <div class="reg-success">
                 {{ session('success') }}
@@ -76,7 +77,7 @@
         </div>
 
         {{-- الرياضة --}}
-        <div class="reg-group">
+        <div class="reg-group full">
             <label>برنامج الرياضة المختار *</label>
             <select id="sport_select" required>
                 <option value="">اختر</option>
@@ -97,6 +98,16 @@
             @error('day_one') <div class="reg-error">{{ $message }}</div> @enderror
         </div>
 
+        {{-- وقت اليوم الأول --}}
+        <div class="reg-group">
+            <label>وقت اليوم الأول *</label>
+            <select name="start_time_1" id="start_time_1" required>
+                <option value="">اختر الوقت</option>
+            </select>
+           @error('start_time_1') <div class="reg-error">{{ $message }}</div> @enderror
+
+        </div>
+
         {{-- اليوم الثاني --}}
         <div class="reg-group">
             <label>اليوم الثاني *</label>
@@ -106,22 +117,22 @@
             @error('day_two') <div class="reg-error">{{ $message }}</div> @enderror
         </div>
 
-             {{-- الوقت --}}
+            {{-- وقت اليوم الثاني --}}
         <div class="reg-group">
-            <label>الوقت *</label>
-            <select name="start_time" id="start_time" required>
+            <label>وقت اليوم الثاني *</label>
+            <select name="start_time_2" id="start_time_2" required>
                 <option value="">اختر الوقت</option>
             </select>
-            @error('start_time') <div class="reg-error">{{ $message }}</div> @enderror
+            @error('start_time_2') <div class="reg-error">{{ $message }}</div> @enderror
         </div>
 
         {{-- السعر --}}
         <div class="reg-group full">
-            <strong>السعر: {{ $price }} ريال</strong>
+            <strong style="font-size: 20px;">السعر: {{ $price }} ريال</strong>
         </div>
 
         {{-- طريقة الدفع --}}
-        <div class="reg-group">
+        <div class="reg-group full">
             <label>طريقة الدفع *</label>
             <select name="payment_method" required>
                 <option value="">اختر</option>
@@ -140,7 +151,10 @@
         </div>
 
         {{-- program_sport_id --}}
-        <input type="hidden" name="program_sport_id" id="program_sport_id">
+        <input type="hidden"
+       name="program_sport_id"
+       id="program_sport_id"
+       value="{{ old('program_sport_id') }}">
 
 
             <div class="reg-group full reg-checkbox">
@@ -177,56 +191,84 @@ const programSports = @json($programSports);
 const sportSelect = document.getElementById('sport_select');
 const dayOne = document.getElementById('day_one');
 const dayTwo = document.getElementById('day_two');
-const timeSelect = document.getElementById('start_time');
+const timeSelect1 = document.getElementById('start_time_1');
+const timeSelect2 = document.getElementById('start_time_2');
 const programSportInput = document.getElementById('program_sport_id');
 
-let availableDays = [];
+let currentSportData = [];
 
-/* عند اختيار الرياضة */
+/* اختيار الرياضة */
 sportSelect.addEventListener('change', () => {
+
     const sportId = sportSelect.value;
 
-    const filtered = programSports.filter(ps => ps.sport_id == sportId);
+    currentSportData = programSports.filter(ps => ps.sport_id == sportId);
 
-    availableDays = [...new Set(filtered.map(ps => ps.day))];
-    const times = [...new Set(filtered.map(ps => ps.start_time))];
+    reset(dayOne);
+    reset(dayTwo);
+    reset(timeSelect1);
+    reset(timeSelect2);
 
-    resetSelect(dayOne, 'اختر اليوم');
-    resetSelect(dayTwo, 'اختر اليوم');
-    resetSelect(timeSelect, 'اختر الوقت');
+    const uniqueDays = [...new Set(currentSportData.map(ps => ps.day))];
 
-    availableDays.forEach(day => {
+    uniqueDays.forEach(day => {
         dayOne.innerHTML += `<option value="${day}">${translateDay(day)}</option>`;
     });
-
-    times.forEach(time => {
-      timeSelect.innerHTML += `<option value="${time}">${formatTimeAMPM(time)}</option>`;
-    });
-
-    if (filtered.length) {
-        programSportInput.value = filtered[0].id;
-    }
 });
 
-/* عند اختيار اليوم الأول */
+/* اليوم الأول */
 dayOne.addEventListener('change', () => {
+
+    reset(timeSelect1);
+    reset(dayTwo);
+    reset(timeSelect2);
+
     const selectedDay = dayOne.value;
 
-    resetSelect(dayTwo, 'اختر اليوم');
+    const sessions = currentSportData
+        .filter(ps => ps.day == selectedDay)
+        .sort((a,b)=> a.start_time.localeCompare(b.start_time));
 
-    availableDays
-        .filter(day => day !== selectedDay)
-        .forEach(day => {
-            dayTwo.innerHTML += `<option value="${day}">${translateDay(day)}</option>`;
-        });
+    sessions.forEach(ps => {
+        timeSelect1.innerHTML += `
+            <option value="${ps.start_time}">
+                ${formatTime(ps.start_time)}
+            </option>`;
+    });
+
+    const otherDays = [...new Set(currentSportData.map(ps => ps.day))]
+        .filter(day => day !== selectedDay);
+
+    otherDays.forEach(day => {
+        dayTwo.innerHTML += `<option value="${day}">${translateDay(day)}</option>`;
+    });
 });
 
-/* عند اختيار الوقت */
-timeSelect.addEventListener('change', () => {
-    const match = programSports.find(ps =>
-        ps.sport_id == sportSelect.value &&
+/* اليوم الثاني */
+dayTwo.addEventListener('change', () => {
+
+    reset(timeSelect2);
+
+    const selectedDay = dayTwo.value;
+
+    const sessions = currentSportData
+        .filter(ps => ps.day == selectedDay)
+        .sort((a,b)=> a.start_time.localeCompare(b.start_time));
+
+    sessions.forEach(ps => {
+        timeSelect2.innerHTML += `
+            <option value="${ps.start_time}">
+                ${formatTime(ps.start_time)}
+            </option>`;
+    });
+});
+
+/* تحديث program_sport_id */
+timeSelect1.addEventListener('change', () => {
+
+    const match = currentSportData.find(ps =>
         ps.day == dayOne.value &&
-        ps.start_time == timeSelect.value
+        ps.start_time == timeSelect1.value
     );
 
     if (match) {
@@ -235,21 +277,12 @@ timeSelect.addEventListener('change', () => {
 });
 
 /* Helpers */
-function formatTimeAMPM(time) {
-    let [hour, minute] = time.split(':');
-    hour = parseInt(hour, 10);
 
-    const ampm = hour >= 12 ? 'PM' : 'AM';
-    hour = hour % 12;
-    hour = hour ? hour : 12; // 0 => 12
-
-    return `${hour}:${minute} ${ampm}`;
-}
-function resetSelect(select, placeholder) {
-    select.innerHTML = `<option value="">${placeholder}</option>`;
+function reset(select){
+    select.innerHTML = `<option value="">اختر</option>`;
 }
 
-function translateDay(day) {
+function translateDay(day){
     return {
         saturday: 'السبت',
         sunday: 'الأحد',
@@ -259,7 +292,28 @@ function translateDay(day) {
         thursday: 'الخميس'
     }[day];
 }
+
+function formatTime(time){
+    let [hour, minute] = time.split(':');
+    hour = parseInt(hour);
+
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12;
+    hour = hour ? hour : 12;
+
+    return `${hour}:${minute} ${ampm}`;
+}
+
+/* منع الإرسال بدون اختيار صحيح */
+document.querySelector('form').addEventListener('submit', function(e){
+    if(!programSportInput.value){
+        e.preventDefault();
+        alert('يرجى اختيار اليوم والوقت أولاً');
+    }
+});
 </script>
+
+
 
 @endsection
 

@@ -34,10 +34,10 @@
                         مسبح مجهز للتدريب والأنشطة المائية وفق أعلى معايير السلامة.
                     </p>
 
-                    <div class="fs-actions">
+                    {{-- <div class="fs-actions">
                         <a href="#" class="btn outline">اشتراك صباحي</a>
                         <a href="#" class="btn primary">اشتراك مسائي</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -50,10 +50,10 @@
                         ملعب مخصص للتدريب الجماعي والمباريات وفق تنظيم احترافي.
                     </p>
 
-                    <div class="fs-actions">
+                    {{-- <div class="fs-actions">
                         <a href="#" class="btn outline">اشتراك صباحي</a>
                         <a href="#" class="btn primary">اشتراك مسائي</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -66,10 +66,10 @@
                         مساحة مرنة تناسب مختلف الأنشطة الرياضية والفعاليات.
                     </p>
 
-                    <div class="fs-actions">
+                    {{-- <div class="fs-actions">
                         <a href="#" class="btn outline">اشتراك صباحي</a>
                         <a href="#" class="btn primary">اشتراك مسائي</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -82,10 +82,10 @@
                         صالة مخصصة لتنمية المرونة والتوازن والمهارات الحركية.
                     </p>
 
-                    <div class="fs-actions">
+                    {{-- <div class="fs-actions">
                         <a href="#" class="btn outline">اشتراك صباحي</a>
                         <a href="#" class="btn primary">اشتراك مسائي</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -98,10 +98,10 @@
                         بيئة تدريب آمنة لرياضات الدفاع عن النفس بإشراف متخصصين.
                     </p>
 
-                    <div class="fs-actions">
+                    {{-- <div class="fs-actions">
                         <a href="#" class="btn outline">اشتراك صباحي</a>
                         <a href="#" class="btn primary">اشتراك مسائي</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -114,9 +114,9 @@
                         مدرج مخصص للمتابعة، الفعاليات، والأنشطة الجماهيرية.
                     </p>
 
-                    <div class="fs-actions">
+                    {{-- <div class="fs-actions">
                         <a href="#" class="btn primary full">عرض التفاصيل</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -129,10 +129,10 @@
                         غرف مجهزة بأدوات حديثة لتحسين اللياقة والصحة العامة.
                     </p>
 
-                    <div class="fs-actions">
+                    {{-- <div class="fs-actions">
                         <a href="#" class="btn outline">اشتراك صباحي</a>
                         <a href="#" class="btn primary">اشتراك مسائي</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 

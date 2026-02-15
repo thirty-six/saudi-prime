@@ -243,7 +243,8 @@ section img {
 
 
 .prime-banner{
-    background-image: url('../img/stadium.webp'); 
+    /* background-image: url('../img/stadium.webp');  */
+    background-image: url('../img/stadium.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

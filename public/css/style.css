@@ -204,3 +204,30 @@ body{
   }
 }
 
+
+
+
+.center-fanous {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: swing 4s ease-in-out infinite alternate;
+    z-index: 1;
+    height: 200px;
+}
+.center-fanous svg{
+  height: 138px;
+}
+
+@keyframes swing {
+    from { transform: translateX(-50%) rotate(-4deg); }
+    to { transform: translateX(-50%) rotate(4deg); }
+}
+
+
+@media screen and (max-width:1024px) and (min-width:768px) {
+    .center-fanous{
+      left: 4%;
+    }
+}

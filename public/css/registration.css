@@ -206,3 +206,18 @@ input[type="checkbox"] {
 .modal{
     overflow-y: auto;
 }
+#timeSelect option{
+    direction: ltr;
+    text-align: right;
+}
+
+ input[type="radio"]{
+  width: 20px;
+  height: 20px;
+  border: 2px solid black;
+  border-radius: 50%; /* Makes it a circle */
+  vertical-align: middle;
+  margin-right: 10px;
+  cursor: pointer;
+  accent-color: #1f74ba7e;
+    }

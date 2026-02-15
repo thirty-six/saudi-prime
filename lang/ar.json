@@ -93,5 +93,11 @@
     "FAQs": "الأسئلة الشائعة",
     "question": "السؤال",
     "answer": "الإجابة",
-    "is_active": "فعّال"
+    "is_active": "فعّال",
+    "mornin_registers": "التسجيلات الصباحية",
+    "mornin_register": "تسجيل",
+    "Rmadan_sessions": "جلسات رمضان",
+    "Rmadan_session": "جلسة",
+    "Rmadan_registers": "تسحيلات رمضان",
+    "Rmadan_register": "تسجيل"
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\kidsRegisterController;
 use App\Http\Controllers\ProgramsController;
 use App\Http\Controllers\morningRegisterController;
+use App\Http\Controllers\RamadanRegistrationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -56,3 +57,15 @@ Route::post('/evening-registration', [eveningRegisterController::class, 'store']
 
 Route::get('/kids-registration', [kidsRegisterController::class, 'index'])->name('kids_register');
 Route::post('/kids-registration', [kidsRegisterController::class, 'store'])->name('kids_register.store');
+
+Route::get('/ramadan-registration', 
+    [RamadanRegistrationController::class, 'create']
+)->name('ramadan_register');
+
+Route::post('/ramadan-registration', 
+    [RamadanRegistrationController::class, 'store']
+)->name('ramadan_register.store');
+
+Route::get('/ramadan/invoice/{token}',
+    [RamadanRegistrationController::class, 'invoice']
+)->name('ramadan_invoice');

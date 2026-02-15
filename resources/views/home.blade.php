@@ -5,7 +5,50 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 @section('content')
-
+{{-- <div class="ramadan-block">
+<div class="page ramadan">
+    <div id="moon" class="fade-in"></div>
+    <div id="main-star" class="fade-in">
+      <div class="star-five rotating"></div>
+    </div>
+    <div class="constellations">
+      <div class="constellation rotating-slow">
+        <div class="baby-star">
+          <div class="star-five rotating"></div>
+        </div>
+        <div class="baby-star">
+          <div class="star-five rotating"></div>
+        </div>
+        <div class="baby-star">
+          <div class="star-five rotating"></div>
+        </div>
+        <div class="baby-star">
+          <div class="star-five rotating"></div>
+        </div>
+      </div>
+      <div id="angled">
+        <div class="constellation rotating-slow">
+          <div class="baby-star">
+            <div class="star-five rotating"></div>
+          </div>
+          <div class="baby-star">
+            <div class="star-five rotating"></div>
+          </div>
+          <div class="baby-star">
+            <div class="star-five rotating"></div>
+          </div>
+          <div class="baby-star">
+            <div class="star-five rotating"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text slide-up">مُبَارَك عَلَيكُمُ الْشَّهر</div>
+  </div>
+  <div id="stars"></div>
+  <div id="stars2"></div>
+  <div id="stars3"></div>
+</div> --}}
 <div class="header-wrapper prime-banner banner-on-load">
     <div class="hero-overlay"></div>
   <div class="gallery">
@@ -509,7 +552,7 @@
         </div>
 
         <button class="btn btn-primary-morning w-full mt-4">
-           <a href="{{ route('morning_register') }}"> {{ __('Join Now') }} </a>
+           <a disabled> {{ __('Join Now') }} </a>
         </button>
     </div>
     @endisset
@@ -537,7 +580,7 @@
         </div>
 
         <button class="btn btn-secondary-evening w-full mt-4">
-            <a href="{{ route('evening_register') }}"> {{ __('Join Now') }} </a>
+            <a disabled> {{ __('Join Now') }} </a>
         </button>
     </div>
     @endisset

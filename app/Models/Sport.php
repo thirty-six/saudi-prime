@@ -52,8 +52,12 @@ class Sport extends Model
     {
         return $this->{'name_' . app()->getLocale()} ?? null;
     }
-    public function getDescriptionAttribute(): string
+    public function getRemainingSeatsAttribute()
     {
-        return $this->{'description_' . app()->getLocale()} ?? null;
+        return $this->capacity - $this->registrations()->count();
     }
+    public function getDescriptionAttribute()
+{
+    return $this->description_ar;
+}
 }

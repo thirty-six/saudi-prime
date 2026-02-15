@@ -104,12 +104,21 @@ class AdultSession extends Model
         return $this->registrationsCount() >= $this->capacity;
     }
 
-    public function morning_registrations()
+    public function morningRegistrations()
     {
-        return $this->hasMany(
-            MorningRegistration::class,
-            'program_sport_id',
-            'program_sport_id'
-        );
+        return MorningRegistration::where(function ($query) {
+            $query->where('program_sport_id_1', $this->program_sport_id)
+                  ->orWhere('program_sport_id_2', $this->program_sport_id);
+        });
+    }
+
+    public function getMorningRegistrationsCountAttribute()
+    {
+        return $this->morningRegistrations()->count();
+    }
+
+    public function isMorningFull(): bool
+    {
+        return $this->morningRegistrations()->count() >= $this->capacity;
     }
 }

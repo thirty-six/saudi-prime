@@ -11,19 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('morning_register_students', function (Blueprint $table) {
-            $table->id();
-
-    // Student info
+        Schema::create('morning_registration_st', function (Blueprint $table) {
+    $table->id();
+            // Student info
     $table->string('full_name');
     $table->string('university_number', 10);
     $table->string('phone');
     $table->string('email')->nullable();
 
-    // Core relation (morning program only)
-    $table->foreignId('program_sport_id')
-        ->constrained('program_sports')
-        ->cascadeOnDelete();
+    $table->foreignId('program_sport_id_1')
+    ->constrained('program_sports')
+    ->cascadeOnDelete();
+
+    $table->foreignId('program_sport_id_2')
+    ->constrained('program_sports')
+    ->cascadeOnDelete();
 
     // Schedule selection
     $table->enum('day_one', [
@@ -34,7 +36,8 @@ return new class extends Migration
         'saturday','sunday','monday','tuesday','wednesday','thursday'
     ]);
 
-    $table->time('start_time');
+    $table->time('start_time_1');
+    $table->time('start_time_2');
     $table->dateTime('start_at')->nullable();
 
     // Payment
@@ -50,7 +53,8 @@ return new class extends Migration
     $table->timestamps();
 
     // Indexes
-    $table->index('program_sport_id');
+    $table->index('program_sport_id_1');
+    $table->index('program_sport_id_2');
     $table->index(['day_one', 'day_two']);
         });
     }
@@ -60,6 +64,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('morning_register_students');
+        Schema::dropIfExists('morning_registration_st');
     }
 };
