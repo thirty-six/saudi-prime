@@ -26,6 +26,9 @@ class RamadanRegistrationsTable
                 TextColumn::make('invoice_token')
                 ->label('رقم الفاتورة')
                     ->searchable(),
+                TextColumn::make('receipt_number')
+                ->label('رقم الايصال')
+                    ->searchable(),
                 TextColumn::make('guardian_name')
                 ->label('اسم ولي الأمر')
                     ->searchable(),
@@ -126,6 +129,7 @@ class RamadanRegistrationsTable
 
             fputcsv($handle, [
                 'رقم الفاتورة',
+                'رقم الايصال',
                 'ولي الأمر',
                 'رقم الجوال',
                 'اسم الطفل',
@@ -152,6 +156,7 @@ class RamadanRegistrationsTable
 
                 fputcsv($handle, [
                     $r->invoice_token,
+                    $r->receipt_number,
                     $r->guardian_name,
                     "'" . $r->guardian_phone,
                     $r->child_name,

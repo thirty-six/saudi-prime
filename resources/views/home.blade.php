@@ -4,51 +4,107 @@
  <link rel="stylesheet" href="{{asset('css/home.css')}}">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<style>
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.616);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup-card {
+    position: relative;
+    width: 90%;
+    max-width: 480px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.15);
+    animation: fadeIn 0.4s ease;
+}
+
+.popup-img {
+    width: 100%;
+    display: block;
+}
+
+.popup-footer {
+    padding: 15px;
+    background: rgba(0,0,0,0.4);
+}
+
+.popup-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(45deg, #06b6d4, #0891b2);
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.popup-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(6,182,212,0.4);
+}
+
+/* زر الإغلاق الجديد */
+.popup-close {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 60px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: rgb(230 232 235 / 44%);
+    backdrop-filter: blur(10px);
+    color: #212456;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.popup-close:hover {
+    background: #4547a8;
+    color: #ffffff;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+</style>
 @section('content')
-{{-- <div class="ramadan-block">
-<div class="page ramadan">
-    <div id="moon" class="fade-in"></div>
-    <div id="main-star" class="fade-in">
-      <div class="star-five rotating"></div>
-    </div>
-    <div class="constellations">
-      <div class="constellation rotating-slow">
-        <div class="baby-star">
-          <div class="star-five rotating"></div>
-        </div>
-        <div class="baby-star">
-          <div class="star-five rotating"></div>
-        </div>
-        <div class="baby-star">
-          <div class="star-five rotating"></div>
-        </div>
-        <div class="baby-star">
-          <div class="star-five rotating"></div>
-        </div>
-      </div>
-      <div id="angled">
-        <div class="constellation rotating-slow">
-          <div class="baby-star">
-            <div class="star-five rotating"></div>
-          </div>
-          <div class="baby-star">
-            <div class="star-five rotating"></div>
-          </div>
-          <div class="baby-star">
-            <div class="star-five rotating"></div>
-          </div>
-          <div class="baby-star">
-            <div class="star-five rotating"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="text slide-up">مُبَارَك عَلَيكُمُ الْشَّهر</div>
-  </div>
-  <div id="stars"></div>
-  <div id="stars2"></div>
-  <div id="stars3"></div>
-</div> --}}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const popup = document.getElementById("homePopup");
+    if (!popup) return;
+
+    const now = Date.now();
+    const twoHours = 5 * 60 * 1000;
+    const lastShown = localStorage.getItem("homePopupLastShown");
+
+    if (!lastShown || (now - parseInt(lastShown)) > twoHours) {
+        popup.style.display = "flex";
+    }
+});
+
+function closePopup() {
+    const popup = document.getElementById("homePopup");
+    popup.style.display = "none";
+
+    localStorage.setItem("homePopupLastShown", Date.now());
+}
+</script>
 <div class="header-wrapper prime-banner banner-on-load">
     <div class="hero-overlay"></div>
   <div class="gallery">
@@ -130,6 +186,7 @@
 
     <div class="image-column">
       <div class="track up">
+        <img src="{{ asset('img/ramadan_banner.webp')}}" alt="Random Image 8" />
         <img src="{{ asset('img/gallery/IMG_1.webp')}}" alt="Random Image 1" />
         <img src="{{ asset('img/gallery/IMG_2.webp')}}" alt="Random Image 2" />
         <img src="{{ asset('img/gallery/IMG_3.webp')}}" alt="Random Image 3" />
@@ -138,7 +195,7 @@
         <img src="{{ asset('img/gallery/IMG_5.webp')}}" alt="Random Image 5" />
         <img src="{{ asset('img/gallery/IMG_9.webp')}}" alt="Random Image 9" />
         <img src="{{ asset('img/gallery/IMG_10.webp')}}" alt="Random Image 10" />
-                <img src="{{ asset('img/gallery/IMG_9.webp')}}" alt="Random Image 6" />
+        <img src="{{ asset('img/gallery/IMG_9.webp')}}" alt="Random Image 6" />
 
       </div>
     </div>
@@ -150,7 +207,7 @@
         <img src="{{ asset('img/gallery/IMG_3.webp')}}" alt="Random Image 8" />
         <img src="{{ asset('img/gallery/IMG_4.webp')}}" alt="Random Image 4" />
         <img src="{{ asset('img/gallery/IMG_9.webp')}}" alt="Random Image 9" />
-
+        <img src="{{ asset('img/ramadan_banner.webp')}}" alt="Random Image 10" />
         <img src="{{ asset('img/gallery/IMG_5.webp')}}" alt="Random Image 5" />
         <img src="{{ asset('img/gallery/IMG_6.webp')}}" alt="Random Image 6" />
         <img src="{{ asset('img/gallery/IMG_7.webp')}}" alt="Random Image 7" />
@@ -170,6 +227,7 @@
         <img src="{{ asset('img/gallery/IMG_2.webp')}}" alt="Random Image 2" />
         <img src="{{ asset('img/gallery/IMG_3.webp')}}" alt="Random Image 3" />
         <img src="{{ asset('img/gallery/IMG_4.webp')}}" alt="Random Image 4" />
+        <img src="{{ asset('img/ramadan_banner.webp')}}" alt="Random Image 6" />
       </div>
     </div>
 
@@ -551,9 +609,9 @@
             
         </div>
 
-        <button class="btn btn-primary-morning w-full mt-4">
+        {{-- <button class="btn btn-primary-morning w-full mt-4">
            <a disabled> {{ __('Join Now') }} </a>
-        </button>
+        </button> --}}
     </div>
     @endisset
 
@@ -579,9 +637,9 @@
             
         </div>
 
-        <button class="btn btn-secondary-evening w-full mt-4">
+        {{-- <button class="btn btn-secondary-evening w-full mt-4">
             <a disabled> {{ __('Join Now') }} </a>
-        </button>
+        </button> --}}
     </div>
     @endisset
 
@@ -594,6 +652,25 @@
    </div>
   </section>
   </div>
+</div>
+
+<!-- POPUP -->
+<div id="homePopup" class="popup-overlay">
+    <div class="popup-card">
+
+        <button class="popup-close" onclick="closePopup()">
+            ✕
+        </button>
+
+        <img src="{{ asset('img/ramadan_offer.webp') }}" class="popup-img">
+
+        <div class="popup-footer">
+            <a href="{{ route('ramadan_register') }}" class="popup-btn">
+                اشترك الآن
+            </a>
+        </div>
+
+    </div>
 </div>
 
 <div id="programModal" class="fixed inset-0 bg-black/50 hidden z-50 flex items-center justify-center">

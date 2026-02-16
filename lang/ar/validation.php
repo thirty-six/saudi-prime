@@ -260,6 +260,7 @@ return [
         'subscription_type'  => 'نوع الاشتراك',
         'session_time' => 'وقت الحصة',
         'program_sport_id' => 'برنامج الرياضة',
+        'media_consent' => 'التصوير والنشر'
         
 
 

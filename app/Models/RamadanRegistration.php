@@ -18,6 +18,7 @@ class RamadanRegistration extends Model
         'paid',
         'payment_method',
         'invoice_token',
+        'receipt_number',
         'media_consent',
         'accepted_terms',
     ];

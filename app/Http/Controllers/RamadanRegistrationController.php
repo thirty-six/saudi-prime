@@ -7,7 +7,9 @@ use App\Models\RamadanRegistration;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Http;
+use App\Mail\RamadanInvoiceMail;
+use Illuminate\Support\Facades\Mail;
 
 class RamadanRegistrationController extends Controller
 {
@@ -17,37 +19,37 @@ public function create()
     $sessions = RamadanSession::where('is_active', true)
         ->withCount('registrations')
         ->get()
-        ->filter(fn ($s) =>
-            $s->registrations_count < $s->capacity
-        );
+        ->map(function ($s) {
 
-    // نحول كل شيء إلى array نظيف
-    $sessionsArray = $sessions->map(function ($s) {
-        return [
-            'id' => $s->id,
-            'days' => $s->days->value, // مهم جداً
-            'days_label' => $s->days->getLabel(),
-            'start_time' => $s->start_time,
-            'end_time' => $s->end_time,
-            'price' => $s->price,
-        ];
-    })->values()->toArray();
+            $remaining = $s->capacity - $s->registrations_count;
 
-    // استخراج الأيام بدون تكرار
-    $days = collect($sessionsArray)
+            return [
+                'id' => $s->id,
+                'days' => $s->days->value,
+                'days_label' => $s->days->getLabel(),
+                'start_time' => $s->start_time,
+                'end_time' => $s->end_time,
+                'price' => $s->price,
+                'remaining' => $remaining,
+            ];
+        })
+        ->filter(fn ($s) => $s['remaining'] > 0)
+        ->values();
+
+    $days = $sessions
         ->unique('days')
         ->values()
         ->map(fn ($item) => [
             'value' => $item['days'],
             'label' => $item['days_label'],
-        ])
-        ->toArray();
+        ]);
 
     return view('ramadan_register', [
-        'sessions' => $sessionsArray,
-        'days' => $days,
+        'sessions' => $sessions->toArray(),
+        'days' => $days->toArray(),
     ]);
 }
+
 
 public function invoice($token)
 {
@@ -59,12 +61,18 @@ public function invoice($token)
 }
 
 
+
     public function store(Request $request)
     {
     
     $request->validate([
         'guardian_name' => 'required|string|max:255',
-        'guardian_phone' => 'required|string|max:20',
+        'guardian_phone' => [
+    'required',
+    'string',
+    'max:20',
+    'regex:/^(?:\+9665\d{8}|05\d{8})$/'
+],
         'guardian_email' => 'nullable|email|max:100',
         'child_name' => 'required|string|max:255',
         'child_dob' => 'required|date',
@@ -73,7 +81,10 @@ public function invoice($token)
         'payment_method' => 'required',
         'media_consent' => 'required|in:agree,refuse',
         'accepted_terms' => 'required',
-    ]);
+    ], [
+    'guardian_phone.required' => 'رقم الجوال مطلوب.',
+    'guardian_phone.regex' => 'يجب إدخال رقم جوال سعودي صحيح يبدأ بـ 05 أو +9665 ويتكون من 10 أرقام.',
+]);
 
     // 🔹 تحقق العمر
     $age = Carbon::parse($request->child_dob)->age;
@@ -108,6 +119,15 @@ public function invoice($token)
             ])
             ->withInput();
     }
+    $phone = $request->guardian_phone;
+
+if (str_starts_with($phone, '05')) {
+    $phone = '+966' . substr($phone, 1);
+}
+
+$request->merge([
+    'guardian_phone' => $phone
+]);
 
     $registration_insert = RamadanRegistration::create([
         'guardian_name' => $request->guardian_name,
@@ -128,15 +148,55 @@ public function invoice($token)
     } while (
         RamadanRegistration::where('invoice_token', $token)->exists()
     );
+    $datePart = now()->format('Ymd');
+    $sequence = str_pad($registration_insert->id, 5, '0', STR_PAD_LEFT);
+
+    $receiptNumber = "RC-{$datePart}-{$sequence}";
 
     $registration_insert->update([
-        'invoice_token' => $token
+        'invoice_token' => $token,
+        'receipt_number' => $receiptNumber
     ]);
 
-    return redirect()->route('ramadan_invoice', $token);
+    if ($registration_insert->guardian_email) {
+    Mail::to($registration_insert->guardian_email)
+        ->send(new RamadanInvoiceMail($registration_insert));
+}
 
+     $invoiceUrl = route('ramadan_invoice', $token);
+
+        $message  = "تم تسجيل طفلكم بنجاح 🎉\n\n";
+        $message .= "اسم الطفل: {$request->child_name}\n";
+        $message .= "اليوم: {$session->days->getLabel()}\n";
+        $message .= "الوقت: {$session->start_time} - {$session->end_time}\n";
+        $message .= "السعر: {$session->price} ريال\n";
+        $message .= "رقم الإيصال: {$receiptNumber}\n\n";
+        $message .= "رابط الفاتورة:\n{$invoiceUrl}";
+
+        $this->sendWhatsAppMessage($request->guardian_phone, $message);
+
+        return redirect()->route('ramadan_invoice', $token);
     // return redirect()
     //     ->route('ramadan_register')
     //     ->with('success', 'تم تسجيل الطفل بنجاح');
 }
+
+private function sendWhatsAppMessage($phone, $message)
+    {
+        $phone = preg_replace('/[^0-9]/', '', $phone);
+
+        if (!str_starts_with($phone, '966')) {
+            $phone = '966' . ltrim($phone, '0');
+        }
+
+        Http::withToken(config('services.whatsapp.token'))
+            ->post("https://graph.facebook.com/" . config('services.whatsapp.version') . "/" . config('services.whatsapp.phone_id') . "/messages", [
+                "messaging_product" => "whatsapp",
+                "to" => $phone,
+                "type" => "text",
+                "text" => [
+                    "body" => $message
+                ]
+            ]);
+    }
 }

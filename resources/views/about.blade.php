@@ -27,7 +27,7 @@
             </div>
 
             <div class="about-image left-grid">
-                <img src="{{ asset('img/stadium_about.webp') }}" alt="Training Session">
+                <img src="{{ asset('img/play_ramadan.webp') }}" alt="Training Session">
             </div>
         </div>
     </section>

@@ -94,4 +94,8 @@ class MorningRegistrationResource extends Resource
     {
         return auth()->user()?->can('delete');
     }
+    public static function shouldRegisterNavigation(): bool
+{
+    return false;
+}
 }

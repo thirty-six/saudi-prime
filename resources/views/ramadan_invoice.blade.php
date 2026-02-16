@@ -51,6 +51,9 @@ button {
 <div class="section">
     <strong>رقم الفاتورة:</strong> {{ $registration->invoice_token }} <br>
     <br>
+    <strong>رقم الإيصال:</strong>
+    {{ $registration->receipt_number }}
+    <br><br>
     <strong>تاريخ التسجيل:</strong> {{ $registration->created_at->format('Y-m-d h:i A') }}
 </div>
 

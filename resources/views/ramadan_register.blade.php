@@ -66,6 +66,7 @@
             <label>بريد ولي الأمر</label>
             <input type="email" name="guardian_email"
                    value="{{ old('guardian_email') }}" autocomplete="off" placeholder="example@example.com" class="email-style">
+                   استخدم ايميل صحيح لارسال الفاتورة
         </div>
 
         {{-- Child --}}
@@ -129,6 +130,12 @@
 <div class="reg-group">
     <label>السعر</label>
     <input type="text" id="priceDisplay" readonly>
+</div>
+
+{{-- عرض المقاعد المتبقية --}}
+<div class="reg-group">
+    <label>المقاعد المتبقية</label>
+    <input type="text" id="remainingDisplay" readonly>
 </div>
         {{-- Payment --}}
         <div class="reg-group">
@@ -239,6 +246,7 @@ const sessions = @json($sessions);
 const daysSelect = document.getElementById('daysSelect');
 const timeSelect = document.getElementById('timeSelect');
 const priceDisplay = document.getElementById('priceDisplay');
+const remainingDisplay = document.getElementById('remainingDisplay');
 
 daysSelect.addEventListener('change', function () {
 
@@ -246,6 +254,7 @@ daysSelect.addEventListener('change', function () {
 
     timeSelect.innerHTML = '<option value="">اختر</option>';
     priceDisplay.value = '';
+    remainingDisplay.value = '';
 
     if (!selectedDay) return;
 
@@ -271,23 +280,25 @@ daysSelect.addEventListener('change', function () {
         option.value = session.id;
         option.textContent = startFormatted + ' - ' + endFormatted;
         option.dataset.price = session.price;
+        option.dataset.remaining = session.remaining;
 
         timeSelect.appendChild(option);
     });
-
 });
 
 timeSelect.addEventListener('change', function () {
 
     const selectedOption = this.options[this.selectedIndex];
 
-    if (selectedOption.dataset.price) {
-        priceDisplay.value = selectedOption.dataset.price + ' ريال';
-    } else {
-        priceDisplay.value = '';
-    }
+    priceDisplay.value = selectedOption.dataset.price
+        ? selectedOption.dataset.price + ' ريال'
+        : '';
 
+    remainingDisplay.value = selectedOption.dataset.remaining
+        ? selectedOption.dataset.remaining + ' مقعد'
+        : '';
 });
+
 </script>
 
 

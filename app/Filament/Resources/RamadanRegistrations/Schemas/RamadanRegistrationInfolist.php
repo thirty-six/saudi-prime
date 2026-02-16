@@ -14,6 +14,8 @@ class RamadanRegistrationInfolist
             ->components([
                 TextEntry::make('invoice_token')
                 ->label('رقم الفاتورة'),
+                TextEntry::make('receipt_number')
+                ->label('رقم الايصال'),
                 TextEntry::make('guardian_name')
                 ->label('اسم ولي الأمر'),
                 TextEntry::make('guardian_phone')
